@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:forum.godotengine.org)",
+      "WebFetch(domain:luiscarli.com)",
+      "WebFetch(domain:shaggydev.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:gdscript.com)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:old.reddit.com)"
+    ]
+  }
+}

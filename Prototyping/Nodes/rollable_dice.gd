@@ -1,5 +1,6 @@
 extends Node2D
 class_name RollableDice
+signal roll_finished(result: DiceResult)
 
 @onready var dice_icon: DiceIcon = $DiceIcon
 @onready var number_label: RichTextLabel = $Number
@@ -20,10 +21,10 @@ func setup(data: DiceData) -> void:
 
 
 # Rolls the dice with a slot-machine animation.
-# Returns { "value": int, "element": Consts.Elements, "is_extreme": bool }
+# Triggers `roll_finished` event with ("value": int, "element": Consts.Elements, "is_extreme": bool)
 # "is_extreme" is true when the last face of the dice is rolled
 # (e.g. face index 3 on a d4, face index 5 on a d6).
-func Roll() -> Dictionary:
+func Roll() -> DiceResult:
 	assert(dice_data != null, "RollableDice: call setup() before Roll()")
 
 	var face_count: int = dice_data.digits.size()
@@ -39,12 +40,18 @@ func Roll() -> Dictionary:
 
 	# Settle on the final result
 	_show_face(rolled_index)
-
-	return {
-		"value":      dice_data.digits[rolled_index],
-		"element":    dice_data.elements[rolled_index % dice_data.elements.size()],
-		"is_extreme": is_extreme,
-	}
+	
+	var result: DiceResult = DiceResult.new(
+		dice_data.digits[rolled_index],
+		dice_data.elements[rolled_index],
+		is_extreme
+	)
+	
+	roll_finished.emit(
+		result
+	)
+	
+	return result
 
 
 func _show_face(index: int) -> void:

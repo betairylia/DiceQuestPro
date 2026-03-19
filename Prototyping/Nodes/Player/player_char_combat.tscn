@@ -117,4 +117,5 @@ position = Vector2(-30, 28)
 position = Vector2(0, 28)
 
 [node name="RollableDice3" parent="." unique_id=1038882734 instance=ExtResource("3_kmw4y")]
+visible = false
 position = Vector2(30, 28)
