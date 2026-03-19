@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dqaguuvitf4q5" path="res://Prototyping/Sprites/Wizard-Idle.png" id="1_fadmq"]
 [ext_resource type="Texture2D" uid="uid://be8bwj78a8rqy" path="res://Prototyping/Sprites/Wizard-Attack01.png" id="1_on5uj"]
 [ext_resource type="Script" uid="uid://cf1rh1dpdqale" path="res://Prototyping/Nodes/Player/player_combat.gd" id="1_yiv1m"]
-[ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="3_kmw4y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rjsi"]
 atlas = ExtResource("1_on5uj")
@@ -109,13 +108,3 @@ script = ExtResource("1_yiv1m")
 sprite_frames = SubResource("SpriteFrames_7iqst")
 animation = &"attack-default"
 frame_progress = 0.26432285
-
-[node name="RollableDice1" parent="." unique_id=1803946193 instance=ExtResource("3_kmw4y")]
-position = Vector2(-30, 28)
-
-[node name="RollableDice2" parent="." unique_id=2112884054 instance=ExtResource("3_kmw4y")]
-position = Vector2(0, 28)
-
-[node name="RollableDice3" parent="." unique_id=1038882734 instance=ExtResource("3_kmw4y")]
-visible = false
-position = Vector2(30, 28)
