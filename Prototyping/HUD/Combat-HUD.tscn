@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dffl3j136dlbl"]
+
+[ext_resource type="Script" uid="uid://671l32fibkpx" path="res://Prototyping/HUD/combat_hud.gd" id="1_qvj60"]
+
+[node name="CombatHud" type="Control" unique_id=1950789093]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qvj60")
+
+[node name="ActButton" type="Button" parent="." unique_id=2036247005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 196.0
+offset_top = 300.0
+offset_right = -327.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Act"
+
+[node name="RerollButton" type="Button" parent="." unique_id=743149551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 327.0
+offset_top = 300.0
+offset_right = -196.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reroll"
+
+[connection signal="pressed" from="ActButton" to="." method="_on_act_button_pressed"]
+[connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://d3y5mqejxm5rd"]
+
+[ext_resource type="FontFile" uid="uid://dlpv0unhqdo80" path="res://Prototyping/HUD/DINKIEBITMAP-9PX.TTF" id="1_ry484"]
+
+[resource]
+RichTextLabel/constants/outline_size = 3
+RichTextLabel/font_sizes/normal_font_size = 10
+RichTextLabel/fonts/normal_font = ExtResource("1_ry484")

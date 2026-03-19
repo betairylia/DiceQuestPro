@@ -1,0 +1,39 @@
+# Godot 4 — generated/cached files (safe to regenerate)
+.godot/
+*.translation
+.import/
+
+# Android export
+/android/
+
+# Export artifacts & builds
+export/
+builds/
+*.apk
+*.aab
+*.exe
+*.pck
+*.zip
+
+# Mono / C#
+.mono/
+data_*/
+mono_crash.*.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor configs (optional: keep if you share settings with the team)
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Temp / swap
+*.swp
+*~

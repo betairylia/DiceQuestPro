@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://by1efb3psi3md"]
+
+[ext_resource type="Texture2D" uid="uid://dqaguuvitf4q5" path="res://Prototyping/Sprites/Wizard-Idle.png" id="1_fadmq"]
+[ext_resource type="Texture2D" uid="uid://be8bwj78a8rqy" path="res://Prototyping/Sprites/Wizard-Attack01.png" id="1_on5uj"]
+[ext_resource type="Script" uid="uid://cf1rh1dpdqale" path="res://Prototyping/Nodes/Player/player_combat.gd" id="1_yiv1m"]
+[ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="3_kmw4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rjsi"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqpdk"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uun5"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04ahh"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1ssb"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84yb4"]
+atlas = ExtResource("1_on5uj")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5i5v"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on4ma"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bafdv"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdbpp"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew7vu"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1iem"]
+atlas = ExtResource("1_fadmq")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7iqst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rjsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqpdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uun5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04ahh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1ssb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84yb4")
+}],
+"loop": true,
+"name": &"attack-default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5i5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on4ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bafdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdbpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew7vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1iem")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PlayerChar-Combat" type="Node2D" unique_id=876047242]
+script = ExtResource("1_yiv1m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1437182714]
+sprite_frames = SubResource("SpriteFrames_7iqst")
+animation = &"attack-default"
+frame_progress = 0.26432285
+
+[node name="RollableDice1" parent="." unique_id=1803946193 instance=ExtResource("3_kmw4y")]
+position = Vector2(-30, 28)
+
+[node name="RollableDice2" parent="." unique_id=702027115 instance=ExtResource("3_kmw4y")]
+position = Vector2(0, 28)
+
+[node name="RollableDice3" parent="." unique_id=1245864142 instance=ExtResource("3_kmw4y")]
+position = Vector2(30, 28)
