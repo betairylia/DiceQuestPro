@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://bqpsgqw2uo6mw" path="res://Prototyping/combat.gd" id="1_c6oeu"]
 [ext_resource type="Texture2D" uid="uid://bcx88v35v6ng0" path="res://Prototyping/Sprites/Background.png" id="1_gbmfu"]
 [ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/Player/player_char_combat.tscn" id="2_4tqe8"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
+[ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
+playersData = Array[ExtResource("2_544xo")]([ExtResource("3_eo8vy"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
 
 [node name="Background" type="Sprite2D" parent="." unique_id=270487990]
 position = Vector2(320, 180)

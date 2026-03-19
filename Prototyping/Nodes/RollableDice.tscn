@@ -3,8 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://ccp4u2yrj8tva" path="res://Prototyping/Sprites/dice icons.png" id="2_e4hxf"]
 [ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2_ebgn0"]
 [ext_resource type="Script" uid="uid://bp62ge3uuwy5t" path="res://Prototyping/Sprites/dice_icon.gd" id="2_ru1na"]
+[ext_resource type="Script" path="res://Prototyping/Nodes/rollable_dice.gd" id="3_rollable"]
 
 [node name="RollableDice" type="Node2D" unique_id=1803946193]
+script = ExtResource("3_rollable")
 
 [node name="DiceIcon" type="Sprite2D" parent="." unique_id=1342336529]
 texture = ExtResource("2_e4hxf")

@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="DiceData" format=3 uid="uid://o70mergyi2pw"]
+[gd_resource type="Resource" script_class="MobData" format=3 uid="uid://bnigeirx8he57"]
 
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/dice_data.gd" id="1_dys4l"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/mob_data.gd" id="2_8cllj"]
+[ext_resource type="Resource" uid="uid://o70mergyi2pw" path="res://Prototyping/Data/FireD4.tres" id="2_g7cep"]
 
 [resource]
-script = ExtResource("1_dys4l")
-digits = Array[int]([1, 2, 3, 4])
-elements = Array[int]([1, 1, 1, 1])
-metadata/_custom_type_script = "uid://dl5xgr47sh7i"
+script = ExtResource("2_8cllj")
+max_health = 50
+alive_dice = Array[ExtResource("1_dys4l")]([ExtResource("2_g7cep"), ExtResource("2_g7cep"), ExtResource("2_g7cep")])
+dead_dice = Array[ExtResource("1_dys4l")]([ExtResource("2_g7cep")])
+metadata/_custom_type_script = "uid://crdy3x714y4kr"
