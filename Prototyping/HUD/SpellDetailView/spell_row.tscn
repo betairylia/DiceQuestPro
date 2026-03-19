@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://4i5p7ptwfapu"]
+
+[ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="1_ahswj"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1322098478]
+theme_override_constants/separation = 0
+
+[node name="Pattern" type="RichTextLabel" parent="." unique_id=586449740]
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+theme = ExtResource("1_ahswj")
+text = "FFFTT"
+autowrap_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="." unique_id=489671926]
+custom_minimum_size = Vector2(130, 10)
+layout_mode = 2
+theme = ExtResource("1_ahswj")
+text = "Lightning Fireball"
+
+[node name="Damage" type="RichTextLabel" parent="." unique_id=1667855165]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+theme = ExtResource("1_ahswj")
+text = "17 +250"

@@ -37,6 +37,8 @@ func RollAll() -> Array[DiceResult]:
 	var results: Array[DiceResult] = []
 	for d in _dice:
 		results.append(await d.roll_finished)
+	for r in results:
+		r.source = data
 	print(results)
 	dice_rolled.emit(results)
 	return results

@@ -26,3 +26,12 @@ const SYMBOLS = {
 	Elements.Wind: "🌪",
 	Elements.Nature: "🌱"
 }
+
+const SHORTHANDS = {
+	Elements.Sword:   "S",
+	Elements.Fire:    "F",
+	Elements.Water:   "W",
+	Elements.Thunder: "T",
+	Elements.Wind:    "A",
+	Elements.Nature:  "N",
+}

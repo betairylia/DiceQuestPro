@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://cgvt6jxr2t5d6"]
+
+[ext_resource type="FontFile" uid="uid://dlpv0unhqdo80" path="res://Prototyping/HUD/DINKIEBITMAP-9PX.TTF" id="1_fw6et"]
+
+[resource]
+Button/font_sizes/font_size = 12
+RichTextLabel/constants/outline_size = 3
+RichTextLabel/font_sizes/normal_font_size = 10
+RichTextLabel/fonts/normal_font = ExtResource("1_fw6et")
