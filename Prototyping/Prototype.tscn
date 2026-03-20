@@ -20,6 +20,7 @@ position = Vector2(320, 180)
 texture = ExtResource("1_gbmfu")
 
 [node name="CombatHud" parent="." unique_id=1950789093 instance=ExtResource("3_4tqe8")]
+mouse_filter = 2
 
 [node name="PlayerChar-Combat" parent="." unique_id=876047242 instance=ExtResource("2_4tqe8")]
 position = Vector2(236, 182)
@@ -30,5 +31,6 @@ position = Vector2(146, 182)
 [node name="PlayerChar-Combat3" parent="." unique_id=1517645035 instance=ExtResource("2_4tqe8")]
 position = Vector2(56, 182)
 
+[connection signal="player_spell_updated" from="." to="CombatHud" method="_on_prototype_player_spell_updated"]
 [connection signal="act" from="CombatHud" to="." method="_on_combat_hud_act"]
 [connection signal="reroll" from="CombatHud" to="." method="_on_combat_hud_reroll"]

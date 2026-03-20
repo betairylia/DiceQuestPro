@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://671l32fibkpx" path="res://Prototyping/HUD/combat_hud.gd" id="1_qvj60"]
 [ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2_n886b"]
-[ext_resource type="Texture2D" uid="uid://hwo3x6y2ja6l" path="res://icon.svg" id="3_3kbxl"]
-[ext_resource type="Script" uid="uid://d4ki7do34qkix" path="res://Prototyping/HUD/SpellDetailView/spells_detail.gd" id="3_7s1lx"]
-[ext_resource type="PackedScene" uid="uid://4i5p7ptwfapu" path="res://Prototyping/HUD/SpellDetailView/spell_row.tscn" id="3_d0nm1"]
+[ext_resource type="PackedScene" uid="uid://bfpajtpvlppvn" path="res://Prototyping/HUD/SpellDetailView/spell_detail_view.tscn" id="3_3kbxl"]
 
 [node name="CombatHud" type="Control" unique_id=1950789093]
 layout_mode = 3
@@ -43,60 +41,17 @@ grow_vertical = 2
 theme = ExtResource("2_n886b")
 text = "重骰"
 
-[node name="Spells" type="VBoxContainer" parent="." unique_id=493746054]
-custom_minimum_size = Vector2(240, 100)
+[node name="Spells" parent="." unique_id=57188499 instance=ExtResource("3_3kbxl")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
-offset_top = 251.0
+offset_top = 255.0
 offset_right = -365.0
-offset_bottom = -9.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 2
-alignment = 1
-script = ExtResource("3_7s1lx")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Spells" unique_id=1811542052]
-custom_minimum_size = Vector2(240, 80)
-layout_mode = 2
-
-[node name="SpellDetailContainer" type="VBoxContainer" parent="Spells/ScrollContainer" unique_id=414217363]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="HBoxContainer" parent="Spells/ScrollContainer/SpellDetailContainer" unique_id=1322098478 instance=ExtResource("3_d0nm1")]
-layout_mode = 2
-
-[node name="HLine" type="TextureRect" parent="Spells" unique_id=1650905305]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-texture = ExtResource("3_3kbxl")
-expand_mode = 1
-
-[node name="TotalStats" type="HBoxContainer" parent="Spells" unique_id=1940086519]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Total" type="RichTextLabel" parent="Spells/TotalStats" unique_id=474831945]
-custom_minimum_size = Vector2(50, 10)
-layout_mode = 2
-theme = ExtResource("2_n886b")
-text = "Total"
-autowrap_mode = 2
-
-[node name="Space" type="RichTextLabel" parent="Spells/TotalStats" unique_id=1604236517]
-custom_minimum_size = Vector2(130, 10)
-layout_mode = 2
-theme = ExtResource("2_n886b")
-
-[node name="Damage" type="RichTextLabel" parent="Spells/TotalStats" unique_id=738179320]
-custom_minimum_size = Vector2(60, 10)
-layout_mode = 2
-theme = ExtResource("2_n886b")
-text = "266 +2570"
 
 [connection signal="pressed" from="ActButton" to="." method="_on_act_button_pressed"]
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

@@ -1,12 +1,29 @@
 [gd_scene format=3 uid="uid://ctf70ay22bp3p"]
 
+[ext_resource type="Texture2D" uid="uid://cs1intrl81u55" path="res://Prototyping/Sprites/dice_backgrounds.png" id="2_1pxh3"]
 [ext_resource type="Texture2D" uid="uid://ccp4u2yrj8tva" path="res://Prototyping/Sprites/dice icons.png" id="2_e4hxf"]
 [ext_resource type="Script" uid="uid://bp62ge3uuwy5t" path="res://Prototyping/Sprites/dice_icon.gd" id="2_ru1na"]
 [ext_resource type="Script" uid="uid://djw0vfjdnkemn" path="res://Prototyping/Nodes/rollable_dice.gd" id="3_rollable"]
 [ext_resource type="Theme" uid="uid://cgvt6jxr2t5d6" path="res://Prototyping/HUD/pixelated_outline.tres" id="4_ru1na"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxh3"]
+size = Vector2(28, 47.5)
+
 [node name="RollableDice" type="Node2D" unique_id=1803946193]
 script = ExtResource("3_rollable")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1016847035]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=911072002]
+position = Vector2(0, 8.25)
+shape = SubResource("RectangleShape2D_1pxh3")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=778319629]
+position = Vector2(0, -1)
+texture = ExtResource("2_1pxh3")
+hframes = 4
+frame = 1
 
 [node name="DiceIcon" type="Sprite2D" parent="." unique_id=1342336529]
 texture = ExtResource("2_e4hxf")
@@ -18,15 +35,19 @@ offset_left = -6.0
 offset_top = -5.0
 offset_right = 6.0
 offset_bottom = 5.0
+mouse_filter = 2
 theme = ExtResource("4_ru1na")
 text = "12"
 horizontal_alignment = 1
 
 [node name="Element" type="RichTextLabel" parent="." unique_id=1825869399]
 offset_left = -12.0
-offset_top = 11.0
+offset_top = 14.0
 offset_right = 12.0
-offset_bottom = 31.0
+offset_bottom = 34.0
+mouse_filter = 2
 text = "🔥"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

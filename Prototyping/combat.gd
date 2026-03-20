@@ -1,5 +1,7 @@
 extends Node
 
+signal player_spell_updated(spells: Array[MatchedSpell])
+
 @onready var players: Array[Mob] = [$"PlayerChar-Combat", $"PlayerChar-Combat2", $"PlayerChar-Combat3"]
 @export var spells: Array[Spell]
 @export var playersData: Array[MobData]
@@ -28,6 +30,7 @@ func _roll_player() -> void:
 	
 	var all_matched_spells = DiceMatcher.match_all_spells(results, spells)
 	DiceMatcher.print_matches(all_matched_spells)
+	player_spell_updated.emit(all_matched_spells)
 
 
 func _on_combat_hud_act() -> void:
