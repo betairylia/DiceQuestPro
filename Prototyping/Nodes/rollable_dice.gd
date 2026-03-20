@@ -3,6 +3,7 @@ class_name RollableDice
 
 signal roll_finished(result: DiceResult)
 signal state_entered(state: DiceCombatState)
+signal attack_landed(pos: Vector2, dice: RollableDice, dice_result: DiceResult)
 
 @onready var dice_icon: DiceIcon = $DiceIcon
 @onready var number_label: RichTextLabel = $Number
@@ -24,6 +25,12 @@ var state: DiceCombatState
 const ANIM_STEPS := 14          # total frames of cycling
 const ANIM_INTERVAL_START := 0.04  # fast (seconds per step)
 const ANIM_INTERVAL_END   := 0.13  # slow (deceleration)
+
+
+func _ready():
+	setup(load("res://Prototyping/Data/FighterD12.tres"))
+	_set_state(DiceCombatState.Determined)
+	PlayAttackAnim(Vector2(500, 200))
 
 
 func setup(data: DiceData) -> void:
@@ -66,7 +73,7 @@ func Roll() -> DiceResult:
 		result
 	)
 	
-	return result
+	return dice_result
 
 
 func _show_face(index: int) -> void:
@@ -89,3 +96,24 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			_set_state(DiceCombatState.Selected)
 		elif state == DiceCombatState.Selected:
 			_set_state(DiceCombatState.Unselected)
+
+
+# ---- Attack logic ----
+
+func PlayAttackAnim(target_pos_global: Vector2, delay: float = 0) -> void:
+
+	if state != DiceCombatState.Determined:
+		return
+
+	_set_state(DiceCombatState.Attacking)
+
+	var t = create_tween()
+	var current_pos = dice_icon.global_position
+	t.tween_property(dice_icon, "global_position", current_pos + Vector2.DOWN * 10.0, 0.2 + delay).set_ease(Tween.EASE_OUT)
+	t.tween_property(dice_icon, "global_position", target_pos_global, 0.12).set_ease(Tween.EASE_IN)
+	t.tween_callback(attack_landed.emit.bind(target_pos_global, self, dice_result))
+	t.tween_property(dice_icon, "global_position", current_pos, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.05)
+
+	await t.finished
+
+	_set_state(DiceCombatState.Determined)

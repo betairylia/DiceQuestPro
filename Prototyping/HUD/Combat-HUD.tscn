@@ -39,9 +39,10 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_n886b")
+disabled = true
 text = "重骰"
 
-[node name="Spells" parent="." unique_id=57188499 instance=ExtResource("3_3kbxl")]
+[node name="PlayerSpells" parent="." unique_id=57188499 instance=ExtResource("3_3kbxl")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +51,18 @@ offset_left = 35.0
 offset_top = 255.0
 offset_right = -365.0
 offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemySpells" parent="." unique_id=1400054191 instance=ExtResource("3_3kbxl")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 381.0
+offset_top = 17.0
+offset_right = -19.0
+offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
 

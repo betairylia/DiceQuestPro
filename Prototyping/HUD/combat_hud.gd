@@ -2,7 +2,8 @@ extends Control
 signal act
 signal reroll
 
-@onready var player_spells: SpellsDetailPanel = $Spells
+@onready var player_spells: SpellsDetailPanel = $PlayerSpells
+@onready var enemy_spells: SpellsDetailPanel = $EnemySpells
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,5 +23,13 @@ func _on_reroll_button_pressed() -> void:
 	reroll.emit()
 
 
+func set_reroll_enabled(enabled: bool) -> void:
+	$RerollButton.disabled = not enabled
+
+
 func _on_prototype_player_spell_updated(spells: Array[MatchedSpell]) -> void:
 	player_spells.populate(spells)
+
+
+func _on_prototype_enemy_spell_updated(spells: Array[MatchedSpell]) -> void:
+	enemy_spells.populate(spells)

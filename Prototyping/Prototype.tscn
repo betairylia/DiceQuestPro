@@ -2,18 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bqpsgqw2uo6mw" path="res://Prototyping/combat.gd" id="1_c6oeu"]
 [ext_resource type="Texture2D" uid="uid://bcx88v35v6ng0" path="res://Prototyping/Sprites/Background.png" id="1_gbmfu"]
-[ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/Player/player_char_combat.tscn" id="2_4tqe8"]
+[ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/mob.tscn" id="2_4tqe8"]
 [ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/spell.gd" id="2_5couh"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Fighter.tres" id="3_5couh"]
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
 [ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_ni1eb"]
+[ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
 spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
+enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 
 [node name="Background" type="Sprite2D" parent="." unique_id=270487990]
 position = Vector2(320, 180)
@@ -31,6 +33,10 @@ position = Vector2(146, 182)
 [node name="PlayerChar-Combat3" parent="." unique_id=1517645035 instance=ExtResource("2_4tqe8")]
 position = Vector2(56, 182)
 
+[node name="EnemySlot1" parent="." unique_id=1056257774 instance=ExtResource("2_4tqe8")]
+position = Vector2(500, 182)
+
+[connection signal="enemy_spell_updated" from="." to="CombatHud" method="_on_prototype_enemy_spell_updated"]
 [connection signal="player_spell_updated" from="." to="CombatHud" method="_on_prototype_player_spell_updated"]
 [connection signal="act" from="CombatHud" to="." method="_on_combat_hud_act"]
 [connection signal="reroll" from="CombatHud" to="." method="_on_combat_hud_reroll"]

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://by1efb3psi3md"]
 
 [ext_resource type="Texture2D" uid="uid://dqaguuvitf4q5" path="res://Prototyping/Sprites/Wizard-Idle.png" id="1_fadmq"]
+[ext_resource type="Script" uid="uid://cggh04uf3711y" path="res://Source/Core/mob.gd" id="1_ngjfv"]
 [ext_resource type="Texture2D" uid="uid://be8bwj78a8rqy" path="res://Prototyping/Sprites/Wizard-Attack01.png" id="1_on5uj"]
-[ext_resource type="Script" uid="uid://cf1rh1dpdqale" path="res://Prototyping/Nodes/Player/player_combat.gd" id="1_yiv1m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rjsi"]
 atlas = ExtResource("1_on5uj")
@@ -101,8 +101,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlayerChar-Combat" type="Node2D" unique_id=876047242]
-script = ExtResource("1_yiv1m")
+[node name="Mob" type="Node2D" unique_id=876047242]
+script = ExtResource("1_ngjfv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1437182714]
 sprite_frames = SubResource("SpriteFrames_7iqst")
