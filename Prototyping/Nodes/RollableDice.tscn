@@ -30,7 +30,7 @@ texture = ExtResource("2_e4hxf")
 hframes = 6
 script = ExtResource("2_ru1na")
 
-[node name="Number" type="RichTextLabel" parent="." unique_id=124259059]
+[node name="Number" type="RichTextLabel" parent="DiceIcon" unique_id=124259059]
 offset_left = -6.0
 offset_top = -5.0
 offset_right = 6.0

@@ -18,6 +18,12 @@ enum Elements {
 	Nature,
 }
 
+enum DamageType{
+	Regular,
+	Special,
+	Healing
+}
+
 const SYMBOLS = {
 	Elements.Sword: "⚔️",
 	Elements.Fire: "🔥",

@@ -3,10 +3,10 @@ class_name RollableDice
 
 signal roll_finished(result: DiceResult)
 signal state_entered(state: DiceCombatState)
-signal attack_landed(pos: Vector2, dice: RollableDice, dice_result: DiceResult)
+# signal attack_landed(pos: Vector2, dice: RollableDice, dice_result: DiceResult)
 
 @onready var dice_icon: DiceIcon = $DiceIcon
-@onready var number_label: RichTextLabel = $Number
+@onready var number_label: RichTextLabel = $DiceIcon/Number
 @onready var element_label: RichTextLabel = $Element
 @onready var background: Sprite2D = $Background
 
@@ -19,6 +19,7 @@ enum DiceCombatState{
 
 var dice_data: DiceData
 var dice_result: DiceResult
+var source: MobData
 var state: DiceCombatState
 
 # Animation config
@@ -27,10 +28,10 @@ const ANIM_INTERVAL_START := 0.04  # fast (seconds per step)
 const ANIM_INTERVAL_END   := 0.13  # slow (deceleration)
 
 
-func _ready():
-	setup(load("res://Prototyping/Data/FighterD12.tres"))
-	_set_state(DiceCombatState.Determined)
-	PlayAttackAnim(Vector2(500, 200))
+# func _ready():
+	# setup(load("res://Prototyping/Data/FighterD12.tres"))
+	# _set_state(DiceCombatState.Determined)
+	# Attack([])
 
 
 func setup(data: DiceData) -> void:
@@ -66,13 +67,12 @@ func Roll() -> DiceResult:
 		dice_data.elements[rolled_index],
 		is_extreme
 	)
-	
+	result.source = source
+	result.node = self
+
 	dice_result = result
-	
-	roll_finished.emit(
-		result
-	)
-	
+	roll_finished.emit(result)
+
 	return dice_result
 
 
@@ -81,6 +81,9 @@ func _show_face(index: int) -> void:
 	var elem_index: int = index % dice_data.elements.size()
 	element_label.text  = Consts.SYMBOLS[dice_data.elements[elem_index]]
 
+
+func SetState(s: DiceCombatState) -> void:
+	_set_state(s)
 
 func _set_state(state: DiceCombatState) -> void:
 	self.state = state
@@ -100,18 +103,30 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 # ---- Attack logic ----
 
-func PlayAttackAnim(target_pos_global: Vector2, delay: float = 0) -> void:
+func Attack(available_targets: Array[Mob], delay: float = 0) -> void:
 
 	if state != DiceCombatState.Determined:
 		return
+	
+	if len(available_targets) == 0:
+		return
 
 	_set_state(DiceCombatState.Attacking)
+
+	# TODO: Proper targeting logic
+	var target = available_targets[0]
+	var target_pos_global = target.global_position
 
 	var t = create_tween()
 	var current_pos = dice_icon.global_position
 	t.tween_property(dice_icon, "global_position", current_pos + Vector2.DOWN * 10.0, 0.2 + delay).set_ease(Tween.EASE_OUT)
 	t.tween_property(dice_icon, "global_position", target_pos_global, 0.12).set_ease(Tween.EASE_IN)
-	t.tween_callback(attack_landed.emit.bind(target_pos_global, self, dice_result))
+	t.tween_callback(
+		target.get_damage_heal.bind(DamageInfo.new(
+			dice_result.digit,
+			Consts.DamageType.Regular
+		))
+	)
 	t.tween_property(dice_icon, "global_position", current_pos, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.05)
 
 	await t.finished
