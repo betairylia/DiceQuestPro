@@ -47,7 +47,11 @@ func _ready() -> void:
 
 	for i in range(3):
 		players[i].setup(playersData[i])
+		players[i].died.connect(_on_mob_died.bind(players[i], true))
+		players[i].revived.connect(_on_mob_revived.bind(players[i], true))
 	enemies[0].setup(enemiesData[0])
+	enemies[0].died.connect(_on_mob_died.bind(enemies[0], false))
+	enemies[0].revived.connect(_on_mob_revived.bind(enemies[0], false))
 
 	_turn()
 
@@ -165,6 +169,21 @@ func _roll_players() -> void:
 	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
 
 	player_spell_updated.emit(_player_matched_spells)
+
+
+func _on_mob_died(_mob: Mob, is_player: bool) -> void:
+	# Rebuild the flat dice list so future rolls use dead_dice.
+	if is_player:
+		_player_dice = _collect_dice(players)
+	else:
+		_enemy_dice = _collect_dice(enemies)
+
+
+func _on_mob_revived(_mob: Mob, is_player: bool) -> void:
+	if is_player:
+		_player_dice = _collect_dice(players)
+	else:
+		_enemy_dice = _collect_dice(enemies)
 
 
 func _on_combat_hud_reroll() -> void:

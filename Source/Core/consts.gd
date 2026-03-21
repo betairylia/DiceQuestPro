@@ -16,6 +16,8 @@ enum Elements {
 	Thunder,
 	Wind,
 	Nature,
+	Idle,
+	Revive,
 }
 
 enum DamageType{
@@ -30,7 +32,9 @@ const SYMBOLS = {
 	Elements.Water: "💧",
 	Elements.Thunder: "⚡",
 	Elements.Wind: "🌪",
-	Elements.Nature: "🌱"
+	Elements.Nature: "🌱",
+	Elements.Idle: "⌛",
+	Elements.Revive: "👼",
 }
 
 const SHORTHANDS = {
@@ -40,4 +44,6 @@ const SHORTHANDS = {
 	Elements.Thunder: "T",
 	Elements.Wind:    "A",
 	Elements.Nature:  "N",
+	Elements.Idle:    "_",
+	Elements.Revive:  "R",
 }
