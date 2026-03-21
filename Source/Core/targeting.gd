@@ -13,7 +13,7 @@ static func pick(element: Consts.Elements, targets: Array[Mob]) -> Mob:
 	var alive := targets.filter(func(m: Mob) -> bool: return m.is_alive())
 
 	match element:
-		Consts.Elements.Idle:
+		Consts.Elements.Idle, Consts.Elements.Revive:
 			return null
 		Consts.Elements.Sword:
 			if alive.is_empty():

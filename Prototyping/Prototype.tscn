@@ -10,13 +10,14 @@
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
 [ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_ni1eb"]
 [ext_resource type="Resource" uid="uid://c74eqpn1v42uo" path="res://Prototyping/Data/Spells/melee.tres" id="4_v8jq8"]
+[ext_resource type="Resource" uid="uid://b2v05vpquvpqq" path="res://Prototyping/Data/Spells/revive.tres" id="5_tq74n"]
 [ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
 [ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="9_fycvh"]
 [ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="12_fro8r"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
-spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb"), ExtResource("4_v8jq8")])
+spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb"), ExtResource("4_v8jq8"), ExtResource("5_tq74n")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 envDie = ExtResource("9_fycvh")
@@ -30,12 +31,15 @@ mouse_filter = 2
 
 [node name="PlayerChar-Combat" parent="." unique_id=876047242 instance=ExtResource("2_4tqe8")]
 position = Vector2(200, 182)
+knockback_direction = Vector2(-1, 0)
 
 [node name="PlayerChar-Combat2" parent="." unique_id=1955269839 instance=ExtResource("2_4tqe8")]
 position = Vector2(129, 182)
+knockback_direction = Vector2(-1, 0)
 
 [node name="PlayerChar-Combat3" parent="." unique_id=1517645035 instance=ExtResource("2_4tqe8")]
 position = Vector2(56, 182)
+knockback_direction = Vector2(-1, 0)
 
 [node name="EnemySlot1" parent="." unique_id=1056257774 instance=ExtResource("2_4tqe8")]
 position = Vector2(500, 182)

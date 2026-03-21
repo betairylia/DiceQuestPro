@@ -10,6 +10,7 @@ const ELEMENT_COLORS = {
 	Consts.Elements.Thunder: Color(1.0,  0.87, 0.0),
 	Consts.Elements.Wind:    Color(0.67, 0.87, 1.0),
 	Consts.Elements.Nature:  Color(0.27, 0.80, 0.27),
+	Consts.Elements.Revive:  Color(0.27, 0.80, 0.27),
 }
 
 @onready var _container := $ScrollContainer/SpellDetailContainer
