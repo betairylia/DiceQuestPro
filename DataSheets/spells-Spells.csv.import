@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dr1p7g2eapvaa"
+
+[deps]
+
+files=["res://DataSheets/spells-Spells.Pattern.translation", "res://DataSheets/spells-Spells.DisplayName.translation", "res://DataSheets/spells-Spells.Power.translation", "res://DataSheets/spells-Spells.en.translation", "res://DataSheets/spells-Spells.en.translation"]
+
+source_file="res://DataSheets/spells-Spells.csv"
+dest_files=["res://DataSheets/spells-Spells.Pattern.translation", "res://DataSheets/spells-Spells.DisplayName.translation", "res://DataSheets/spells-Spells.Power.translation", "res://DataSheets/spells-Spells.en.translation", "res://DataSheets/spells-Spells.en.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

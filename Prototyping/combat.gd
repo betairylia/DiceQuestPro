@@ -116,11 +116,20 @@ func _regular_attack(froms: Array[Mob], tos: Array[Mob], from_dice: Array[DiceRe
 
 func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[MatchedSpell]) -> void:
 	for spell in from_spells:
+		var level_data := spell.level_data()
 		spell_triggered.emit(spell)
 		await BindGroupAwait.all(Arr.emap(Arr.unique(spell.matched_dice),
 			func(i: int, die: DiceResult):
 				return die.node.AnimatedAttack.bind(tos, i * 0.15)
 		))
+
+		# Apply spell logic
+		var ctx := SpellContext.new()
+		ctx.matched = spell
+		ctx.power = level_data.power
+		ctx.casters.assign(spell.source_mobs())
+		ctx.targets = tos
+		SpellLogic.execute(level_data.logic, ctx)
 
 
 func _on_combat_hud_act() -> void:

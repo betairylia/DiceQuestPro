@@ -114,5 +114,5 @@ func _rebuild_dice(dice_data: Array[DiceData]) -> void:
 		dice_node.position = Vector2(start_x + i * DICE_INTERVAL, DICE_Y)
 		add_child(dice_node)
 		dice_node.setup(dice_data[i])
-		dice_node.source = data
+		dice_node.source = self
 		_dice.append(dice_node)

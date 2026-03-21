@@ -56,8 +56,8 @@ static func _try_match(pool: Array, req: Dictionary) -> Array:
 static func match_spell(results: Array[DiceResult], spell: Spell) -> MatchedSpell:
 	var pool := _build_token_pool(results)
 	# Iterate levels from highest to lowest
-	for level in range(spell.patterns.size() - 1, -1, -1):
-		var req := parse_pattern(spell.patterns[level])
+	for level in range(spell.levels.size() - 1, -1, -1):
+		var req := parse_pattern(spell.levels[level].pattern)
 		var matched := _try_match(pool, req)
 		# _try_match returns [] on failure; null would be ideal but GDScript arrays
 		# can't distinguish empty-success from failure here, so we use req total count.
@@ -86,7 +86,7 @@ static func match_all_spells(results: Array[DiceResult], spells: Array) -> Array
 # Format: "[SpellName Lv.N] pattern | dice sum=X | mobs: [MobData...]"
 static func print_matches(matches: Array[MatchedSpell]) -> void:
 	for ms in matches:
-		var pattern: String = ms.spell.patterns[ms.level]
+		var pattern: String = ms.level_data().pattern
 		var sum: int = ms.digit_sum()
 		var mob_names: Array = []
 		for mob in ms.source_mobs():

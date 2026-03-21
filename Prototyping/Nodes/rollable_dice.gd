@@ -19,7 +19,7 @@ enum DiceCombatState{
 
 var dice_data: DiceData
 var dice_result: DiceResult
-var source: MobData
+var source: Mob
 var state: DiceCombatState
 
 # Animation config

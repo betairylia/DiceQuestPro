@@ -8,16 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Fighter.tres" id="3_5couh"]
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
-[ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_ni1eb"]
-[ext_resource type="Resource" uid="uid://c74eqpn1v42uo" path="res://Prototyping/Data/Spells/melee.tres" id="4_v8jq8"]
-[ext_resource type="Resource" uid="uid://b2v05vpquvpqq" path="res://Prototyping/Data/Spells/revive.tres" id="5_tq74n"]
+[ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/Fires.tres" id="3_fro8r"]
 [ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
 [ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="9_fycvh"]
 [ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="12_fro8r"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
-spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb"), ExtResource("4_v8jq8"), ExtResource("5_tq74n")])
+spells = Array[ExtResource("2_5couh")]([ExtResource("3_fro8r")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 envDie = ExtResource("9_fycvh")

@@ -42,11 +42,11 @@ func populate(matches: Array[MatchedSpell]) -> void:
 		var row := SPELL_ROW.instantiate()
 		_container.add_child(row)
 		row.get_node("Pattern").bbcode_enabled = true
-		row.get_node("Pattern").text = _colored_pattern(ms.spell.patterns[ms.level])
+		row.get_node("Pattern").text = _colored_pattern(ms.level_data().pattern)
 		row.get_node("Name").text = ms.spell.display_name
-		row.get_node("Damage").text = str(ms.digit_sum())
+		row.get_node("Damage").text = "%d +%d" % [ms.digit_sum(), ms.level_data().power]
 
 	var total := 0
 	for ms in matches:
-		total += ms.digit_sum()
+		total += ms.digit_sum() + ms.level_data().power
 	_total_damage.text = str(total)

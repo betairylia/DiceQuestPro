@@ -4,7 +4,7 @@ class_name DiceResult
 var digit: int
 var element: Consts.Elements
 var is_extreme: bool
-var source: MobData  # set by Mob.RollAll(); null if not from a Mob
+var source: Mob  # set by Mob.RollAll(); null if not from a Mob
 var node: RollableDice
 
 func _init(digit: int, elem: Consts.Elements, isex: bool):

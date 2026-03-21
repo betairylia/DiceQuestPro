@@ -2,7 +2,7 @@ extends Object
 class_name MatchedSpell
 
 var spell: Spell
-var level: int                       # 0-based index into spell.patterns
+var level: int                       # 0-based index into spell.levels
 var matched_dice: Array[DiceResult]  # one entry per token consumed;
 									 # extreme die appears twice if it fills 2 tokens
 
@@ -12,6 +12,10 @@ func digit_sum() -> int:
 	for r in matched_dice:
 		total += r.digit
 	return total
+
+
+func level_data() -> SpellLevel:
+	return spell.levels[level]
 
 
 func source_mobs() -> Array:
