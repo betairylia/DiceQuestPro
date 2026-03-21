@@ -2,7 +2,7 @@ extends RefCounted
 class_name SpellContext
 
 var matched: MatchedSpell
-var power: float
+var power: int
 var casters: Array[Mob]
 var targets: Array[Mob]
 

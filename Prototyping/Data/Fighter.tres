@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="MobData" format=3 uid="uid://dlh8khjpdcde1"]
 
-[ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/dice_data.gd" id="1_vf382"]
+[ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_vf382"]
 [ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="2_75faw"]
-[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/mob_data.gd" id="2_b0ned"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_b0ned"]
 [ext_resource type="Resource" uid="uid://c87emhw172smo" path="res://Prototyping/Data/ReviveD8.tres" id="3_75faw"]
 
 [resource]

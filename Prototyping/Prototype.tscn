@@ -3,19 +3,22 @@
 [ext_resource type="Script" uid="uid://bqpsgqw2uo6mw" path="res://Prototyping/combat.gd" id="1_c6oeu"]
 [ext_resource type="Texture2D" uid="uid://bcx88v35v6ng0" path="res://Prototyping/Sprites/Background.png" id="1_gbmfu"]
 [ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/mob.tscn" id="2_4tqe8"]
-[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/spell.gd" id="2_5couh"]
-[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/mob_data.gd" id="2_544xo"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_5couh"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Fighter.tres" id="3_5couh"]
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
 [ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/Fires.tres" id="3_fro8r"]
+[ext_resource type="Resource" uid="uid://1t67xfx12xog" path="res://Prototyping/Data/Spells/Swords.tres" id="4_tq74n"]
+[ext_resource type="Resource" uid="uid://cp5gsv08y8kwc" path="res://Prototyping/Data/Spells/Waters.tres" id="5_lo0wb"]
+[ext_resource type="Resource" uid="uid://b2v05vpquvpqq" path="res://Prototyping/Data/Spells/Revive.tres" id="6_lo0wb"]
 [ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
 [ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="9_fycvh"]
 [ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="12_fro8r"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
-spells = Array[ExtResource("2_5couh")]([ExtResource("3_fro8r")])
+spells = Array[ExtResource("2_5couh")]([ExtResource("3_fro8r"), ExtResource("4_tq74n"), ExtResource("5_lo0wb"), ExtResource("6_lo0wb")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 envDie = ExtResource("9_fycvh")

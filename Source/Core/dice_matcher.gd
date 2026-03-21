@@ -92,5 +92,5 @@ static func print_matches(matches: Array[MatchedSpell]) -> void:
 		for mob in ms.source_mobs():
 			mob_names.append(mob.display_name if "display_name" in mob else str(mob))
 		print("[%s Lv.%d] %s | dice sum=%d | mobs: [%s]" % [
-			ms.spell.display_name, ms.level, pattern, sum, ", ".join(mob_names)
+			ms.level_data().display_name, ms.level, pattern, sum, ", ".join(mob_names)
 		])

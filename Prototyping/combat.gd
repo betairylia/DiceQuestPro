@@ -26,6 +26,8 @@ signal reroll_energy_updated(rerolls: int)
 @export var enemiesData: Array[MobData]
 @export var envDie: DiceData
 
+const SPELL_WAIT_TIME := 0.5
+
 # Flat dice lists rebuilt each turn from mob children.
 var _player_dice: Array[RollableDice] = []
 var _enemy_dice: Array[RollableDice] = []
@@ -62,16 +64,7 @@ func _enter_phase(phase: CombatExecPhase) -> void:
 
 
 func _turn() -> void:
-	# Rebuild dice lists and sync state_entered connections.
-	# Only connect new dice / disconnect removed ones to avoid duplicates.
-	var new_player_dice = _collect_dice(players)
-	for die in _player_dice:
-		if die not in new_player_dice:
-			die.state_entered.disconnect(_update_reroll_button)
-	for die in new_player_dice:
-		if die not in _player_dice:
-			die.state_entered.connect(_update_reroll_button)
-	_player_dice = new_player_dice
+	_sync_player_dice()
 	_enemy_dice = _collect_dice(enemies)
 
 	_rerolls += 1
@@ -83,6 +76,17 @@ func _turn() -> void:
 	await _roll_env()
 	await _roll_enemies()
 	await _roll_players()
+
+
+func _sync_player_dice() -> void:
+	var new_dice = _collect_dice(players)
+	for die in _player_dice:
+		if die not in new_dice:
+			die.state_entered.disconnect(_update_reroll_button)
+	for die in new_dice:
+		if die not in _player_dice:
+			die.state_entered.connect(_update_reroll_button)
+	_player_dice = new_dice
 
 
 func _collect_dice(mobs: Array[Mob]) -> Array[RollableDice]:
@@ -129,7 +133,9 @@ func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[Matc
 		ctx.power = level_data.power
 		ctx.casters.assign(spell.source_mobs())
 		ctx.targets = tos
-		SpellLogic.execute(level_data.logic, ctx)
+		await SpellLogic.execute(level_data.logic, ctx)
+
+		await get_tree().create_timer(SPELL_WAIT_TIME).timeout
 
 
 func _on_combat_hud_act() -> void:
@@ -183,14 +189,14 @@ func _roll_players() -> void:
 func _on_mob_died(_mob: Mob, is_player: bool) -> void:
 	# Rebuild the flat dice list so future rolls use dead_dice.
 	if is_player:
-		_player_dice = _collect_dice(players)
+		_sync_player_dice()
 	else:
 		_enemy_dice = _collect_dice(enemies)
 
 
 func _on_mob_revived(_mob: Mob, is_player: bool) -> void:
 	if is_player:
-		_player_dice = _collect_dice(players)
+		_sync_player_dice()
 	else:
 		_enemy_dice = _collect_dice(enemies)
 

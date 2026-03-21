@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://b2v05vpquvpqq"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_isk7s"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_asxgw"]
+
+[sub_resource type="Resource" id="Resource_isk7s"]
+script = ExtResource("1_isk7s")
+display_name = "Revive"
+pattern = "RR"
+logic = "caster_revive"
+
+[resource]
+script = ExtResource("2_asxgw")
+levels = Array[ExtResource("1_isk7s")]([SubResource("Resource_isk7s")])

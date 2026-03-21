@@ -43,7 +43,7 @@ func populate(matches: Array[MatchedSpell]) -> void:
 		_container.add_child(row)
 		row.get_node("Pattern").bbcode_enabled = true
 		row.get_node("Pattern").text = _colored_pattern(ms.level_data().pattern)
-		row.get_node("Name").text = ms.spell.display_name
+		row.get_node("Name").text = ms.level_data().display_name
 		row.get_node("Damage").text = "%d +%d" % [ms.digit_sum(), ms.level_data().power]
 
 	var total := 0

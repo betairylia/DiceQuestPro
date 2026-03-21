@@ -66,6 +66,6 @@ func _on_prototype_phase_entered(phase: Combat.CombatExecPhase) -> void:
 
 
 func _on_prototype_spell_triggered(spell: MatchedSpell) -> void:
-	print(spell.spell.display_name)
-	spell_name_label.text = spell.spell.display_name
+	print(spell.level_data().display_name)
+	spell_name_label.text = spell.level_data().display_name
 	spell_anno_label.text = ""

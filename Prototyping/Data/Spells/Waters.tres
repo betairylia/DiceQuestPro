@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://cp5gsv08y8kwc"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_jgycc"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_jgus8"]
+
+[sub_resource type="Resource" id="Resource_jgycc"]
+script = ExtResource("1_jgycc")
+display_name = "Waterfall"
+pattern = "WWW"
+logic = "aoe_copy"
+power = 5
+
+[sub_resource type="Resource" id="Resource_jgus8"]
+script = ExtResource("1_jgycc")
+display_name = "Waterfall"
+pattern = "WWWW"
+logic = "aoe_copy"
+power = 8
+
+[sub_resource type="Resource" id="Resource_f228h"]
+script = ExtResource("1_jgycc")
+display_name = "Waterfall"
+pattern = "WWWWW"
+logic = "aoe_copy"
+power = 12
+
+[sub_resource type="Resource" id="Resource_v3cxg"]
+script = ExtResource("1_jgycc")
+display_name = "Waterfall"
+pattern = "WWWWWW"
+logic = "aoe_copy"
+power = 18
+
+[sub_resource type="Resource" id="Resource_ftyjq"]
+script = ExtResource("1_jgycc")
+display_name = "Waterfall"
+pattern = "WWWWWWW"
+logic = "aoe_copy"
+power = 27
+
+[resource]
+script = ExtResource("2_jgus8")
+levels = Array[ExtResource("1_jgycc")]([SubResource("Resource_jgycc"), SubResource("Resource_jgus8"), SubResource("Resource_f228h"), SubResource("Resource_v3cxg"), SubResource("Resource_ftyjq")])

@@ -24,8 +24,8 @@ var state: DiceCombatState
 
 # Animation config
 const ANIM_STEPS := 14          # total frames of cycling
-const ANIM_INTERVAL_START := 0.04  # fast (seconds per step)
-const ANIM_INTERVAL_END   := 0.13  # slow (deceleration)
+const ANIM_INTERVAL_START := 0.01  # fast (seconds per step)
+const ANIM_INTERVAL_END   := 0.03  # slow (deceleration)
 
 
 # func _ready():
