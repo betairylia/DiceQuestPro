@@ -103,7 +103,31 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 # ---- Attack logic ----
 
-func Attack(available_targets: Array[Mob], delay: float = 0) -> void:
+func _attack(available_targets: Array[Mob], current_target: Mob) -> void:
+
+	var target: Mob = current_target
+
+	# Repick another target if current target is dead
+	if not Targeting.validate(dice_result.element, target):
+		target = Targeting.pick(dice_result.element, available_targets)
+	
+	# No valid targets, do nothing
+	if target == null:
+		return
+	
+	target.get_damage_heal(DamageInfo.new(
+		dice_result.digit,
+		Consts.DamageType.Regular
+	))
+
+	# Crit!
+	if dice_result.is_extreme:
+		target.get_damage_heal(DamageInfo.new(
+			dice_result.digit,
+			Consts.DamageType.Regular
+		))
+
+func AnimatedAttack(available_targets: Array[Mob], delay: float = 0) -> void:
 
 	if state != DiceCombatState.Determined:
 		return
@@ -111,21 +135,19 @@ func Attack(available_targets: Array[Mob], delay: float = 0) -> void:
 	if len(available_targets) == 0:
 		return
 
-	_set_state(DiceCombatState.Attacking)
-
-	# TODO: Proper targeting logic
-	var target = available_targets[0]
+	var target = Targeting.pick(dice_result.element, available_targets)
+	if target == null:
+		return
 	var target_pos_global = target.global_position
+
+	_set_state(DiceCombatState.Attacking)
 
 	var t = create_tween()
 	var current_pos = dice_icon.global_position
 	t.tween_property(dice_icon, "global_position", current_pos + Vector2.DOWN * 10.0, 0.2 + delay).set_ease(Tween.EASE_OUT)
 	t.tween_property(dice_icon, "global_position", target_pos_global, 0.12).set_ease(Tween.EASE_IN)
 	t.tween_callback(
-		target.get_damage_heal.bind(DamageInfo.new(
-			dice_result.digit,
-			Consts.DamageType.Regular
-		))
+		_attack.bind(available_targets, target)
 	)
 	t.tween_property(dice_icon, "global_position", current_pos, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.05)
 

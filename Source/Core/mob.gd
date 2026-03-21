@@ -59,6 +59,10 @@ func get_damage_heal(info: DamageInfo) -> void:
 		died.emit()
 
 
+func is_alive() -> bool:
+	return not _is_dead
+
+
 func get_dice() -> Array[RollableDice]:
 	return _dice
 
