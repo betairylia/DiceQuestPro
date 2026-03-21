@@ -19,6 +19,10 @@ static func pick(element: Consts.Elements, targets: Array[Mob]) -> Mob:
 			if alive.is_empty():
 				return null
 			return alive[0]
+		Consts.Elements.Bow:
+			if alive.is_empty():
+				return null
+			return alive[-1]
 		_:  # Fire, Water, Thunder, Wind, Nature, Revive — random alive target
 			if alive.is_empty():
 				return null

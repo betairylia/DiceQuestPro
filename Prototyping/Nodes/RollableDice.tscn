@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ctf70ay22bp3p"]
 
 [ext_resource type="Texture2D" uid="uid://cs1intrl81u55" path="res://Prototyping/Sprites/dice_backgrounds.png" id="2_1pxh3"]
-[ext_resource type="Texture2D" uid="uid://ccp4u2yrj8tva" path="res://Prototyping/Sprites/dice icons.png" id="2_e4hxf"]
 [ext_resource type="Script" uid="uid://bp62ge3uuwy5t" path="res://Prototyping/Sprites/dice_icon.gd" id="2_ru1na"]
+[ext_resource type="Texture2D" uid="uid://dorag38n23w6p" path="res://Prototyping/Sprites/dice_icons_silhouette.png" id="3_1pxh3"]
 [ext_resource type="Script" uid="uid://djw0vfjdnkemn" path="res://Prototyping/Nodes/rollable_dice.gd" id="3_rollable"]
 [ext_resource type="Theme" uid="uid://cgvt6jxr2t5d6" path="res://Prototyping/HUD/pixelated_outline.tres" id="4_ru1na"]
 
@@ -26,28 +26,29 @@ hframes = 4
 frame = 1
 
 [node name="DiceIcon" type="Sprite2D" parent="." unique_id=1342336529]
-texture = ExtResource("2_e4hxf")
+texture = ExtResource("3_1pxh3")
 hframes = 6
 script = ExtResource("2_ru1na")
 
 [node name="Number" type="RichTextLabel" parent="DiceIcon" unique_id=124259059]
-offset_left = -6.0
-offset_top = -5.0
-offset_right = 6.0
-offset_bottom = 5.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 15.0
+offset_bottom = 13.0
 mouse_filter = 2
 theme = ExtResource("4_ru1na")
 text = "12"
 horizontal_alignment = 1
 
-[node name="Element" type="RichTextLabel" parent="." unique_id=1825869399]
-offset_left = -12.0
-offset_top = 14.0
-offset_right = 12.0
-offset_bottom = 34.0
+[node name="Element" type="RichTextLabel" parent="DiceIcon" unique_id=1825869399]
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 13.0
+offset_bottom = 10.0
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
 text = "🔥"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

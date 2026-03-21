@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://dmw18uk62kvgp"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_6st4y"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_imfqx"]
+
+[sub_resource type="Resource" id="Resource_7j3kj"]
+script = ExtResource("1_6st4y")
+display_name = "Thunder"
+pattern = "TTT"
+logic = "front_single"
+power = 7
+
+[sub_resource type="Resource" id="Resource_xanoy"]
+script = ExtResource("1_6st4y")
+display_name = "Thunder"
+pattern = "TTTT"
+logic = "front_single"
+power = 16
+
+[sub_resource type="Resource" id="Resource_4ram6"]
+script = ExtResource("1_6st4y")
+display_name = "Thunder"
+pattern = "TTTTT"
+logic = "front_single"
+power = 36
+
+[sub_resource type="Resource" id="Resource_m3saa"]
+script = ExtResource("1_6st4y")
+display_name = "Thunder"
+pattern = "TTTTTT"
+logic = "front_single"
+power = 80
+
+[sub_resource type="Resource" id="Resource_k2j6e"]
+script = ExtResource("1_6st4y")
+display_name = "Thunder"
+pattern = "TTTTTTT"
+logic = "front_single"
+power = 176
+
+[resource]
+script = ExtResource("2_imfqx")
+levels = Array[ExtResource("1_6st4y")]([SubResource("Resource_7j3kj"), SubResource("Resource_xanoy"), SubResource("Resource_4ram6"), SubResource("Resource_m3saa"), SubResource("Resource_k2j6e")])

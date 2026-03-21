@@ -5,6 +5,7 @@ const SPELL_ROW = preload("res://Prototyping/HUD/SpellDetailView/spell_row.tscn"
 
 const ELEMENT_COLORS = {
 	Consts.Elements.Sword:   Color(0.67, 0.67, 0.67),
+	Consts.Elements.Bow:     Color(0.67, 0.67, 0.67),
 	Consts.Elements.Fire:    Color(1.0,  0.40, 0.13),
 	Consts.Elements.Water:   Color(0.27, 0.67, 1.0),
 	Consts.Elements.Thunder: Color(1.0,  0.87, 0.0),

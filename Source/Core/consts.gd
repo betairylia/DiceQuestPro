@@ -11,6 +11,7 @@ enum DiceType {
 
 enum Elements {
 	Sword,
+	Bow,
 	Fire,
 	Water,
 	Thunder,
@@ -28,6 +29,7 @@ enum DamageType{
 
 const SYMBOLS = {
 	Elements.Sword: "⚔️",
+	Elements.Bow: "🏹",
 	Elements.Fire: "🔥",
 	Elements.Water: "💧",
 	Elements.Thunder: "⚡",
@@ -39,6 +41,7 @@ const SYMBOLS = {
 
 const SHORTHANDS = {
 	Elements.Sword:   "S",
+	Elements.Bow:	  "B",
 	Elements.Fire:    "F",
 	Elements.Water:   "W",
 	Elements.Thunder: "T",
@@ -46,4 +49,11 @@ const SHORTHANDS = {
 	Elements.Nature:  "N",
 	Elements.Idle:    "_",
 	Elements.Revive:  "R",
+}
+
+# Category shorthands — each maps to multiple elements it accepts.
+# A category char in a pattern means "any element from this list".
+const CATEGORIES = {
+	"P": [Elements.Sword, Elements.Bow],  # Physical — add Bow etc. later
+	"M": [Elements.Fire, Elements.Water, Elements.Thunder, Elements.Wind, Elements.Nature],  # Magical
 }

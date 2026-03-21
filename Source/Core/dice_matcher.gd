@@ -2,22 +2,39 @@ extends Object
 class_name DiceMatcher
 
 
-# Parse "FFFSS" → {Elements.Fire: 3, Elements.Sword: 2}
-static func parse_pattern(s: String) -> Dictionary:
-	# Build reverse map: char → Elements value
-	var char_to_elem := {}
-	for elem in Consts.SHORTHANDS:
-		char_to_elem[Consts.SHORTHANDS[elem]] = elem
+# Requirement: { accepts: Array[Elements], count: int }
+# A concrete element like "S" → accepts = [Sword], count = N
+# A category like "P"      → accepts = [Sword, Bow, ...], count = N
 
-	var req := {}
+# Parse "FFFPP" → Array of requirements, e.g.:
+#   [{ accepts: [Fire], count: 3 }, { accepts: [Sword, ...], count: 2 }]
+# Sorted narrowest-first so specific slots consume tokens before broad categories.
+static func parse_pattern(s: String) -> Array:
+	# Build reverse map: char → [Elements] (single-element array)
+	var char_to_accepts := {}
+	for elem in Consts.SHORTHANDS:
+		char_to_accepts[Consts.SHORTHANDS[elem]] = [elem]
+	# Add category chars
+	for cat_char in Consts.CATEGORIES:
+		char_to_accepts[cat_char] = Consts.CATEGORIES[cat_char]
+
+	# Count occurrences per unique char
+	var counts := {}
 	for i in s.length():
 		var c := s[i]
-		if not char_to_elem.has(c):
+		if not char_to_accepts.has(c):
 			push_error("DiceMatcher.parse_pattern: unknown shorthand '%s'" % c)
 			continue
-		var elem: int = char_to_elem[c]
-		req[elem] = req.get(elem, 0) + 1
-	return req
+		counts[c] = counts.get(c, 0) + 1
+
+	# Build requirement array
+	var reqs: Array = []
+	for c in counts:
+		reqs.append({ "accepts": char_to_accepts[c], "count": counts[c] })
+
+	# Sort narrowest-first (fewer accepts = more specific = matched first)
+	reqs.sort_custom(func(a, b): return a["accepts"].size() < b["accepts"].size())
+	return reqs
 
 
 # Build token pool. Each normal die → 1 token; each extreme die → 2 tokens.
@@ -32,13 +49,19 @@ static func _build_token_pool(results: Array[DiceResult]) -> Array:
 	return pool
 
 
-# Try to satisfy requirements from pool. Returns Array[DiceResult] (tokens' .die) or null.
-static func _try_match(pool: Array, req: Dictionary) -> Array:
+# Try to satisfy requirements from pool. Consumes tokens across requirements.
+# Returns Array[DiceResult] on success, [] on failure.
+static func _try_match(pool: Array, reqs: Array) -> Array:
+	var remaining := pool.duplicate()
 	var selected: Array[DiceResult] = []
-	for elem in req:
-		var count: int = req[elem]
-		# Filter tokens matching this element
-		var candidates: Array = pool.filter(func(t): return t["element"] == elem)
+
+	for req in reqs:
+		var accepts: Array = req["accepts"]
+		var count: int = req["count"]
+		# Filter tokens whose element is in accepts
+		var candidates: Array = remaining.filter(
+			func(t): return accepts.has(t["element"])
+		)
 		# Sort: digit DESC, then idx ASC (deterministic tiebreaker)
 		candidates.sort_custom(func(a, b):
 			if a["digit"] != b["digit"]:
@@ -46,10 +69,19 @@ static func _try_match(pool: Array, req: Dictionary) -> Array:
 			return a["idx"] < b["idx"]
 		)
 		if candidates.size() < count:
-			return []  # not enough — signal failure via empty + separate flag
+			return []
 		for j in count:
 			selected.append(candidates[j]["die"])
+			remaining.erase(candidates[j])
 	return selected
+
+
+# Total token count needed across all requirements.
+static func _total_needed(reqs: Array) -> int:
+	var n := 0
+	for req in reqs:
+		n += req["count"]
+	return n
 
 
 # Match one spell at the highest achievable level; returns MatchedSpell or null.
@@ -57,14 +89,9 @@ static func match_spell(results: Array[DiceResult], spell: Spell) -> MatchedSpel
 	var pool := _build_token_pool(results)
 	# Iterate levels from highest to lowest
 	for level in range(spell.levels.size() - 1, -1, -1):
-		var req := parse_pattern(spell.levels[level].pattern)
-		var matched := _try_match(pool, req)
-		# _try_match returns [] on failure; null would be ideal but GDScript arrays
-		# can't distinguish empty-success from failure here, so we use req total count.
-		var needed := 0
-		for elem in req:
-			needed += req[elem]
-		if matched.size() == needed:
+		var reqs := parse_pattern(spell.levels[level].pattern)
+		var matched := _try_match(pool, reqs)
+		if matched.size() == _total_needed(reqs):
 			var ms := MatchedSpell.new()
 			ms.spell = spell
 			ms.level = level

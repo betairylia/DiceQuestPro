@@ -7,7 +7,7 @@ signal state_entered(state: DiceCombatState)
 
 @onready var dice_icon: DiceIcon = $DiceIcon
 @onready var number_label: RichTextLabel = $DiceIcon/Number
-@onready var element_label: RichTextLabel = $Element
+@onready var element_label: RichTextLabel = $DiceIcon/Element
 @onready var background: Sprite2D = $Background
 
 enum DiceCombatState{
@@ -24,8 +24,8 @@ var state: DiceCombatState
 
 # Animation config
 const ANIM_STEPS := 14          # total frames of cycling
-const ANIM_INTERVAL_START := 0.01  # fast (seconds per step)
-const ANIM_INTERVAL_END   := 0.03  # slow (deceleration)
+const ANIM_INTERVAL_START := 0.03  # fast (seconds per step)
+const ANIM_INTERVAL_END   := 0.07  # slow (deceleration)
 
 
 # func _ready():
@@ -145,11 +145,11 @@ func AnimatedAttack(available_targets: Array[Mob], delay: float = 0) -> void:
 	var t = create_tween()
 	var current_pos = dice_icon.global_position
 	t.tween_property(dice_icon, "global_position", current_pos + Vector2.DOWN * 10.0, 0.2 + delay).set_ease(Tween.EASE_OUT)
-	t.tween_property(dice_icon, "global_position", target_pos_global, 0.12).set_ease(Tween.EASE_IN)
+	t.tween_property(dice_icon, "global_position", target_pos_global, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	t.tween_callback(
 		_attack.bind(available_targets, target)
 	)
-	t.tween_property(dice_icon, "global_position", current_pos, 0.25).set_ease(Tween.EASE_OUT).set_delay(0.05)
+	t.tween_property(dice_icon, "global_position", current_pos, 0.4).set_ease(Tween.EASE_OUT).set_delay(0.05)
 
 	await t.finished
 

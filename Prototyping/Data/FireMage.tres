@@ -5,9 +5,16 @@
 [ext_resource type="Resource" uid="uid://c87emhw172smo" path="res://Prototyping/Data/ReviveD8.tres" id="3_02882"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="3_g7cep"]
 
+[sub_resource type="Resource" id="Resource_02882"]
+script = ExtResource("1_dys4l")
+type = 2
+digits = Array[int]([1, 2, 3, 4, 5, 6, 7, 8])
+elements = Array[int]([6, 2, 4, 5, 2, 4, 6, 2])
+metadata/_custom_type_script = "uid://dl5xgr47sh7i"
+
 [resource]
 script = ExtResource("3_g7cep")
 max_health = 50
-alive_dice = Array[ExtResource("1_dys4l")]([ExtResource("2_g7cep"), ExtResource("2_g7cep")])
+alive_dice = Array[ExtResource("1_dys4l")]([ExtResource("2_g7cep"), SubResource("Resource_02882")])
 dead_dice = Array[ExtResource("1_dys4l")]([ExtResource("3_02882")])
 metadata/_custom_type_script = "uid://crdy3x714y4kr"
