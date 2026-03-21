@@ -30,6 +30,10 @@ func set_reroll_enabled(enabled: bool) -> void:
 	$RerollButton.disabled = not enabled
 
 
+func set_reroll_energy(energy: int) -> void:
+	$RerollButton.text = "重骰 [%d]" % energy
+
+
 func _on_prototype_player_spell_updated(spells: Array[MatchedSpell]) -> void:
 	player_spells.populate(spells)
 

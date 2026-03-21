@@ -9,13 +9,17 @@
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Fighter.tres" id="3_5couh"]
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/FireMage.tres" id="3_eo8vy"]
 [ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_ni1eb"]
+[ext_resource type="Resource" uid="uid://c74eqpn1v42uo" path="res://Prototyping/Data/Spells/melee.tres" id="4_v8jq8"]
 [ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
+[ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="9_fycvh"]
+[ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="12_fro8r"]
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
-spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb")])
+spells = Array[ExtResource("2_5couh")]([ExtResource("3_ni1eb"), ExtResource("4_v8jq8")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
+envDie = ExtResource("9_fycvh")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=270487990]
 position = Vector2(320, 180)
@@ -36,9 +40,13 @@ position = Vector2(56, 182)
 [node name="EnemySlot1" parent="." unique_id=1056257774 instance=ExtResource("2_4tqe8")]
 position = Vector2(500, 182)
 
+[node name="EnvironmentDice" parent="." unique_id=1803946193 instance=ExtResource("12_fro8r")]
+position = Vector2(329, 47)
+
 [connection signal="enemy_spell_updated" from="." to="CombatHud" method="_on_prototype_enemy_spell_updated"]
 [connection signal="phase_entered" from="." to="CombatHud" method="_on_prototype_phase_entered"]
 [connection signal="player_spell_updated" from="." to="CombatHud" method="_on_prototype_player_spell_updated"]
+[connection signal="reroll_energy_updated" from="." to="CombatHud" method="set_reroll_energy"]
 [connection signal="spell_triggered" from="." to="CombatHud" method="_on_prototype_spell_triggered"]
 [connection signal="act" from="CombatHud" to="." method="_on_combat_hud_act"]
 [connection signal="reroll" from="CombatHud" to="." method="_on_combat_hud_reroll"]

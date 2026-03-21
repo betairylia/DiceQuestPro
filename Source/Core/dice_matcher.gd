@@ -82,7 +82,6 @@ static func match_all_spells(results: Array[DiceResult], spells: Array) -> Array
 			out.append(ms)
 	return out
 
-
 # Debug: print matched spells to console.
 # Format: "[SpellName Lv.N] pattern | dice sum=X | mobs: [MobData...]"
 static func print_matches(matches: Array[MatchedSpell]) -> void:

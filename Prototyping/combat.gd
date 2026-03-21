@@ -20,15 +20,18 @@ signal reroll_energy_updated(rerolls: int)
 @onready var players: Array[Mob] = [$"PlayerChar-Combat", $"PlayerChar-Combat2", $"PlayerChar-Combat3"]
 @onready var enemies: Array[Mob] = [$EnemySlot1]
 @onready var combat_hud: Control = $CombatHud
+@onready var env_die: RollableDice = $EnvironmentDice
 @export var spells: Array[Spell]
 @export var playersData: Array[MobData]
 @export var enemiesData: Array[MobData]
+@export var envDie: DiceData
 
 # Flat dice lists rebuilt each turn from mob children.
 var _player_dice: Array[RollableDice] = []
 var _enemy_dice: Array[RollableDice] = []
 # Full set of player results this turn; updated in-place on selective reroll.
 var _player_results: Array[DiceResult] = []
+var _enemy_results: Array[DiceResult] = []
 # Full list of matched spells for player and enemy
 var _player_matched_spells: Array[MatchedSpell] = []
 var _enemy_matched_spells: Array[MatchedSpell] = []
@@ -38,6 +41,10 @@ var _rerolls: int = 3
 
 
 func _ready() -> void:
+
+	env_die.setup(envDie)
+	env_die.SetState(RollableDice.DiceCombatState.Determined)
+
 	for i in range(3):
 		players[i].setup(playersData[i])
 	enemies[0].setup(enemiesData[0])
@@ -63,8 +70,13 @@ func _turn() -> void:
 	_player_dice = new_player_dice
 	_enemy_dice = _collect_dice(enemies)
 
+	_rerolls += 1
+	reroll_energy_updated.emit(_rerolls)
+	combat_hud.set_reroll_energy(_rerolls)
+
 	_enter_phase(CombatExecPhase.Preparation)
 
+	await _roll_env()
 	await _roll_enemies()
 	await _roll_players()
 
@@ -86,9 +98,10 @@ func _roll_dice(dice: Array[RollableDice]) -> Array[DiceResult]:
 	return results
 
 
+# TODO: Use signals
 func _update_reroll_button(_s) -> void:
 	var any_selected := _player_dice.any(func(d): return d.state == RollableDice.DiceCombatState.Selected)
-	combat_hud.set_reroll_enabled(any_selected)
+	combat_hud.set_reroll_enabled(any_selected and _rerolls > 0)
 
 
 func _regular_attack(froms: Array[Mob], tos: Array[Mob], from_dice: Array[DiceResult]) -> void:
@@ -117,14 +130,28 @@ func _on_combat_hud_act() -> void:
 	_enter_phase(CombatExecPhase.PlayerSpells)
 	await _resolve_spells(players, enemies, _player_matched_spells)
 
+	_enter_phase(CombatExecPhase.EnemyRegular)
+	await _regular_attack(enemies, players, _enemy_results)
+
+	_enter_phase(CombatExecPhase.EnemySpells)
+	await _resolve_spells(enemies, players, _enemy_matched_spells)
+
 	_turn()
 
 
+func _roll_env() -> void:
+	await env_die.Roll()
+
+
 func _roll_enemies() -> void:
-	var results = await _roll_dice(_enemy_dice)
+	_enemy_results = await _roll_dice(_enemy_dice)
 	for die in _enemy_dice:
 		die.SetState(RollableDice.DiceCombatState.Determined)
-	_enemy_matched_spells = DiceMatcher.match_all_spells(results, spells)
+	
+	var _enemy_with_env = _enemy_results.duplicate()
+	_enemy_with_env.append(env_die.dice_result)
+	_enemy_matched_spells = DiceMatcher.match_all_spells(_enemy_with_env, spells)
+
 	enemy_spell_updated.emit(_enemy_matched_spells)
 
 
@@ -132,11 +159,18 @@ func _roll_players() -> void:
 	_player_results = await _roll_dice(_player_dice)
 	for die in _player_dice:
 		die.SetState(RollableDice.DiceCombatState.Unselected)
-	_player_matched_spells = DiceMatcher.match_all_spells(_player_results, spells)
+	
+	var _player_with_env = _player_results.duplicate()
+	_player_with_env.append(env_die.dice_result)
+	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
+
 	player_spell_updated.emit(_player_matched_spells)
 
 
 func _on_combat_hud_reroll() -> void:
+	_rerolls -= 1
+	reroll_energy_updated.emit(_rerolls)
+	_update_reroll_button(null)
 
 	var to_roll = _player_dice.filter(func(d): return d.state == RollableDice.DiceCombatState.Selected)
 
@@ -150,5 +184,9 @@ func _on_combat_hud_reroll() -> void:
 		var idx = _player_dice.find(new_result.node)
 		if idx >= 0:
 			_player_results[idx] = new_result
-	_player_matched_spells = DiceMatcher.match_all_spells(_player_results, spells)
+	
+	var _player_with_env = _player_results.duplicate()
+	_player_with_env.append(env_die.dice_result)
+	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
+
 	player_spell_updated.emit(_player_matched_spells)

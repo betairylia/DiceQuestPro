@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://c74eqpn1v42uo"]
+
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/spell.gd" id="1_qpp2x"]
+
+[resource]
+script = ExtResource("1_qpp2x")
+display_name = "Combo Attack"
+patterns = Array[String](["SS", "SSS", "SSSS", "SSSSS", "SSSSSS"])
