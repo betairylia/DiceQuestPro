@@ -66,5 +66,52 @@ offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SpellName" type="RichTextLabel" parent="." unique_id=390122209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_top = 148.0
+offset_right = -191.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_n886b")
+theme_override_font_sizes/normal_font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpellAnnotation" type="RichTextLabel" parent="." unique_id=1076526909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_top = 167.0
+offset_right = -191.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_n886b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PhaseAnnotation" type="RichTextLabel" parent="." unique_id=2117753796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_top = 123.0
+offset_right = -191.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_n886b")
+theme_override_colors/default_color = Color(1, 1, 1, 0.7058824)
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="ActButton" to="." method="_on_act_button_pressed"]
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]
