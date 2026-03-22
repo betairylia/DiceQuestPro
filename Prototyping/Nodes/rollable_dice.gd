@@ -62,7 +62,8 @@ func Roll() -> DiceResult:
 
 	# Settle on the final result
 	_show_face(rolled_index)
-	
+	dice_icon.self_modulate = Color(1.0, 0.7, 0.7) if is_extreme else Color.WHITE
+
 	var result: DiceResult = DiceResult.new(
 		dice_data.get_digit(rolled_index),
 		dice_data.elements[rolled_index],
@@ -80,6 +81,7 @@ func Roll() -> DiceResult:
 func ShowUnrolled() -> void:
 	number_label.text = ""
 	element_label.text = ""
+	dice_icon.self_modulate = Color.WHITE
 	dice_result = DiceResult.Unrolled(self, source)
 
 

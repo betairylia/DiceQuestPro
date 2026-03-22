@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://cp5gsv08y8kwc" path="res://Prototyping/Data/Spells/Waters.tres" id="5_lo0wb"]
 [ext_resource type="Resource" uid="uid://cgsn4ae4c0mqy" path="res://Prototyping/Data/Spells/HealShield.tres" id="6_ayfox"]
 [ext_resource type="Resource" uid="uid://b2v05vpquvpqq" path="res://Prototyping/Data/Spells/Revive.tres" id="6_lo0wb"]
+[ext_resource type="Resource" uid="uid://c6gmc83nv8kky" path="res://Prototyping/Data/TestEnemy.tres" id="7_epufo"]
 [ext_resource type="Resource" uid="uid://vik5t4y7lqdg" path="res://Prototyping/Data/Spells/Bows.tres" id="7_icd36"]
 [ext_resource type="Resource" uid="uid://bq7e45ufbftrm" path="res://Prototyping/Data/Spells/ChainFire.tres" id="8_w0thr"]
 [ext_resource type="Resource" uid="uid://b5wg0xaohold2" path="res://Prototyping/Data/Spells/ChainWater.tres" id="9_mpsw7"]
@@ -29,7 +30,6 @@
 [ext_resource type="Resource" uid="uid://dkqj6fyl7bnmf" path="res://Prototyping/Data/Spells/FireThunder.tres" id="16_ycbir"]
 [ext_resource type="Resource" uid="uid://df564as2tvbjv" path="res://Prototyping/Data/Spells/FlameStrike.tres" id="17_dulny"]
 [ext_resource type="Resource" uid="uid://cfvv3kt620lpc" path="res://Prototyping/Data/Spells/WaterWind.tres" id="18_gs7dv"]
-[ext_resource type="Resource" uid="uid://p6ikve6sm4ma" path="res://Prototyping/Data/Enemies/SkeletonArcher.tres" id="26_egaeq"]
 
 [sub_resource type="Resource" id="Resource_4n6si"]
 script = ExtResource("2_544xo")
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 script = ExtResource("1_c6oeu")
 spells = Array[ExtResource("2_5couh")]([ExtResource("6_lo0wb"), ExtResource("4_tq74n"), ExtResource("7_icd36"), ExtResource("5_egaeq"), ExtResource("6_ayfox"), ExtResource("3_fro8r"), ExtResource("5_lo0wb"), ExtResource("11_4n6si"), ExtResource("12_wm1of"), ExtResource("11_q56gh"), ExtResource("12_ul34t"), ExtResource("8_w0thr"), ExtResource("9_mpsw7"), ExtResource("10_wm1of"), ExtResource("16_ycbir"), ExtResource("17_dulny"), ExtResource("18_gs7dv")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), SubResource("Resource_4n6si"), ExtResource("3_eo8vy")])
-enemiesData = Array[ExtResource("2_544xo")]([ExtResource("26_egaeq")])
+enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 envDie = SubResource("Resource_w0thr")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=270487990]
