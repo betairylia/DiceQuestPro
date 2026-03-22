@@ -191,8 +191,10 @@ func _roll_players() -> void:
 
 
 func _refresh_enemy_spells() -> void:
-	var live_results := _enemy_results.filter(func(r): return r.source == null or r.source.is_alive())
-	var with_env := live_results.duplicate()
+	_enemy_dice = _collect_dice(enemies)
+	_enemy_results.assign(_enemy_dice.map(func(d): return d.dice_result))
+
+	var with_env := _enemy_results.duplicate()
 	with_env.append(env_die.dice_result)
 	_enemy_matched_spells = DiceMatcher.match_all_spells(with_env, spells)
 	enemy_spell_updated.emit(_enemy_matched_spells)

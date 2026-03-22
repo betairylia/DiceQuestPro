@@ -36,7 +36,7 @@ enum DamageType{
 }
 
 const SYMBOLS = {
-	Elements.Sword:   "⚔️",
+	Elements.Sword:   "🗡",
 	Elements.Bow:     "🏹",
 	Elements.Defense: "🛡️",
 	Elements.Fire:    "🔥",

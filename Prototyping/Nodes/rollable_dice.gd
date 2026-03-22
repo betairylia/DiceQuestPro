@@ -38,7 +38,8 @@ func setup(data: DiceData) -> void:
 	dice_data = data
 	dice_icon.setup(data)
 	_set_state(DiceCombatState.Unselected)
-	_show_face(0)
+	ShowUnrolled()
+	# _show_face(0)
 
 
 # Rolls the dice with a slot-machine animation.
@@ -74,6 +75,12 @@ func Roll() -> DiceResult:
 	roll_finished.emit(result)
 
 	return dice_result
+
+
+func ShowUnrolled() -> void:
+	number_label.text = ""
+	element_label.text = ""
+	dice_result = DiceResult.Unrolled(self, source)
 
 
 func _show_face(index: int) -> void:
