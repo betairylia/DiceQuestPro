@@ -6,6 +6,7 @@ signal being_attacked(info: DamageInfo)
 signal health_changed(health: int, max_health: int)
 signal died
 signal revived
+signal dice_changed
 
 const ROLLABLE_DICE_SCENE = preload("res://Prototyping/Nodes/RollableDice.tscn")
 const POPUP_TEXT_SCENE = preload("res://Prototyping/Nodes/popup_text.tscn")
@@ -138,3 +139,4 @@ func _rebuild_dice(dice_data: Array[DiceData]) -> void:
 		dice_node.setup(dice_data[i])
 		dice_node.source = self
 		_dice.append(dice_node)
+	dice_changed.emit()

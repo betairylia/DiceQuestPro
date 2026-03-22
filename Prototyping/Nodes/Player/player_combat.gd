@@ -1,11 +1,15 @@
 extends Mob
 
+@onready var _dice_preview: RichTextLabel = $DicePreview
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass
+	dice_changed.connect(_on_dice_changed)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_dice_changed() -> void:
+	var dice := get_dice()
+	if dice.is_empty():
+		_dice_preview.text = ""
+		return
+	_dice_preview.text = Consts.dice_face_preview(dice[0].dice_data)
