@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dqpsitkacaskp"]
+
+[ext_resource type="Theme" uid="uid://cgvt6jxr2t5d6" path="res://Prototyping/HUD/pixelated_outline.tres" id="1_w6s6s"]
+[ext_resource type="Script" uid="uid://c70ufguaf08ma" path="res://Prototyping/Nodes/popup_text.gd" id="2_gbx6p"]
+
+[node name="PopupText" type="Label" unique_id=383252843]
+offset_left = 117.0
+offset_top = 67.0
+offset_right = 147.0
+offset_bottom = 83.0
+pivot_offset = Vector2(15, 8)
+theme = ExtResource("1_w6s6s")
+text = "25"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_gbx6p")

@@ -4,6 +4,5 @@
 
 [resource]
 script = ExtResource("1_0on2m")
-digits = Array[int]([1, 2, 3, 4])
 elements = Array[int]([2, 4, 0, 2])
 metadata/_custom_type_script = "uid://dl5xgr47sh7i"

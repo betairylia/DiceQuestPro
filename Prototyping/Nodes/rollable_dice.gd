@@ -48,7 +48,7 @@ func setup(data: DiceData) -> void:
 func Roll() -> DiceResult:
 	assert(dice_data != null, "RollableDice: call setup() before Roll()")
 
-	var face_count: int = dice_data.digits.size()
+	var face_count: int = dice_data.face_count()
 	var rolled_index: int = randi() % face_count
 	var is_extreme: bool  = rolled_index == face_count - 1
 
@@ -63,7 +63,7 @@ func Roll() -> DiceResult:
 	_show_face(rolled_index)
 	
 	var result: DiceResult = DiceResult.new(
-		dice_data.digits[rolled_index],
+		dice_data.get_digit(rolled_index),
 		dice_data.elements[rolled_index],
 		is_extreme
 	)
@@ -77,7 +77,7 @@ func Roll() -> DiceResult:
 
 
 func _show_face(index: int) -> void:
-	number_label.text  = str(dice_data.digits[index])
+	number_label.text  = str(dice_data.get_digit(index))
 	var elem_index: int = index % dice_data.elements.size()
 	element_label.text  = Consts.SYMBOLS[dice_data.elements[elem_index]]
 

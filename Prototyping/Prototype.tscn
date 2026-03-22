@@ -19,19 +19,28 @@
 [ext_resource type="Resource" uid="uid://cyuo7midsopjl" path="res://Prototyping/Data/Spells/ChainWind.tres" id="10_wm1of"]
 [ext_resource type="Resource" uid="uid://dmw18uk62kvgp" path="res://Prototyping/Data/Spells/Thunders.tres" id="11_4n6si"]
 [ext_resource type="PackedScene" uid="uid://ctf70ay22bp3p" path="res://Prototyping/Nodes/RollableDice.tscn" id="12_fro8r"]
+[ext_resource type="Resource" uid="uid://bb8jmruf03vix" path="res://Prototyping/Data/ElfArcherD10.tres" id="15_mpsw7"]
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="16_icd36"]
+[ext_resource type="Resource" uid="uid://c87emhw172smo" path="res://Prototyping/Data/ReviveD8.tres" id="16_wm1of"]
+[ext_resource type="PackedScene" uid="uid://dqpsitkacaskp" path="res://Prototyping/Nodes/popup_text.tscn" id="23_wm1of"]
+
+[sub_resource type="Resource" id="Resource_4n6si"]
+script = ExtResource("2_544xo")
+max_health = 85
+alive_dice = Array[ExtResource("16_icd36")]([ExtResource("15_mpsw7"), ExtResource("15_mpsw7")])
+dead_dice = Array[ExtResource("16_icd36")]([ExtResource("16_wm1of")])
+metadata/_custom_type_script = "uid://crdy3x714y4kr"
 
 [sub_resource type="Resource" id="Resource_w0thr"]
 script = ExtResource("16_icd36")
 type = 1
-digits = Array[int]([1, 2, 3, 4, 5, 6])
 elements = Array[int]([7, 2, 7, 0, 7, 6])
 metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
 spells = Array[ExtResource("2_5couh")]([ExtResource("3_fro8r"), ExtResource("4_tq74n"), ExtResource("5_lo0wb"), ExtResource("6_lo0wb"), ExtResource("7_icd36"), ExtResource("8_w0thr"), ExtResource("9_mpsw7"), ExtResource("10_wm1of"), ExtResource("11_4n6si")])
-playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
+playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), SubResource("Resource_4n6si"), ExtResource("3_eo8vy")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
 envDie = SubResource("Resource_w0thr")
 
@@ -59,6 +68,12 @@ position = Vector2(500, 182)
 
 [node name="EnvironmentDice" parent="." unique_id=1803946193 instance=ExtResource("12_fro8r")]
 position = Vector2(329, 47)
+
+[node name="PopupText" parent="." unique_id=383252843 instance=ExtResource("23_wm1of")]
+offset_left = -15.0
+offset_top = -8.0
+offset_right = 15.0
+offset_bottom = 8.0
 
 [connection signal="enemy_spell_updated" from="." to="CombatHud" method="_on_prototype_enemy_spell_updated"]
 [connection signal="phase_entered" from="." to="CombatHud" method="_on_prototype_phase_entered"]
