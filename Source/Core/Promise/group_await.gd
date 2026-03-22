@@ -10,7 +10,7 @@ var _results: Array = []
 # tasks: Array[Callable]
 static func all(tasks: Array) -> Array:
 	var sg = BindGroupAwait.new()
-	return await sg._register_all(tasks.map(
+	return await sg._register_all(tasks.filter(func(t): return t != null).map(
 		func (task): return AwaitWrapper.new(task)
 	))
 

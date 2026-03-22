@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_e1qxy"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_0eo7i"]
-[ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/FighterD12.tres" id="2_piiid"]
-[ext_resource type="Resource" uid="uid://o70mergyi2pw" path="res://Prototyping/Data/FireD4.tres" id="3_3ow8h"]
+[ext_resource type="Resource" uid="uid://eopw8wt81j8x" path="res://Prototyping/Data/Players/FighterD12.tres" id="2_piiid"]
+[ext_resource type="Resource" uid="uid://o70mergyi2pw" path="res://Prototyping/Data/Players/FireMageD6.tres" id="3_3ow8h"]
 
 [resource]
 script = ExtResource("2_0eo7i")

@@ -8,6 +8,7 @@ signal died
 signal revived
 
 const ROLLABLE_DICE_SCENE = preload("res://Prototyping/Nodes/RollableDice.tscn")
+const POPUP_TEXT_SCENE = preload("res://Prototyping/Nodes/popup_text.tscn")
 const DICE_Y := 28.0
 const DICE_INTERVAL := 30.0
 
@@ -46,10 +47,17 @@ func revive(new_health: int) -> void:
 	_is_dead = false
 	_rebuild_dice(data.alive_dice)
 	health_changed.emit(health, data.max_health)
+	_spawn_popup(DamageInfo.new(
+		health,
+		Consts.DamageType.Healing
+	))
 	revived.emit()
 
 
 func get_damage_heal(info: DamageInfo) -> void:
+
+	if _is_dead:
+		return
 
 	var prev_health = health
 
@@ -68,8 +76,10 @@ func get_damage_heal(info: DamageInfo) -> void:
 	being_attacked.emit(resolved_info)
 	health_changed.emit(health, data.max_health)
 
-	if resolved_info.value > 0 and info.type != Consts.DamageType.Healing:
-		_play_hit_anim()
+	if resolved_info.value > 0:
+		_spawn_popup(resolved_info)
+		if info.type != Consts.DamageType.Healing:
+			_play_hit_anim()
 
 	if health == 0 and not _is_dead:
 		_is_dead = true
@@ -95,6 +105,18 @@ func _play_hit_anim() -> void:
 	_sprite.modulate = FLASH_COLOR
 	_flash_tween = create_tween().set_ease(Tween.EASE_IN)
 	_flash_tween.tween_property(_sprite, "modulate", Color.WHITE, FLASH_DURATION)
+
+
+func _spawn_popup(info: DamageInfo) -> void:
+	var popup = POPUP_TEXT_SCENE.instantiate()
+	var popup_color: Color
+	if info.type == Consts.DamageType.Healing:
+		popup_color = popup.COLOR_HEAL
+	else:
+		popup_color = popup.COLOR_DAMAGE
+	popup.setup(str(info.value), knockback_direction.x, popup_color)
+	popup.position = lerp(Vector2.ZERO, _sprite.position, 0.3) + Vector2.UP * 20
+	add_child(popup)
 
 
 func get_dice() -> Array[RollableDice]:

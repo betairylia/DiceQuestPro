@@ -115,7 +115,8 @@ func _update_reroll_button(_s) -> void:
 func _regular_attack(froms: Array[Mob], tos: Array[Mob], from_dice: Array[DiceResult]) -> void:
 	await BindGroupAwait.all(Arr.emap(from_dice,
 		func(i: int, die: DiceResult):
-			return die.node.AnimatedAttack.bind(tos, i * 0.15)
+			if is_instance_valid(die.node):
+				return die.node.AnimatedAttack.bind(tos, i * 0.15)
 	))
 
 func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[MatchedSpell]) -> void:
@@ -124,7 +125,8 @@ func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[Matc
 		spell_triggered.emit(spell)
 		await BindGroupAwait.all(Arr.emap(Arr.unique(spell.matched_dice),
 			func(i: int, die: DiceResult):
-				return die.node.AnimatedAttack.bind(tos, i * 0.15)
+				if is_instance_valid(die.node):
+					return die.node.AnimatedAttack.bind(tos, i * 0.15)
 		))
 
 		# Apply spell logic
@@ -132,6 +134,7 @@ func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[Matc
 		ctx.matched = spell
 		ctx.power = level_data.power
 		ctx.casters.assign(spell.source_mobs())
+		ctx.allies  = froms
 		ctx.targets = tos
 		await SpellLogic.execute(level_data.logic, ctx)
 

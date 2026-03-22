@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://b3dgdpk6uur8q"
+path="res://.godot/imported/PatternFont.png-4a390231e351bc4099c857a80261a849.fontdata"
+
+[deps]
+
+source_file="res://Prototyping/Sprites/PatternFont.png"
+dest_files=["res://.godot/imported/PatternFont.png-4a390231e351bc4099c857a80261a849.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("0-127")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=8
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=3
+descent=4
+fallbacks=[]
+compress=false
+scaling_mode=1

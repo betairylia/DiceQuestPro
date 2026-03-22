@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://cfvv3kt620lpc"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_ifyiq"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_8lrtw"]
+
+[sub_resource type="Resource" id="Resource_ifyiq"]
+script = ExtResource("1_ifyiq")
+display_name = "Sea Storm"
+pattern = "wwAA"
+logic = "aoe_copy"
+power = 15
+
+[sub_resource type="Resource" id="Resource_8lrtw"]
+script = ExtResource("1_ifyiq")
+display_name = "Sea Storm"
+pattern = "wwwAA"
+logic = "aoe_copy"
+power = 25
+
+[sub_resource type="Resource" id="Resource_3eeuf"]
+script = ExtResource("1_ifyiq")
+display_name = "Sea Storm"
+pattern = "wwwAAA"
+logic = "aoe_copy"
+power = 40
+
+[resource]
+script = ExtResource("2_8lrtw")
+levels = Array[ExtResource("1_ifyiq")]([SubResource("Resource_ifyiq"), SubResource("Resource_8lrtw"), SubResource("Resource_3eeuf")])

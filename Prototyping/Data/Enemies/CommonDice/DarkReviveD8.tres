@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DiceData" format=3 uid="uid://cf6d4655qg6h8"]
+
+[ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_gu5rj"]
+
+[resource]
+script = ExtResource("1_gu5rj")
+type = 2
+elements = Array[int]([1, 0, 10, 8, 15, 7, 10, 8])
+metadata/_custom_type_script = "uid://dl5xgr47sh7i"

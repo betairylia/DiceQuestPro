@@ -1,7 +1,4 @@
-extends Object
-
-static func PickTarget(ctx: SpellContext) -> Array[Mob]:
-    return ctx.casters
+extends PickCasters
 
 static func Do(ctx: SpellContext):
     for c in ctx.targets:

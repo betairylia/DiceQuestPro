@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MobData" format=3 uid="uid://p6ikve6sm4ma"]
+
+[ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_jwyo8"]
+[ext_resource type="Resource" uid="uid://cf6d4655qg6h8" path="res://Prototyping/Data/Enemies/CommonDice/DarkReviveD8.tres" id="2_t0ybw"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_tnbrx"]
+
+[sub_resource type="Resource" id="Resource_tnbrx"]
+script = ExtResource("1_jwyo8")
+type = 2
+elements = Array[int]([1, 16, 1, 15, 1, 1, 5, 0])
+metadata/_custom_type_script = "uid://dl5xgr47sh7i"
+
+[sub_resource type="Resource" id="Resource_t0ybw"]
+script = ExtResource("1_jwyo8")
+elements = Array[int]([1, 8, 1, 0])
+metadata/_custom_type_script = "uid://dl5xgr47sh7i"
+
+[resource]
+script = ExtResource("2_tnbrx")
+max_health = 250
+alive_dice = Array[ExtResource("1_jwyo8")]([SubResource("Resource_tnbrx"), SubResource("Resource_t0ybw")])
+dead_dice = Array[ExtResource("1_jwyo8")]([ExtResource("2_t0ybw")])
+metadata/_custom_type_script = "uid://crdy3x714y4kr"

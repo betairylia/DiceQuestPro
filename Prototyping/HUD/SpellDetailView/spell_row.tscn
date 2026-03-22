@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4i5p7ptwfapu"]
 
 [ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="1_ahswj"]
+[ext_resource type="FontFile" uid="uid://b3dgdpk6uur8q" path="res://Prototyping/Sprites/PatternFont.png" id="2_kemy3"]
 
 [node name="HBoxContainer" type="HBoxContainer" unique_id=1322098478]
 theme_override_constants/separation = 0
@@ -9,9 +10,12 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(45, 10)
 layout_mode = 2
 theme = ExtResource("1_ahswj")
-text = "FFFTT"
+theme_override_fonts/normal_font = ExtResource("2_kemy3")
+theme_override_font_sizes/normal_font_size = 10
+text = "fffLLL"
 autowrap_mode = 2
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Space" type="Container" parent="." unique_id=835061421]
 custom_minimum_size = Vector2(5, 0)

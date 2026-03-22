@@ -111,15 +111,14 @@ sprite_frames = SubResource("SpriteFrames_7iqst")
 animation = &"attack-default"
 frame_progress = 0.26432285
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=564534632]
-offset_left = -36.0
-offset_top = -29.0
-offset_right = 38.0
-offset_bottom = -16.0
+[node name="RichTextLabel" type="RichTextLabel" parent="AnimatedSprite2D" unique_id=564534632]
+offset_left = 11.0
+offset_top = -9.0
+offset_right = 85.0
+offset_bottom = 4.0
 theme = ExtResource("4_nkacv")
-text = "100/100"
-horizontal_alignment = 1
+text = "100"
 vertical_alignment = 2
 script = ExtResource("5_hyryr")
 
-[connection signal="health_changed" from="." to="RichTextLabel" method="_on_mob_health_changed"]
+[connection signal="health_changed" from="." to="AnimatedSprite2D/RichTextLabel" method="_on_mob_health_changed"]

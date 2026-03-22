@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_yp2yk"]
 [ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_2w6r5"]
 
-[sub_resource type="Resource" id="Resource_cjfoi"]
+[sub_resource type="Resource" id="Resource_yp2yk"]
 script = ExtResource("1_yp2yk")
 display_name = "Rain of arrows"
 pattern = "BBB"
 logic = "aoe_copy"
-power = 15
+power = 5
 
 [resource]
 script = ExtResource("2_2w6r5")
-levels = Array[ExtResource("1_yp2yk")]([SubResource("Resource_cjfoi")])
+levels = Array[ExtResource("1_yp2yk")]([SubResource("Resource_yp2yk")])

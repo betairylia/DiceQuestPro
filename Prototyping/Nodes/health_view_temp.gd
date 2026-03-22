@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_mob_health_changed(health: int, max_health: int) -> void:
-	text = "%d / %d" % [health, max_health]
+	text = "%d" % [health]

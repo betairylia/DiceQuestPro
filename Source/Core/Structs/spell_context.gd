@@ -5,6 +5,7 @@ var matched: MatchedSpell
 var power: int
 var casters: Array[Mob]
 var targets: Array[Mob]
+var allies:  Array[Mob]
 
 
 func digit_sum() -> int:

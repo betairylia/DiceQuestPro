@@ -6,28 +6,28 @@
 [sub_resource type="Resource" id="Resource_mt16s"]
 script = ExtResource("1_mt16s")
 display_name = "Combo Attack"
-pattern = "PP"
+pattern = "pp"
 logic = "front_single"
 power = 5
 
 [sub_resource type="Resource" id="Resource_45am2"]
 script = ExtResource("1_mt16s")
 display_name = "Combo Attack"
-pattern = "PPP"
+pattern = "ppp"
 logic = "front_single"
 power = 10
 
 [sub_resource type="Resource" id="Resource_wwxqw"]
 script = ExtResource("1_mt16s")
 display_name = "Combo Attack"
-pattern = "PPPP"
+pattern = "pppp"
 logic = "front_single"
 power = 15
 
 [sub_resource type="Resource" id="Resource_iy3u4"]
 script = ExtResource("1_mt16s")
 display_name = "Combo Attack"
-pattern = "PPPPP"
+pattern = "ppppp"
 logic = "front_single"
 power = 20
 
