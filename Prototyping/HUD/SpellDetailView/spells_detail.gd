@@ -41,11 +41,20 @@ func _colored_pattern(pattern_str: String) -> String:
 	for elem in Consts.SHORTHANDS:
 		char_to_element[Consts.SHORTHANDS[elem]] = elem
 
+	# Build a map from category char -> color (use first element as representative)
+	var category_color := {}
+	for cat_char in Consts.CATEGORIES:
+		var first_elem: Consts.Elements = Consts.CATEGORIES[cat_char][0]
+		category_color[cat_char] = ELEMENT_COLORS[first_elem]
+
 	var result := ""
 	for i in pattern_str.length():
 		var c := pattern_str[i]
 		if char_to_element.has(c):
 			var col: Color = ELEMENT_COLORS[char_to_element[c]]
+			result += "[color=#%s]%s[/color]" % [col.to_html(false), c]
+		elif category_color.has(c):
+			var col: Color = category_color[c]
 			result += "[color=#%s]%s[/color]" % [col.to_html(false), c]
 		else:
 			result += c
