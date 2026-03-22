@@ -15,6 +15,10 @@ run/main_scene="uid://b26fpv3jtorgs"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Tooltip="*res://Prototyping/HUD/Tooltip/tooltip.tscn"
+
 [display]
 
 window/size/viewport_width=640

@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://cgvt6jxr2t5d6" path="res://Prototyping/HUD/pixelated_outline.tres" id="4_ru1na"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxh3"]
-size = Vector2(28, 47.5)
+size = Vector2(28, 29.5)
 
 [node name="RollableDice" type="Node2D" unique_id=1803946193]
 script = ExtResource("3_rollable")
@@ -16,7 +16,7 @@ script = ExtResource("3_rollable")
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=911072002]
-position = Vector2(0, 8.25)
+position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_1pxh3")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=778319629]
@@ -52,3 +52,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

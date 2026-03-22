@@ -13,23 +13,23 @@ dest_files=["res://.godot/imported/DINKIEBITMAP-9PXITALIC.TTF-b8749298e883990177
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
-disable_embedded_bitmaps=true
+disable_embedded_bitmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=1
+hinting=2
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
-compress=true
+compress=false
 preload=[]
 language_support={}
 script_support={}

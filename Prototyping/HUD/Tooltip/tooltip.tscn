@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b5u01s2rnfj7b"]
+
+[ext_resource type="Script" uid="uid://ciug8bhgtkb0t" path="res://Prototyping/HUD/Tooltip/tooltip.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2_theme"]
+
+[node name="Tooltip" type="CanvasLayer" unique_id=462841889]
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=620275099]
+offset_right = 100.0
+offset_bottom = 20.0
+mouse_filter = 2
+theme = ExtResource("2_theme")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1452508599]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Content" type="RichTextLabel" parent="Panel/MarginContainer" unique_id=1705989263]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[code]SS[color=red]f[/color][/code] 火焰连击是一个很常用的技能。"
+fit_content = true
+scroll_active = false

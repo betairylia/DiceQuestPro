@@ -100,6 +100,15 @@ func _set_state(state: DiceCombatState) -> void:
 	state_entered.emit(state)
 
 
+func _on_area_2d_mouse_entered() -> void:
+	# print("Mouse")
+	# Tooltip.ShowAtMouse("")
+	pass
+
+func _on_area_2d_mouse_exited() -> void:
+	# Tooltip.Hide()
+	pass
+
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if state != DiceCombatState.Unselected and state != DiceCombatState.Selected:
 		return

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cudniidbhg3a2"]
+
+[ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/mob.tscn" id="1_f80ws"]
+[ext_resource type="Script" uid="uid://cf1rh1dpdqale" path="res://Prototyping/Nodes/Player/player_combat.gd" id="2_nvgh0"]
+[ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2_qf31y"]
+[ext_resource type="FontFile" uid="uid://b3dgdpk6uur8q" path="res://Prototyping/Sprites/PatternFont.png" id="3_nvgh0"]
+
+[node name="PlayerMob" unique_id=876047242 instance=ExtResource("1_f80ws")]
+script = ExtResource("2_nvgh0")
+
+[node name="RichTextLabel" parent="AnimatedSprite2D" parent_id_path=PackedInt32Array(1437182714) index="0" unique_id=564534632]
+offset_left = -84.0
+offset_right = -10.0
+horizontal_alignment = 2
+
+[node name="DicePreview" type="RichTextLabel" parent="." index="1" unique_id=1151794817]
+offset_left = -24.0
+offset_top = 49.0
+offset_right = 24.0
+offset_bottom = 89.0
+theme = ExtResource("2_qf31y")
+theme_override_fonts/normal_font = ExtResource("3_nvgh0")
+theme_override_font_sizes/normal_font_size = 7
+bbcode_enabled = true
+text = "SSdfwILAGAGB"
+horizontal_alignment = 1

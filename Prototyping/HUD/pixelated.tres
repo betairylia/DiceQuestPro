@@ -1,9 +1,17 @@
 [gd_resource type="Theme" format=3 uid="uid://d3y5mqejxm5rd"]
 
 [ext_resource type="FontFile" uid="uid://dlpv0unhqdo80" path="res://Prototyping/HUD/DINKIEBITMAP-9PX.TTF" id="1_ry484"]
+[ext_resource type="FontFile" uid="uid://d4ip78xy23f3c" path="res://Prototyping/HUD/DINKIEBITMAP-9PXITALIC.TTF" id="2_vfrvu"]
+[ext_resource type="FontFile" uid="uid://b3dgdpk6uur8q" path="res://Prototyping/Sprites/PatternFont.png" id="3_b1yfq"]
 
 [resource]
 Button/font_sizes/font_size = 10
 Button/fonts/font = ExtResource("1_ry484")
+RichTextLabel/font_sizes/bold_font_size = 10
+RichTextLabel/font_sizes/italics_font_size = 10
+RichTextLabel/font_sizes/mono_font_size = 7
 RichTextLabel/font_sizes/normal_font_size = 10
+RichTextLabel/fonts/bold_font = ExtResource("1_ry484")
+RichTextLabel/fonts/italics_font = ExtResource("2_vfrvu")
+RichTextLabel/fonts/mono_font = ExtResource("3_b1yfq")
 RichTextLabel/fonts/normal_font = ExtResource("1_ry484")
