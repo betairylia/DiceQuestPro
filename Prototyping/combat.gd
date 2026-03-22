@@ -152,6 +152,7 @@ func _on_combat_hud_act() -> void:
 	_enter_phase(CombatExecPhase.PlayerSpells)
 	await _resolve_spells(players, enemies, _player_matched_spells)
 
+	_refresh_enemy_spells()
 	_enter_phase(CombatExecPhase.EnemyRegular)
 	await _regular_attack(enemies, players, _enemy_results)
 
@@ -187,6 +188,14 @@ func _roll_players() -> void:
 	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
 
 	player_spell_updated.emit(_player_matched_spells)
+
+
+func _refresh_enemy_spells() -> void:
+	var live_results := _enemy_results.filter(func(r): return r.source == null or r.source.is_alive())
+	var with_env := live_results.duplicate()
+	with_env.append(env_die.dice_result)
+	_enemy_matched_spells = DiceMatcher.match_all_spells(with_env, spells)
+	enemy_spell_updated.emit(_enemy_matched_spells)
 
 
 func _on_mob_died(_mob: Mob, is_player: bool) -> void:
