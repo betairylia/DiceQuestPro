@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="MobData" format=3]
+[gd_resource type="Resource" script_class="MobData" format=3 uid="uid://b2mip8gruhx0u"]
 
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_dice"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_mob"]
-[ext_resource type="Resource" path="res://Prototyping/Data/Enemies/CommonDice/StoneReviveD6.tres" id="3_revive"]
+[ext_resource type="Resource" uid="uid://btdlksk5r2ior" path="res://Prototyping/Data/Enemies/CommonDice/StoneReviveD6.tres" id="3_revive"]
 
 [sub_resource type="Resource" id="Resource_alive1"]
 script = ExtResource("1_dice")

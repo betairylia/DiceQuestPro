@@ -10,7 +10,7 @@ static func generate(regions: Array[RegionConfig]) -> RegionMap:
 
 	var next_id := 0
 	var prev_region_end_ids: Array[int] = []
-	var region_count := max(regions.size(), 1)
+	var region_count: int = max(regions.size(), 1)
 
 	for region_idx in regions.size():
 		var config := regions[region_idx]
@@ -68,7 +68,7 @@ static func generate_item_from_pool(pool: Array[MobData]) -> DiceFaceItem:
 		empty_faces.element = Consts.Elements.Idle
 		empty_faces.digit = 1
 		return empty_faces
-	var face_index := randi() % max(dice.face_count(), 1)
+	var face_index: int = randi() % max(dice.face_count(), 1)
 	var item := DiceFaceItem.new()
 	item.element = dice.elements[face_index % dice.elements.size()]
 	item.digit = face_index + 1
@@ -76,7 +76,7 @@ static func generate_item_from_pool(pool: Array[MobData]) -> DiceFaceItem:
 
 
 static func _generate_layers(config: RegionConfig, region_idx: int, start_id: int) -> Array:
-	var target := max(config.node_count, 6)
+	var target: int = max(config.node_count, 6)
 	var layer_count := clampi(roundi(float(target) / 3.0), 3, 5)
 	var layers: Array = []
 	var id := start_id
