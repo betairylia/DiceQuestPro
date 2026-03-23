@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_fuffr"]
 
 [resource]
+display_name = "FireMageD6"
 script = ExtResource("1_fuffr")
 type = 1
 elements = Array[int]([2, 12, 0, 2, 4, 2])

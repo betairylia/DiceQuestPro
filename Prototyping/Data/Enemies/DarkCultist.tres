@@ -11,6 +11,7 @@ elements = Array[int]([10, 2, 10, 16, 2, 10])
 metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 
 [resource]
+display_name = "DarkCultist"
 script = ExtResource("2_mob")
 max_health = 55
 alive_dice = Array[ExtResource("1_dice")]([SubResource("Resource_alive1")])

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RegionConfig" format=3 uid="uid://frozenpeaks001"]
+
+[ext_resource type="Script" uid="uid://c8x5kxnqj7p5l" path="res://Source/Core/Structs/region_config.gd" id="1_region"]
+[ext_resource type="Resource" uid="uid://dt3sk1n104633" path="res://Prototyping/Data/Enemies/FrostWraith.tres" id="2_frost"]
+[ext_resource type="Resource" uid="uid://oo5rrnm03r7d" path="res://Prototyping/Data/Enemies/ThunderHawk.tres" id="3_thunder"]
+[ext_resource type="Resource" uid="uid://p6ikve6sm4ma" path="res://Prototyping/Data/Enemies/SkeletonArcher.tres" id="4_archer"]
+[ext_resource type="Resource" path="res://Prototyping/Data/Enemies/StoneGolem.tres" id="5_golem"]
+
+[resource]
+script = ExtResource("1_region")
+region_name = "冰霜山脉"
+enemy_pool = Array[ExtResource("2_frost")]([ExtResource("2_frost"), ExtResource("3_thunder"), ExtResource("4_archer"), ExtResource("5_golem")])
+boss_encounters = Array([[ExtResource("2_frost"), ExtResource("2_frost"), ExtResource("3_thunder"), ExtResource("3_thunder")]])
+min_enemies = 3
+max_enemies = 5
+enemy_health_scale = 1.3
+shop_exotic_chance = 0.2
+node_count = 12
+metadata/_custom_type_script = "uid://c8x5kxnqj7p5l"

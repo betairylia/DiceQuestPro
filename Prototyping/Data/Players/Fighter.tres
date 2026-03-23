@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c87emhw172smo" path="res://Prototyping/Data/Players/CommonDice/ReviveD8.tres" id="3_75faw"]
 
 [resource]
+display_name = "Fighter"
 script = ExtResource("2_b0ned")
 max_health = 200
 alive_dice = Array[ExtResource("1_vf382")]([ExtResource("2_75faw"), ExtResource("2_75faw")])

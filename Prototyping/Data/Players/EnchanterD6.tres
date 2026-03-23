@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_dice"]
 
 [resource]
+display_name = "EnchanterD6"
 script = ExtResource("1_dice")
 type = 1
 elements = Array[int]([3, 7, 5, 3, 4, 4])

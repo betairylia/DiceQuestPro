@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_yx35p"]
 
 [resource]
+display_name = "ElfArcherD8"
 script = ExtResource("1_yx35p")
 type = 2
 elements = Array[int]([9, 1, 14, 1, 14, 7, 11, 1])

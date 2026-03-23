@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="3_g7cep"]
 
 [resource]
+display_name = "FireMage"
 script = ExtResource("3_g7cep")
 max_health = 95
 alive_dice = Array[ExtResource("1_dys4l")]([ExtResource("2_02882"), ExtResource("2_02882")])
