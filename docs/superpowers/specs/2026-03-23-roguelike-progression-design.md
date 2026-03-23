@@ -24,14 +24,18 @@ Add a full roguelike run loop around the existing combat system: team selection 
 - `current_region_index: int` — which region the player is in
 - `run_active: bool` — is a run in progress
 - `pre_combat_snapshot: Array[MobData]` — deep copy of team before each combat (for retry)
+- `total_gold_earned: int` — running total of all gold gained during the run (for RunSummary)
+- `total_items_collected: int` — running total of items picked up (for RunSummary)
+- `all_spells: Array[Spell]` — all spells in the game (loaded once from `Prototyping/Data/Spells/`)
+- `env_die: DiceData` — the environment die (shared across all combats)
 
 **Methods:**
 - `start_run(team: Array[MobData])` — deep-copy team, generate map, set initial state
 - `complete_node(node_id: int)` — mark visited, reveal successors + edges
 - `add_item(item: DiceFaceItem)` / `remove_item(item: DiceFaceItem)`
 - `add_gold(amount: int)` / `spend_gold(amount: int) -> bool`
-- `heal_team()` — restore all team members to max HP
-- `apply_reforge(player: MobData, face_index: int, item: DiceFaceItem)` — replace face on both alive_dice, consume item, deduct 1 gold
+- `heal_team()` — restore all team members to max HP (called when entering a Village node)
+- `apply_reforge(player: MobData, face_index: int, item: DiceFaceItem)` — replace element at `face_index` on both alive_dice, remove item from inventory, deduct `REFORGE_COST` gold. Caller must verify item is in inventory and gold is sufficient before calling.
 - `apply_upgrade(player: MobData) -> int` — increment bonus on both alive_dice, deduct gold, return new cost
 - `save_pre_combat_snapshot()` / `restore_pre_combat_snapshot()`
 - `end_run() -> RunSummary`
@@ -45,7 +49,7 @@ Add a full roguelike run loop around the existing combat system: team selection 
 A Resource representing a single dice face that can be stored in inventory, bought, sold, or used to reforge.
 
 - `element: Consts.Elements` — e.g., Dark
-- `digit: int` — e.g., 10 (determines which face index it can replace and which dice it fits on)
+- `digit: int` — e.g., 10 (the raw face position, 1-indexed, ignoring bonus). A digit-10 item targets `face_index = 9` and only fits on dice with ≥10 faces (D10, D12). Bonus does NOT affect matching — matching is by face position, not rolled value.
 - `sell_value: int` — equals `digit`
 - `buy_value: int` — equals `digit * 3`
 
@@ -55,16 +59,18 @@ A Resource defining a region's rules. Created as `.tres` files in `Prototyping/D
 
 - `region_name: String` — display name (e.g., "黑暗森林")
 - `enemy_pool: Array[MobData]` — enemies that can spawn
-- `boss_encounters: Array[Array[MobData]]` — pre-defined boss fight groups (each inner array is one encounter)
+- `boss_encounters: Array` — pre-defined boss fight groups. Each element is an `Array[MobData]` representing one encounter. (Godot 4 does not support nested typed arrays in exports, so the outer array is untyped.)
 - `min_enemies: int` — enemy count for early nodes
 - `max_enemies: int` — enemy count for late nodes
 - `enemy_health_scale: float` — multiplier on enemy HP (1.0 for region 1)
 - `shop_exotic_chance: float` — chance a shop item comes from outside this region (e.g., 0.2)
 - `node_count: int` — target number of nodes (10-15)
 
+**Note on `MobData` display:** `MobData` currently lacks `display_name` and sprite fields. We will add `@export var display_name: String` and `@export var sprite: SpriteFrames` (nullable) to `MobData`. Existing `.tres` files will get display names matching their filenames (e.g., "Fighter", "GoblinBerserker"). Sprite can be null for now — the UI will show the name as a fallback.
+
 ### MapNode (`Source/Core/Structs/map_node.gd`)
 
-A single node on the world map (plain Object or RefCounted, not a Resource — runtime only).
+A single node on the world map (RefCounted — runtime only, no manual free needed).
 
 - `id: int`
 - `type: NodeType` — enum: COMBAT, BOSS, TREASURE, VILLAGE
@@ -109,7 +115,7 @@ For game over screen.
 
 3. **Cross-layer edges:** Add some edges that skip a layer or connect within the same layer for a free-form feel. These create the branching/intersecting paths.
 
-4. **Region merging:** Region 2's early-layer nodes appear as successors to Region 1's late-layer nodes. No explicit boundary — seamless transition.
+4. **Region merging:** Regions are generated sequentially. After generating Region 1, the generator identifies the boss/final-layer nodes. Region 2's start-layer nodes are created and connected as successors to Region 1's boss node(s). Each node stores its `region_index`. The boss node belongs to Region 1; its successors belong to Region 2. This creates a seamless transition — no explicit gate scene, but the boss fight is the natural boundary.
 
 5. **Node type assignment:**
    - Start nodes: COMBAT (easy, `min_enemies`)
@@ -118,7 +124,7 @@ For game over screen.
    - ~1 TREASURE per region (side paths / branch dead-ends)
    - Everything else: COMBAT
 
-6. **Enemy scaling within region:** Enemy count interpolated from `min_enemies` (early layers) to `max_enemies` (late layers). Enemies randomly drawn from `enemy_pool`. Health scaled by `enemy_health_scale`.
+6. **Enemy scaling within region:** Enemy count interpolated from `min_enemies` (early layers) to `max_enemies` (late layers). Enemies randomly drawn from `enemy_pool`. **All enemy MobData are `duplicate(true)`'d at map generation time** — never store references to the original `.tres` resources. After duplication, `max_health` is multiplied by `enemy_health_scale` (rounded to int). This ensures original resources are never mutated.
 
 7. **Visibility rules:**
    - Start nodes: visible with revealed edges
@@ -157,7 +163,7 @@ StartScreen → WorldMap → Combat → RewardScreen → WorldMap → ...
 
 - Nodes drawn as icons by type: ⚔️=combat, 💀=boss, 📦=treasure, 🏠=village, ❓=unrevealed
 - Lines connecting nodes where edges are revealed
-- Selectable (reachable) nodes glow/highlight — a node is reachable if any of its predecessors is in `visited_nodes` (or it's a start node)
+- Selectable (reachable) nodes glow/highlight — a node is reachable if any of its predecessors is in `visited_nodes`, OR it's a start node and no start node has been visited yet
 - Visited nodes dimmed
 - Current region name at top
 - Click reachable node → `GameState.current_node_id = node.id` → transition to appropriate screen based on node type
@@ -168,9 +174,11 @@ StartScreen → WorldMap → Combat → RewardScreen → WorldMap → ...
 - Add `signal combat_won` and `signal combat_lost`
 - After each phase completes: if all enemies dead → emit `combat_won`, stop turn loop
 - After enemy phases: if all players dead → emit `combat_lost`, stop turn loop
-- Read `playersData` and `enemiesData` from `GameState` instead of inspector exports
+- Add an explicit `init(players_data, enemies_data, spells_data, env_die_data)` method that sets the data and triggers `_spawn_mobs` + `_turn()`. Remove `_ready()`'s auto-start logic — the scene that loads combat calls `init()` after `add_child()`.
+- `spells` remains a global list. `GameState` stores `all_spells: Array[Spell]` (loaded once at startup from `Prototyping/Data/Spells/`) and `env_die: DiceData` (the standard environment die). Both are passed into `combat.init()`.
 
-**Wrapper logic (in the scene or a parent script):**
+**Combat scene wrapper (`Prototyping/Screens/CombatScreen/combat_screen.gd`):**
+A thin wrapper scene that instantiates the existing `Prototype.tscn` combat, calls `init()` with data from `GameState`, and handles post-combat routing:
 - On `combat_won`: `GameState.complete_node(current_node_id)` → transition to RewardScreen
 - On `combat_lost`: show defeat overlay with "重试" (Retry) and "放弃" (Give Up)
 - Retry: `GameState.restore_pre_combat_snapshot()` → reload combat scene (costs nothing for now)
@@ -179,7 +187,7 @@ StartScreen → WorldMap → Combat → RewardScreen → WorldMap → ...
 ### 5.4 RewardScreen (`Prototyping/Screens/Reward/`)
 
 1. Display defeated enemies
-2. Roll all enemies' `alive_dice` once each (reuse `RollableDice` for visual roll animation)
+2. Roll all enemies' `alive_dice` once each (instantiate `RollableDice` nodes as children of the reward screen for visual roll animation — they require being in the scene tree)
 3. Each roll → `DiceFaceItem(element, digit)`
 4. Display items as clickable cards: element icon + name + digit (e.g., "🌑 暗-10")
 5. Player clicks one → `GameState.add_item(item)` → transition to WorldMap
@@ -237,8 +245,10 @@ Called after each phase execution in the action flow. If either triggers, the tu
 
 ## 8. Modifications to Existing Code
 
-- **`combat.gd`**: Add `combat_won`/`combat_lost` signals, win/lose checks, read data from `GameState`
+- **`combat.gd`**: Add `combat_won`/`combat_lost` signals, win/lose checks, replace `_ready()` auto-start with explicit `init()` method
+- **`mob_data.gd`**: Add `@export var display_name: String` and `@export var sprite: SpriteFrames` fields
 - **`project.godot`**: Register `GameState` and `SceneTransition` autoloads, change main scene to `StartScreen.tscn`
+- **Existing `.tres` MobData files**: Add `display_name` values matching filenames
 - **No changes** to `mob.gd`, `dice_matcher.gd`, `spell_logic.gd`, or any spell/data resources
 
 ---
@@ -284,6 +294,9 @@ Prototyping/
 │   │   ├── WorldMap.tscn
 │   │   ├── world_map.gd
 │   │   └── map_node_view.gd
+│   ├── Combat/
+│   │   ├── CombatScreen.tscn
+│   │   └── combat_screen.gd
 │   ├── Reward/
 │   │   ├── RewardScreen.tscn
 │   │   └── reward_screen.gd
