@@ -15,7 +15,7 @@ Add a full roguelike run loop around the existing combat system: team selection 
 **File:** `Source/Core/game_state.gd` (autoload singleton)
 
 **State:**
-- `team: Array[MobData]` — 1-3 player characters (deep copies, mutated during run)
+- `team: Array[MobData]` — 1-3 player characters (deep copies, mutated during run). **Invariant:** all player characters have exactly 2 `alive_dice` entries that are always kept identical (game-wise this represents 1 die rolled twice).
 - `inventory: Array[DiceFaceItem]` — collected dice face items
 - `gold: int` — current gold (starts 0, configurable via `STARTING_GOLD` const)
 - `map: RegionMap` — the generated map
@@ -35,8 +35,8 @@ Add a full roguelike run loop around the existing combat system: team selection 
 - `add_item(item: DiceFaceItem)` / `remove_item(item: DiceFaceItem)`
 - `add_gold(amount: int)` / `spend_gold(amount: int) -> bool`
 - `heal_team()` — restore all team members to max HP (called when entering a Village node)
-- `apply_reforge(player: MobData, face_index: int, item: DiceFaceItem)` — replace element at `face_index` on both alive_dice, remove item from inventory, deduct `REFORGE_COST` gold. Caller must verify item is in inventory and gold is sufficient before calling.
-- `apply_upgrade(player: MobData) -> int` — increment bonus on both alive_dice, deduct gold, return new cost
+- `apply_reforge(player: MobData, face_index: int, item: DiceFaceItem)` — replace element at `face_index` on `alive_dice[0]`, then copy `alive_dice[0]` to `alive_dice[1]` (maintaining the 2-dice invariant). Remove item from inventory, deduct `REFORGE_COST` gold. Caller must verify item is in inventory and gold is sufficient before calling.
+- `apply_upgrade(player: MobData) -> int` — increment bonus on `alive_dice[0]`, then copy `alive_dice[0]` to `alive_dice[1]`. Deduct gold, return new cost.
 - `save_pre_combat_snapshot()` / `restore_pre_combat_snapshot()`
 - `end_run() -> RunSummary`
 
@@ -96,6 +96,7 @@ Container for the full map.
 
 For game over screen.
 
+- `victory: bool` — true if the run ended by clearing the final boss
 - `nodes_cleared: int`
 - `regions_reached: int`
 - `gold_earned: int`
@@ -138,11 +139,11 @@ For game over screen.
 
 ```
 StartScreen → WorldMap → Combat → RewardScreen → WorldMap → ...
-                 ↓                                    ↑
-              Village → Shop/Forge → WorldMap          │
-                                                       │
+                 ↓                      ↓ (final boss, no successors)
+              Village → Shop/Forge   GameOverScreen (Victory) → StartScreen
+                                                       ↑
              CombatLose → Retry (same node) ───────────┘
-                       → GameOverScreen → StartScreen
+                       → GameOverScreen (Defeat) → StartScreen
 ```
 
 ---
@@ -179,15 +180,15 @@ StartScreen → WorldMap → Combat → RewardScreen → WorldMap → ...
 
 **Combat scene wrapper (`Prototyping/Screens/CombatScreen/combat_screen.gd`):**
 A thin wrapper scene that instantiates the existing `Prototype.tscn` combat, calls `init()` with data from `GameState`, and handles post-combat routing:
-- On `combat_won`: `GameState.complete_node(current_node_id)` → transition to RewardScreen
+- On `combat_won`: `GameState.complete_node(current_node_id)` → transition to RewardScreen. After rewards, if the completed node has no successors (final boss), `GameState.end_run(victory=true)` → GameOverScreen (victory variant).
 - On `combat_lost`: show defeat overlay with "重试" (Retry) and "放弃" (Give Up)
 - Retry: `GameState.restore_pre_combat_snapshot()` → reload combat scene (costs nothing for now)
 - Give up: `GameState.end_run()` → transition to GameOverScreen
 
 ### 5.4 RewardScreen (`Prototyping/Screens/Reward/`)
 
-1. Display defeated enemies
-2. Roll all enemies' `alive_dice` once each (instantiate `RollableDice` nodes as children of the reward screen for visual roll animation — they require being in the scene tree)
+1. Read enemy data from `GameState.get_current_node().enemies` (the `MobData` resources stored on the map node — NOT from the live combat `Mob` nodes, which have swapped to `dead_dice`)
+2. Roll each enemy's `MobData.alive_dice` once each (instantiate `RollableDice` nodes as children of the reward screen for visual roll animation — they require being in the scene tree)
 3. Each roll → `DiceFaceItem(element, digit)`
 4. Display items as clickable cards: element icon + name + digit (e.g., "🌑 暗-10")
 5. Player clicks one → `GameState.add_item(item)` → transition to WorldMap
@@ -210,8 +211,16 @@ Three tabs: "商店" (Shop), "锻造" (Forge), "离开" (Leave)
 
 ### 5.6 GameOverScreen (`Prototyping/Screens/GameOver/`)
 
+Handles both defeat and victory. `GameState.end_run()` sets a `victory: bool` flag on `RunSummary`.
+
+**Defeat:**
 - "游戏结束" (Game Over) title
 - `RunSummary` stats: nodes cleared, regions reached, gold earned, items collected
+- "再来一次" (Try Again) button → StartScreen
+
+**Victory** (triggered when `complete_node()` is called on the final boss of the last region and that node has no successors):
+- "胜利" (Victory) title
+- Same `RunSummary` stats
 - "再来一次" (Try Again) button → StartScreen
 
 ---
