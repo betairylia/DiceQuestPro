@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://bh4q3xq7y5dqr"]
+
+[ext_resource type="Script" uid="uid://bx5k7vn8y5kqm" path="res://Prototyping/Screens/Village/village_screen.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c7x5kxnqj7p5l" path="res://Prototyping/Screens/Village/shop_panel.gd" id="2_shop"]
+[ext_resource type="Script" uid="uid://dxxqk7nqyv3j8" path="res://Prototyping/Screens/Village/forge_panel.gd" id="3_forge"]
+
+[node name="VillageScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+
+[node name="ShopButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "商店"
+
+[node name="ForgeButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "锻造"
+
+[node name="LeaveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "离开"
+
+[node name="Panels" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopPanel" type="Control" parent="Panels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_shop")
+
+[node name="GoldLabel" type="Label" parent="Panels/ShopPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_right = -10.0
+offset_top = 10.0
+offset_bottom = 30.0
+text = "金币: 0"
+horizontal_alignment = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panels/ShopPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SellList" type="VBoxContainer" parent="Panels/ShopPanel/HSplitContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="BuyList" type="VBoxContainer" parent="Panels/ShopPanel/HSplitContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="ForgePanel" type="Control" parent="Panels"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_forge")
+
+[node name="GoldLabel" type="Label" parent="Panels/ForgePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_right = -10.0
+offset_top = 10.0
+offset_bottom = 30.0
+text = "金币: 0"
+horizontal_alignment = 2
+
+[node name="PlayerSelector" type="HBoxContainer" parent="Panels/ForgePanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+
+[node name="DiceFaces" type="GridContainer" parent="Panels/ForgePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.4
+offset_top = 44.0
+offset_bottom = 36.0
+grow_horizontal = 2
+columns = 6
+
+[node name="UpgradeButton" type="Button" parent="Panels/ForgePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+offset_top = -80.0
+offset_bottom = -40.0
+text = "强化"
+
+[node name="ReforgeItems" type="VBoxContainer" parent="Panels/ForgePanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+
+[connection signal="pressed" from="HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ForgeButton" to="." method="_on_forge_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="Panels/ForgePanel/UpgradeButton" to="Panels/ForgePanel" method="_on_upgrade_button_pressed"]
