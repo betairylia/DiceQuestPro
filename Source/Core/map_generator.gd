@@ -111,7 +111,7 @@ static func _offset_positions(layers: Array, region_idx: int, region_count: int)
 	const REGION_GAP_RATIO := 0.12
 	var region_width := (1.0 - MAP_SIDE_MARGIN * 2.0) / float(max(region_count, 1))
 	var region_gap := region_width * REGION_GAP_RATIO
-	var playable_width: int = max(region_width - region_gap, 0.01)
+	var playable_width: float = maxf(region_width - region_gap, 0.01)
 	var region_start := MAP_SIDE_MARGIN + float(region_idx) * region_width + region_gap * 0.5
 
 	for layer in layers:

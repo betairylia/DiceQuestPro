@@ -13,17 +13,21 @@ const NODE_VIEW_SCRIPT := preload("res://Prototyping/Screens/WorldMap/map_node_v
 @onready var _nodes_layer: Control = $MarginContainer/VBox/MapFrame/MapArea/NodesLayer
 @onready var _hint_label: RichTextLabel = $MarginContainer/VBox/HintLabel
 
+var _refresh_queued := false
+
 
 func _ready() -> void:
 	if not GameState.run_active or GameState.map == null:
 		SceneTransition.change_scene(START_SCENE)
 		return
 
-	await get_tree().process_frame
-	_refresh()
+	_map_area.resized.connect(_queue_refresh)
+	_nodes_layer.resized.connect(_queue_refresh)
+	_queue_refresh()
 
 
 func _refresh() -> void:
+	_refresh_queued = false
 	_update_header()
 	_clear_children(_nodes_layer)
 	_clear_children(_edges)
@@ -32,6 +36,9 @@ func _refresh() -> void:
 	var usable_size := _nodes_layer.size
 	if usable_size.x <= 0.0 or usable_size.y <= 0.0:
 		usable_size = _map_area.size
+	if usable_size.x <= 40.0 or usable_size.y <= 40.0:
+		_queue_refresh()
+		return
 
 	for node_value in GameState.map.nodes.values():
 		var node := node_value as MapNode
@@ -99,6 +106,13 @@ func _on_node_pressed(node_id: int) -> void:
 			SceneTransition.change_scene(REWARD_SCENE)
 		MapNode.NodeType.VILLAGE:
 			SceneTransition.change_scene(VILLAGE_SCENE)
+
+
+func _queue_refresh() -> void:
+	if _refresh_queued:
+		return
+	_refresh_queued = true
+	call_deferred("_refresh")
 
 
 func _clear_children(node: Node) -> void:
