@@ -17,3 +17,19 @@ func resolved_display_name() -> String:
 	if resource_path.is_empty():
 		return "Unknown"
 	return resource_path.get_file().get_basename()
+
+
+func clone() -> MobData:
+	var duplicate := MobData.new()
+	duplicate.display_name = resolved_display_name()
+	duplicate.sprite = sprite
+	duplicate.max_health = max_health
+	duplicate.dead = dead
+	duplicate.current_health = current_health
+
+	for dice in alive_dice:
+		duplicate.alive_dice.append(dice.duplicate(true))
+	for dice in dead_dice:
+		duplicate.dead_dice.append(dice.duplicate(true))
+
+	return duplicate

@@ -107,9 +107,16 @@ static func _generate_layers(config: RegionConfig, region_idx: int, start_id: in
 
 
 static func _offset_positions(layers: Array, region_idx: int, region_count: int) -> void:
+	const MAP_SIDE_MARGIN := 0.04
+	const REGION_GAP_RATIO := 0.12
+	var region_width := (1.0 - MAP_SIDE_MARGIN * 2.0) / float(max(region_count, 1))
+	var region_gap := region_width * REGION_GAP_RATIO
+	var playable_width := max(region_width - region_gap, 0.01)
+	var region_start := MAP_SIDE_MARGIN + float(region_idx) * region_width + region_gap * 0.5
+
 	for layer in layers:
 		for node: MapNode in layer:
-			node.position.x = (float(region_idx) + node.position.x) / float(region_count)
+			node.position.x = region_start + node.position.x * playable_width
 
 
 static func _connect_layers(layers: Array) -> void:
@@ -218,7 +225,7 @@ static func _pick_bosses(config: RegionConfig) -> Array[MobData]:
 
 
 static func _duplicate_mob(template: MobData, health_scale: float) -> MobData:
-	var duplicate := template.duplicate(true) as MobData
+	var duplicate := template.clone()
 	duplicate.max_health = max(1, roundi(float(duplicate.max_health) * health_scale))
 	duplicate.current_health = duplicate.max_health
 	duplicate.dead = false

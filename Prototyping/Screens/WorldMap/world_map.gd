@@ -25,10 +25,8 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	_update_header()
-	for child in _nodes_layer.get_children():
-		child.queue_free()
-	for child in _edges.get_children():
-		child.queue_free()
+	_clear_children(_nodes_layer)
+	_clear_children(_edges)
 
 	var positions := {}
 	var usable_size := _nodes_layer.size
@@ -78,9 +76,12 @@ func _update_header() -> void:
 	if region == null and not GameState.region_configs.is_empty():
 		region = GameState.region_configs[0]
 
-	_region_label.text = "[center]%s[/center]" % (region.region_name if region != null else "未知地域")
-	_gold_label.text = "[right]金币 %d[/right]" % GameState.gold
-	_hint_label.text = "[center]选择高亮节点继续前进[/center]"
+	_region_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_region_label.text = region.region_name if region != null else "未知地域"
+	_gold_label.text = "金币 %d" % GameState.gold
+	_hint_label.text = "选择高亮节点继续前进"
 
 
 func _on_node_pressed(node_id: int) -> void:
@@ -98,3 +99,9 @@ func _on_node_pressed(node_id: int) -> void:
 			SceneTransition.change_scene(REWARD_SCENE)
 		MapNode.NodeType.VILLAGE:
 			SceneTransition.change_scene(VILLAGE_SCENE)
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()

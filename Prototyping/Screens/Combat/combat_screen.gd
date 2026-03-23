@@ -50,5 +50,5 @@ func _on_give_up_button_pressed() -> void:
 func _duplicate_mobs(source: Array[MobData]) -> Array[MobData]:
 	var result: Array[MobData] = []
 	for mob in source:
-		result.append(mob.duplicate(true) as MobData)
+		result.append(mob.clone())
 	return result

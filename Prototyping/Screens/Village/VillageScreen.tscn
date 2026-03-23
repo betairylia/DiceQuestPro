@@ -44,19 +44,19 @@ layout_mode = 2
 [node name="RegionLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 theme_override_font_sizes/normal_font_size = 16
-text = "[center]村庄[/center]"
+text = "村庄"
 
 [node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
+horizontal_alignment = 2
 fit_content = true
 scroll_active = false
-text = "[right]金币 0[/right]"
+text = "金币 0"
 
 [node name="Tabs" type="TabContainer" parent="MarginContainer/VBox"]
 custom_minimum_size = Vector2(0, 240)
@@ -71,10 +71,10 @@ script = ExtResource("3")
 
 [node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]金币 0[/center]"
+text = "金币 0"
 
 [node name="Lists" type="HBoxContainer" parent="MarginContainer/VBox/Tabs/Shop"]
 layout_mode = 2
@@ -86,10 +86,10 @@ size_flags_horizontal = 3
 
 [node name="SellTitle" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop/Lists/SellColumn"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]出售[/center]"
+text = "出售"
 
 [node name="SellList" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists/SellColumn"]
 layout_mode = 2
@@ -100,10 +100,10 @@ size_flags_horizontal = 3
 
 [node name="BuyTitle" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop/Lists/BuyColumn"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]购买[/center]"
+text = "购买"
 
 [node name="BuyList" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists/BuyColumn"]
 layout_mode = 2
@@ -115,20 +115,20 @@ script = ExtResource("4")
 
 [node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]金币 0[/center]"
+text = "金币 0"
 
 [node name="PlayersRow" type="HBoxContainer" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2
 
 [node name="BonusLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]强化[/center]"
+text = "强化"
 
 [node name="UpgradeButton" type="Button" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2
@@ -136,10 +136,10 @@ text = "强化"
 
 [node name="SelectedItemLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]选择骰面[/center]"
+text = "选择骰面"
 
 [node name="FaceGrid" type="GridContainer" parent="MarginContainer/VBox/Tabs/Forge"]
 layout_mode = 2

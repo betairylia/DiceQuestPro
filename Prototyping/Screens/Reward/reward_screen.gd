@@ -23,10 +23,8 @@ func _build_rewards() -> void:
 		SceneTransition.change_scene(WORLD_MAP_SCENE)
 		return
 
-	for child in _items_grid.get_children():
-		child.queue_free()
-	for child in _roll_preview.get_children():
-		child.queue_free()
+	_clear_children(_items_grid)
+	_clear_children(_roll_preview)
 
 	_reward_items.clear()
 	var awarded_gold := 0
@@ -35,22 +33,28 @@ func _build_rewards() -> void:
 		MapNode.NodeType.TREASURE:
 			if node.id not in GameState.visited_nodes:
 				GameState.complete_node(node.id)
-			_title_label.text = "[center]宝藏[/center]"
-			_subtitle_label.text = "[center]带走一件战利品[/center]"
+			_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			_title_label.text = "宝藏"
+			_subtitle_label.text = "带走一件战利品"
 			_reward_items.assign(node.treasure_items)
 			if node.treasure_gold > 0:
 				awarded_gold = node.treasure_gold
 				GameState.add_gold(node.treasure_gold)
 				node.treasure_gold = 0
 		_:
-			_title_label.text = "[center]战利品[/center]"
-			_subtitle_label.text = "[center]从敌人的骰面中挑选一件[/center]"
+			_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			_title_label.text = "战利品"
+			_subtitle_label.text = "从敌人的骰面中挑选一件"
 			_reward_items = await _roll_enemy_rewards(node)
 
-	_gold_label.text = "[center]获得金币 %d    当前金币 %d[/center]" % [awarded_gold, GameState.gold]
+	_gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_gold_label.text = "获得金币 %d    当前金币 %d" % [awarded_gold, GameState.gold]
 
 	if _reward_items.is_empty():
-		_subtitle_label.text = "[center]没有可领取的奖励[/center]"
+		_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_subtitle_label.text = "没有可领取的奖励"
 
 	for item in _reward_items:
 		var button := Button.new()
@@ -97,3 +101,9 @@ func _finish() -> void:
 		SceneTransition.change_scene(GAME_OVER_SCENE)
 		return
 	SceneTransition.change_scene(WORLD_MAP_SCENE)
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()

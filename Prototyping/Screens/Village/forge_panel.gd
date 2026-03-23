@@ -19,10 +19,12 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	_gold_label.text = "[center]金币 %d[/center]" % GameState.gold
+	_gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_gold_label.text = "金币 %d" % GameState.gold
 
 	if GameState.team.is_empty():
-		_bonus_label.text = "[center]没有角色[/center]"
+		_bonus_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_bonus_label.text = "没有角色"
 		_upgrade_button.disabled = true
 		_reforge_button.disabled = true
 		return
@@ -39,21 +41,23 @@ func refresh() -> void:
 	_build_inventory_grid(player)
 
 	var upgrade_cost := GameState.get_upgrade_cost(player)
-	_bonus_label.text = "[center]%s  强化 +%d[/center]" % [player.resolved_display_name(), player.alive_dice[0].bonus]
+	_bonus_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_bonus_label.text = "%s  强化 +%d" % [player.resolved_display_name(), player.alive_dice[0].bonus]
 	_upgrade_button.text = "强化 (%d金)" % upgrade_cost
 	_upgrade_button.disabled = GameState.gold < upgrade_cost
 
 	if _selected_item == null:
-		_selected_item_label.text = "[center]选择一个骰面进行重铸[/center]"
+		_selected_item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_selected_item_label.text = "选择一个骰面进行重铸"
 	else:
-		_selected_item_label.text = "[center]已选 %s %d[/center]" % [Consts.SYMBOLS.get(_selected_item.element, "?"), _selected_item.digit]
+		_selected_item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_selected_item_label.text = "已选 %s %d" % [Consts.SYMBOLS.get(_selected_item.element, "?"), _selected_item.digit]
 
 	_reforge_button.disabled = _selected_item == null or _selected_face_index < 0 or GameState.gold < GameState.REFORGE_COST
 
 
 func _build_player_buttons() -> void:
-	for child in _players_row.get_children():
-		child.queue_free()
+	_clear_children(_players_row)
 
 	for idx in GameState.team.size():
 		var player := GameState.team[idx]
@@ -66,8 +70,7 @@ func _build_player_buttons() -> void:
 
 
 func _build_face_grid(player: MobData) -> void:
-	for child in _face_grid.get_children():
-		child.queue_free()
+	_clear_children(_face_grid)
 
 	if player.alive_dice.is_empty():
 		return
@@ -87,13 +90,13 @@ func _build_face_grid(player: MobData) -> void:
 
 
 func _build_inventory_grid(player: MobData) -> void:
-	for child in _inventory_grid.get_children():
-		child.queue_free()
+	_clear_children(_inventory_grid)
 
 	if GameState.inventory.is_empty():
 		var empty_label := RichTextLabel.new()
 		empty_label.fit_content = true
-		empty_label.text = "[center]没有可用骰面[/center]"
+		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		empty_label.text = "没有可用骰面"
 		_inventory_grid.add_child(empty_label)
 		return
 
@@ -139,3 +142,9 @@ func _on_reforge_button_pressed() -> void:
 	_selected_item = null
 	_selected_face_index = -1
 	refresh()
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()

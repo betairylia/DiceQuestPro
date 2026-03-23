@@ -41,25 +41,25 @@ layout_mode = 2
 
 [node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 theme_override_font_sizes/normal_font_size = 18
-text = "[center]战利品[/center]"
+text = "战利品"
 
 [node name="SubtitleLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]请选择[/center]"
+text = "请选择"
 
 [node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]获得金币 0[/center]"
+text = "获得金币 0"
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
 custom_minimum_size = Vector2(0, 90)

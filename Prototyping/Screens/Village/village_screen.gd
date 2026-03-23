@@ -27,8 +27,10 @@ func _process(_delta: float) -> void:
 
 func _update_header() -> void:
 	var region := GameState.get_current_region()
-	_region_label.text = "[center]%s 村庄[/center]" % (region.region_name if region != null else "村庄")
-	_gold_label.text = "[right]金币 %d[/right]" % GameState.gold
+	_region_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_region_label.text = "%s 村庄" % (region.region_name if region != null else "村庄")
+	_gold_label.text = "金币 %d" % GameState.gold
 
 
 func _on_tabs_tab_changed(_tab: int) -> void:

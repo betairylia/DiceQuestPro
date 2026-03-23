@@ -30,22 +30,16 @@ func _ready() -> void:
 
 
 func start_run(selected_team: Array[MobData]) -> void:
+	reset_run_state()
+
 	team.clear()
 	for mob_data in selected_team:
-		var duplicate := mob_data.duplicate(true) as MobData
+		var duplicate := mob_data.clone()
 		_prepare_player(duplicate)
 		team.append(duplicate)
 
-	inventory.clear()
 	gold = STARTING_GOLD
 	map = MapGenerator.generate(region_configs)
-	current_node_id = -1
-	current_region_index = 0
-	visited_nodes.clear()
-	pre_combat_snapshot.clear()
-	total_gold_earned = 0
-	total_items_collected = 0
-	last_run_summary = null
 	run_active = true
 
 
@@ -177,13 +171,13 @@ func apply_upgrade(player: MobData) -> int:
 func save_pre_combat_snapshot() -> void:
 	pre_combat_snapshot.clear()
 	for player in team:
-		pre_combat_snapshot.append(player.duplicate(true))
+		pre_combat_snapshot.append(player.clone())
 
 
 func restore_pre_combat_snapshot() -> void:
 	team.clear()
 	for player in pre_combat_snapshot:
-		team.append(player.duplicate(true))
+		team.append(player.clone())
 
 
 func end_run(victory: bool = false) -> RunSummary:
@@ -204,6 +198,21 @@ func end_run(victory: bool = false) -> RunSummary:
 
 	last_run_summary = summary
 	return summary
+
+
+func reset_run_state() -> void:
+	team.clear()
+	inventory.clear()
+	gold = STARTING_GOLD
+	map = null
+	current_node_id = -1
+	current_region_index = 0
+	visited_nodes.clear()
+	pre_combat_snapshot.clear()
+	total_gold_earned = 0
+	total_items_collected = 0
+	run_active = false
+	last_run_summary = null
 
 
 func _prepare_player(player: MobData) -> void:

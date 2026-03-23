@@ -277,6 +277,7 @@ func _on_mob_died(_mob: Mob, is_player: bool) -> void:
 		_sync_player_dice()
 	else:
 		_enemy_dice = _collect_dice(enemies)
+	call_deferred("_check_combat_end")
 
 
 func _on_mob_revived(_mob: Mob, is_player: bool) -> void:
@@ -316,10 +317,12 @@ func _check_combat_end() -> bool:
 		return true
 	if not enemies.is_empty() and enemies.all(func(enemy): return not enemy.is_alive()):
 		_combat_ended = true
+		combat_hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		combat_won.emit()
 		return true
 	if not players.is_empty() and players.all(func(player): return not player.is_alive()):
 		_combat_ended = true
+		combat_hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		combat_lost.emit()
 		return true
 	return false
@@ -342,3 +345,4 @@ func _reset_battlefield() -> void:
 	_player_matched_spells.clear()
 	_enemy_matched_spells.clear()
 	_rerolls = 1
+	combat_hud.mouse_filter = Control.MOUSE_FILTER_PASS

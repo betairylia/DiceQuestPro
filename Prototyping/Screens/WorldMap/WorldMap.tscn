@@ -42,19 +42,19 @@ layout_mode = 2
 [node name="RegionLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 theme_override_font_sizes/normal_font_size = 16
-text = "[center]地图[/center]"
+text = "地图"
 
 [node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
+horizontal_alignment = 2
 fit_content = true
 scroll_active = false
-text = "[right]金币 0[/right]"
+text = "金币 0"
 
 [node name="MapFrame" type="PanelContainer" parent="MarginContainer/VBox"]
 custom_minimum_size = Vector2(0, 250)
@@ -78,7 +78,7 @@ grow_vertical = 2
 
 [node name="HintLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]选择节点[/center]"
+text = "选择节点"

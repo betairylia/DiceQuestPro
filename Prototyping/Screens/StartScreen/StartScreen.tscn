@@ -38,18 +38,18 @@ layout_mode = 2
 
 [node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 theme_override_font_sizes/normal_font_size = 18
-text = "[center]DiceQuestPro\nRoguelike Run[/center]"
+text = "DiceQuestPro\nRoguelike Run"
 
 [node name="StatusLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]选择 1-3 名角色出发[/center]"
+text = "选择 1-3 名角色出发"
 
 [node name="Scroll" type="ScrollContainer" parent="MarginContainer/VBox"]
 custom_minimum_size = Vector2(0, 220)
@@ -65,10 +65,10 @@ theme_override_constants/v_separation = 10
 
 [node name="SelectedLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]尚未选择角色[/center]"
+text = "尚未选择角色"
 
 [node name="DepartButton" type="Button" parent="MarginContainer/VBox"]
 layout_mode = 2

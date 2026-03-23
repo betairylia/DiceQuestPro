@@ -39,18 +39,18 @@ alignment = 1
 
 [node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 theme_override_font_sizes/normal_font_size = 22
-text = "[center]游戏结束[/center]"
+text = "游戏结束"
 
 [node name="SummaryLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
 layout_mode = 2
-bbcode_enabled = true
+horizontal_alignment = 1
 fit_content = true
 scroll_active = false
-text = "[center]统计[/center]"
+text = "统计"
 
 [node name="TryAgainButton" type="Button" parent="MarginContainer/VBox"]
 layout_mode = 2

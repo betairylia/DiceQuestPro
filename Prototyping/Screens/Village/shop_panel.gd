@@ -17,17 +17,17 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	_gold_label.text = "[center]金币 %d[/center]" % GameState.gold
+	_gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_gold_label.text = "金币 %d" % GameState.gold
 
-	for child in _sell_list.get_children():
-		child.queue_free()
-	for child in _buy_list.get_children():
-		child.queue_free()
+	_clear_children(_sell_list)
+	_clear_children(_buy_list)
 
 	if GameState.inventory.is_empty():
 		var empty_label := RichTextLabel.new()
 		empty_label.fit_content = true
-		empty_label.text = "[center]没有可出售的骰面[/center]"
+		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		empty_label.text = "没有可出售的骰面"
 		_sell_list.add_child(empty_label)
 	else:
 		for item in GameState.inventory:
@@ -80,3 +80,9 @@ func _on_buy_pressed(item: DiceFaceItem) -> void:
 	GameState.add_item(item)
 	_offers.erase(item)
 	refresh()
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()

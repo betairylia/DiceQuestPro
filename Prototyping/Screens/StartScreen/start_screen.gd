@@ -14,6 +14,7 @@ var _cards: Dictionary = {}
 
 
 func _ready() -> void:
+	GameState.reset_run_state()
 	_load_characters()
 	_build_grid()
 	_update_selection_ui()
@@ -43,8 +44,7 @@ func _load_characters() -> void:
 
 
 func _build_grid() -> void:
-	for child in _grid.get_children():
-		child.queue_free()
+	_clear_children(_grid)
 	_cards.clear()
 
 	for mob_data in _available:
@@ -63,24 +63,26 @@ func _create_card(mob_data: MobData) -> PanelContainer:
 	panel.add_child(body)
 
 	var name_label := RichTextLabel.new()
-	name_label.bbcode_enabled = true
 	name_label.fit_content = true
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.scroll_active = false
-	name_label.text = "[center]%s[/center]" % mob_data.resolved_display_name()
+	name_label.text = mob_data.resolved_display_name()
 	body.add_child(name_label)
 
 	var hp_label := RichTextLabel.new()
 	hp_label.fit_content = true
+	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hp_label.scroll_active = false
-	hp_label.text = "[center]HP %d[/center]" % mob_data.max_health
+	hp_label.text = "HP %d" % mob_data.max_health
 	body.add_child(hp_label)
 
 	var dice_label := RichTextLabel.new()
 	dice_label.bbcode_enabled = true
 	dice_label.fit_content = true
+	dice_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	dice_label.scroll_active = false
 	if not mob_data.alive_dice.is_empty():
-		dice_label.text = "[center]%s[/center]" % Consts.dice_face_preview(mob_data.alive_dice[0])
+		dice_label.text = Consts.dice_face_preview(mob_data.alive_dice[0])
 	body.add_child(dice_label)
 
 	panel.gui_input.connect(_on_card_input.bind(mob_data))
@@ -117,10 +119,12 @@ func _on_card_input(event: InputEvent, mob_data: MobData) -> void:
 	elif _selected.size() < MAX_TEAM_SIZE:
 		_selected.append(mob_data)
 	else:
-		_status_label.text = "[center]队伍已满[/center]"
+		_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_status_label.text = "队伍已满"
 		return
 
-	_status_label.text = "[center]选择 1-3 名角色出发[/center]"
+	_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_status_label.text = "选择 1-3 名角色出发"
 	_update_selection_ui()
 
 
@@ -131,12 +135,14 @@ func _update_selection_ui() -> void:
 			panel.add_theme_stylebox_override("panel", _make_card_style(mob_data in _selected))
 
 	if _selected.is_empty():
-		_selected_label.text = "[center]尚未选择角色[/center]"
+		_selected_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_selected_label.text = "尚未选择角色"
 	else:
 		var names: Array[String] = []
 		for mob_data in _selected:
 			names.append(mob_data.resolved_display_name())
-		_selected_label.text = "[center]%s[/center]" % "  |  ".join(names)
+		_selected_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_selected_label.text = "  |  ".join(names)
 
 	_depart_button.disabled = _selected.is_empty()
 
@@ -144,3 +150,9 @@ func _update_selection_ui() -> void:
 func _on_depart_button_pressed() -> void:
 	GameState.start_run(_selected)
 	SceneTransition.change_scene(WORLD_MAP_SCENE)
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()
