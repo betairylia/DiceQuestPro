@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Tooltip="*res://Prototyping/HUD/Tooltip/tooltip.tscn"
+GameState="*res://Source/Core/game_state.gd"
 SceneTransition="*res://Prototyping/Screens/SceneTransition.tscn"
 
 [display]
