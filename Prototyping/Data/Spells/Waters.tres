@@ -8,35 +8,35 @@ script = ExtResource("1_jgycc")
 display_name = "Waterfall"
 pattern = "www"
 logic = "aoe_copy"
-power = 6
+power = 15
 
 [sub_resource type="Resource" id="Resource_jgus8"]
 script = ExtResource("1_jgycc")
 display_name = "Waterfall"
 pattern = "wwww"
 logic = "aoe_copy"
-power = 11
+power = 27
 
 [sub_resource type="Resource" id="Resource_f228h"]
 script = ExtResource("1_jgycc")
 display_name = "Waterfall"
 pattern = "wwwww"
 logic = "aoe_copy"
-power = 20
+power = 49
 
 [sub_resource type="Resource" id="Resource_v3cxg"]
 script = ExtResource("1_jgycc")
 display_name = "Waterfall"
 pattern = "wwwwww"
 logic = "aoe_copy"
-power = 36
+power = 89
 
 [sub_resource type="Resource" id="Resource_ftyjq"]
 script = ExtResource("1_jgycc")
 display_name = "Waterfall"
 pattern = "wwwwwww"
 logic = "aoe_copy"
-power = 65
+power = 161
 
 [resource]
 script = ExtResource("2_jgus8")

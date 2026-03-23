@@ -6,12 +6,13 @@
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Players/Fighter.tres" id="3_5couh"]
-[ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_fro8r"]
+[ext_resource type="Resource" uid="uid://dptuyom848ihv" path="res://Prototyping/Data/Spells/fires.tres" id="3_fro8r"]
 [ext_resource type="Resource" uid="uid://1t67xfx12xog" path="res://Prototyping/Data/Spells/Swords.tres" id="4_tq74n"]
 [ext_resource type="Resource" uid="uid://7ysa4p2cqxia" path="res://Prototyping/Data/Spells/DefenseCombo.tres" id="5_egaeq"]
 [ext_resource type="Resource" uid="uid://cp5gsv08y8kwc" path="res://Prototyping/Data/Spells/Waters.tres" id="5_lo0wb"]
 [ext_resource type="Resource" uid="uid://cgsn4ae4c0mqy" path="res://Prototyping/Data/Spells/HealShield.tres" id="6_ayfox"]
 [ext_resource type="Resource" uid="uid://b2v05vpquvpqq" path="res://Prototyping/Data/Spells/Revive.tres" id="6_lo0wb"]
+[ext_resource type="Resource" uid="uid://bvbyogt1l5yn7" path="res://Prototyping/Data/Spells/CoveringShot.tres" id="6_ycbir"]
 [ext_resource type="Resource" uid="uid://vik5t4y7lqdg" path="res://Prototyping/Data/Spells/Bows.tres" id="7_icd36"]
 [ext_resource type="Resource" uid="uid://bq7e45ufbftrm" path="res://Prototyping/Data/Spells/ChainFire.tres" id="8_w0thr"]
 [ext_resource type="Resource" uid="uid://b5wg0xaohold2" path="res://Prototyping/Data/Spells/ChainWater.tres" id="9_mpsw7"]
@@ -25,8 +26,11 @@
 [ext_resource type="Resource" uid="uid://dkqj6fyl7bnmf" path="res://Prototyping/Data/Spells/FireThunder.tres" id="16_ycbir"]
 [ext_resource type="Resource" uid="uid://df564as2tvbjv" path="res://Prototyping/Data/Spells/FlameStrike.tres" id="17_dulny"]
 [ext_resource type="Resource" uid="uid://cfvv3kt620lpc" path="res://Prototyping/Data/Spells/WaterWind.tres" id="18_gs7dv"]
+[ext_resource type="Resource" uid="uid://dde8mwg8p0pj0" path="res://Prototyping/Data/Spells/Bloods.tres" id="20_q56gh"]
 [ext_resource type="Resource" path="res://Prototyping/Data/Players/Berserker.tres" id="21_ayfox"]
+[ext_resource type="Resource" uid="uid://cvqqijc6g8nxn" path="res://Prototyping/Data/Spells/Forests.tres" id="21_ul34t"]
 [ext_resource type="Resource" path="res://Prototyping/Data/Players/Cleric.tres" id="22_q56gh"]
+[ext_resource type="Resource" uid="uid://d2a8c2ath476j" path="res://Prototyping/Data/Spells/Healing.tres" id="23_dulny"]
 [ext_resource type="Resource" uid="uid://btobyodbxuiiw" path="res://Prototyping/Data/Enemies/GoblinBerserker.tres" id="24_gobln"]
 [ext_resource type="Resource" uid="uid://6mbtxdn375l4" path="res://Prototyping/Data/Enemies/DarkCultist.tres" id="25_cultist"]
 [ext_resource type="Resource" uid="uid://dt3sk1n104633" path="res://Prototyping/Data/Enemies/FrostWraith.tres" id="26_wraith"]
@@ -40,7 +44,7 @@ metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
-spells = Array[ExtResource("2_5couh")]([ExtResource("6_lo0wb"), ExtResource("4_tq74n"), ExtResource("7_icd36"), ExtResource("5_egaeq"), ExtResource("6_ayfox"), ExtResource("3_fro8r"), ExtResource("5_lo0wb"), ExtResource("11_4n6si"), ExtResource("12_wm1of"), ExtResource("11_q56gh"), ExtResource("12_ul34t"), ExtResource("8_w0thr"), ExtResource("9_mpsw7"), ExtResource("10_wm1of"), ExtResource("16_ycbir"), ExtResource("17_dulny"), ExtResource("18_gs7dv")])
+spells = Array[ExtResource("2_5couh")]([ExtResource("6_lo0wb"), ExtResource("4_tq74n"), ExtResource("7_icd36"), ExtResource("6_ycbir"), ExtResource("5_egaeq"), ExtResource("20_q56gh"), ExtResource("6_ayfox"), ExtResource("3_fro8r"), ExtResource("5_lo0wb"), ExtResource("11_4n6si"), ExtResource("12_wm1of"), ExtResource("11_q56gh"), ExtResource("12_ul34t"), ExtResource("8_w0thr"), ExtResource("9_mpsw7"), ExtResource("10_wm1of"), ExtResource("16_ycbir"), ExtResource("17_dulny"), ExtResource("18_gs7dv"), ExtResource("21_ul34t"), ExtResource("23_dulny")])
 playersData = Array[ExtResource("2_544xo")]([ExtResource("21_ayfox"), ExtResource("3_5couh"), ExtResource("22_q56gh")])
 enemiesData = Array[ExtResource("2_544xo")]([ExtResource("24_gobln"), ExtResource("25_cultist"), ExtResource("26_wraith"), ExtResource("27_toad")])
 envDie = SubResource("Resource_w0thr")

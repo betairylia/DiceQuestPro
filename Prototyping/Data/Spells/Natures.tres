@@ -28,14 +28,14 @@ power = 50
 script = ExtResource("1_52d8u")
 display_name = "Mass Healing"
 pattern = "nnnnn"
-logic = ""
+logic = "caster_heal"
 power = 50
 
 [sub_resource type="Resource" id="Resource_bs68q"]
 script = ExtResource("1_52d8u")
 display_name = "Mass Healing"
 pattern = "nnnnnn"
-logic = ""
+logic = "caster_heal"
 power = 100
 
 [resource]

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://cvqqijc6g8nxn"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_t6t4v"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_nbmpt"]
+
+[sub_resource type="Resource" id="Resource_t6t4v"]
+script = ExtResource("1_t6t4v")
+display_name = "Forest Song"
+pattern = "Gnn"
+logic = "aoe_split"
+power = 20
+
+[sub_resource type="Resource" id="Resource_nbmpt"]
+script = ExtResource("1_t6t4v")
+display_name = "Forest Song"
+pattern = "Gnnn"
+logic = "aoe_split"
+power = 40
+
+[sub_resource type="Resource" id="Resource_cd1ir"]
+script = ExtResource("1_t6t4v")
+display_name = "Forest Song"
+pattern = "Gnnnn"
+logic = "aoe_split"
+power = 60
+
+[resource]
+script = ExtResource("2_nbmpt")
+levels = Array[ExtResource("1_t6t4v")]([SubResource("Resource_t6t4v"), SubResource("Resource_nbmpt"), SubResource("Resource_cd1ir")])

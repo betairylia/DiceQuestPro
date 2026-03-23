@@ -8,35 +8,35 @@ script = ExtResource("1_6st4y")
 display_name = "Thunder"
 pattern = "ttt"
 logic = "front_single"
-power = 7
+power = 15
 
 [sub_resource type="Resource" id="Resource_imfqx"]
 script = ExtResource("1_6st4y")
 display_name = "Thunder"
 pattern = "tttt"
 logic = "front_single"
-power = 16
+power = 33
 
 [sub_resource type="Resource" id="Resource_7j3kj"]
 script = ExtResource("1_6st4y")
 display_name = "Thunder"
 pattern = "ttttt"
 logic = "front_single"
-power = 36
+power = 73
 
 [sub_resource type="Resource" id="Resource_xanoy"]
 script = ExtResource("1_6st4y")
 display_name = "Thunder"
 pattern = "tttttt"
 logic = "front_single"
-power = 80
+power = 161
 
 [sub_resource type="Resource" id="Resource_4ram6"]
 script = ExtResource("1_6st4y")
 display_name = "Thunder"
 pattern = "ttttttt"
 logic = "front_single"
-power = 176
+power = 355
 
 [resource]
 script = ExtResource("2_imfqx")

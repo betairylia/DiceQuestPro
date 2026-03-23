@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_tgioo"]
 script = ExtResource("1_tgioo")
 display_name = "援护射击"
-pattern = "B"
+pattern = "SB"
 logic = "front_single"
 power = 5
 
