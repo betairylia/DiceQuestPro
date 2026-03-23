@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="DiceQuestPro"
-run/main_scene="uid://b26fpv3jtorgs"
+run/main_scene="res://Prototyping/Screens/StartScreen/StartScreen.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Tooltip="*res://Prototyping/HUD/Tooltip/tooltip.tscn"
+GameState="*res://Source/Core/game_state.gd"
+SceneTransition="*res://Prototyping/Screens/SceneTransition.tscn"
 
 [display]
 

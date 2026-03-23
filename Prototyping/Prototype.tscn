@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
 [ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Players/Fighter.tres" id="3_5couh"]
-[ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/Fires.tres" id="3_fro8r"]
+[ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/fires.tres" id="3_fro8r"]
 [ext_resource type="Resource" uid="uid://1t67xfx12xog" path="res://Prototyping/Data/Spells/Swords.tres" id="4_tq74n"]
 [ext_resource type="Resource" uid="uid://7ysa4p2cqxia" path="res://Prototyping/Data/Spells/DefenseCombo.tres" id="5_egaeq"]
 [ext_resource type="Resource" uid="uid://cp5gsv08y8kwc" path="res://Prototyping/Data/Spells/Waters.tres" id="5_lo0wb"]

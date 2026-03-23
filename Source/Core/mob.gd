@@ -23,6 +23,7 @@ const FLASH_COLOR       := Color(1.0, 0.25, 0.25)
 @export var knockback_direction: Vector2 = Vector2(1, 0)
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _name_label: RichTextLabel = $AnimatedSprite2D/Name
 
 var _dice: Array[RollableDice] = []
 var _is_dead: bool = false
@@ -37,15 +38,31 @@ func _ready() -> void:
 
 func setup(mob_data: MobData) -> void:
 	data = mob_data
-	health = mob_data.max_health
-	_is_dead = false
-	_rebuild_dice(data.alive_dice)
+	if data.sprite != null:
+		_sprite.sprite_frames = data.sprite
+
+	_name_label.text = data.resolved_display_name()
+	_name_label.visible = not _name_label.text.is_empty()
+
+	if data.current_health < 0:
+		data.current_health = data.max_health
+
+	if data.dead or data.current_health <= 0:
+		health = 0
+		_is_dead = true
+		_rebuild_dice(data.dead_dice)
+	else:
+		health = clamp(data.current_health, 1, data.max_health)
+		_is_dead = false
+		_rebuild_dice(data.alive_dice)
 	health_changed.emit(health, data.max_health)
 
 
 func revive(new_health: int) -> void:
 	health = clamp(new_health, 1, data.max_health)
 	_is_dead = false
+	data.dead = false
+	data.current_health = health
 	_rebuild_dice(data.alive_dice)
 	health_changed.emit(health, data.max_health)
 	_spawn_popup(DamageInfo.new(
@@ -68,6 +85,7 @@ func get_damage_heal(info: DamageInfo) -> void:
 		health -= info.value
 
 	health = clamp(health, 0, data.max_health)
+	data.current_health = health
 
 	var resolved_info = DamageInfo.new(
 		abs(prev_health - health),
@@ -84,8 +102,11 @@ func get_damage_heal(info: DamageInfo) -> void:
 
 	if health == 0 and not _is_dead:
 		_is_dead = true
+		data.dead = true
 		_rebuild_dice(data.dead_dice)
 		died.emit()
+	elif health > 0:
+		data.dead = false
 
 
 func is_alive() -> bool:

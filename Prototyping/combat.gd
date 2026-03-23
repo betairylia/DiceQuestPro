@@ -16,6 +16,8 @@ signal spell_triggered(spell: MatchedSpell)
 signal player_spell_updated(spells: Array[MatchedSpell])
 signal enemy_spell_updated(spells: Array[MatchedSpell])
 signal reroll_energy_updated(rerolls: int)
+signal combat_won
+signal combat_lost
 
 const PLAYER_MOB_SCENE = preload("res://Prototyping/Nodes/Player/PlayerMob.tscn")
 const ENEMY_MOB_SCENE  = preload("res://Prototyping/Nodes/mob.tscn")
@@ -49,9 +51,29 @@ var _enemy_matched_spells: Array[MatchedSpell] = []
 
 var _phase: CombatExecPhase = CombatExecPhase.Preparation
 var _rerolls: int = 1
+var _combat_ended: bool = false
+var _initialized: bool = false
 
 
 func _ready() -> void:
+	# Keep the old prototype scene runnable while the wrapper flow is introduced.
+	if (
+		not _initialized
+		and get_tree().current_scene == self
+		and envDie != null
+		and not playersData.is_empty()
+		and not enemiesData.is_empty()
+	):
+		init(playersData, enemiesData, spells, envDie)
+
+
+func init(players_data: Array[MobData], enemies_data: Array[MobData], spells_data: Array[Spell], env_die_data: DiceData) -> void:
+	_reset_battlefield()
+
+	playersData = players_data
+	enemiesData = enemies_data
+	spells = spells_data
+	envDie = env_die_data
 
 	env_die.setup(envDie)
 	env_die.SetState(RollableDice.DiceCombatState.Determined)
@@ -59,6 +81,8 @@ func _ready() -> void:
 	_spawn_mobs(playersData, PLAYER_MOB_SCENE, players, true)
 	_spawn_mobs(enemiesData, ENEMY_MOB_SCENE, enemies, false)
 
+	_combat_ended = false
+	_initialized = true
 	_turn()
 
 
@@ -99,6 +123,9 @@ func _enter_phase(phase: CombatExecPhase) -> void:
 
 
 func _turn() -> void:
+	if _combat_ended:
+		return
+
 	_sync_player_dice()
 	_enemy_dice = _collect_dice(enemies)
 
@@ -184,16 +211,24 @@ func _on_combat_hud_act() -> void:
 
 	_enter_phase(CombatExecPhase.PlayerRegular)
 	await _regular_attack(players, enemies, _player_results)
+	if _check_combat_end():
+		return
 
 	_enter_phase(CombatExecPhase.PlayerSpells)
 	await _resolve_spells(players, enemies, _player_matched_spells)
+	if _check_combat_end():
+		return
 
 	_refresh_enemy_spells()
 	_enter_phase(CombatExecPhase.EnemyRegular)
 	await _regular_attack(enemies, players, _enemy_results)
+	if _check_combat_end():
+		return
 
 	_enter_phase(CombatExecPhase.EnemySpells)
 	await _resolve_spells(enemies, players, _enemy_matched_spells)
+	if _check_combat_end():
+		return
 
 	_turn()
 
@@ -274,3 +309,36 @@ func _on_combat_hud_reroll() -> void:
 	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
 
 	player_spell_updated.emit(_player_matched_spells)
+
+
+func _check_combat_end() -> bool:
+	if _combat_ended:
+		return true
+	if not enemies.is_empty() and enemies.all(func(enemy): return not enemy.is_alive()):
+		_combat_ended = true
+		combat_won.emit()
+		return true
+	if not players.is_empty() and players.all(func(player): return not player.is_alive()):
+		_combat_ended = true
+		combat_lost.emit()
+		return true
+	return false
+
+
+func _reset_battlefield() -> void:
+	for mob in players:
+		if is_instance_valid(mob):
+			mob.queue_free()
+	for mob in enemies:
+		if is_instance_valid(mob):
+			mob.queue_free()
+
+	players.clear()
+	enemies.clear()
+	_player_dice.clear()
+	_enemy_dice.clear()
+	_player_results.clear()
+	_enemy_results.clear()
+	_player_matched_spells.clear()
+	_enemy_matched_spells.clear()
+	_rerolls = 1

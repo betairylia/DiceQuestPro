@@ -1,0 +1,167 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/village_screen.gd" id="1"]
+[ext_resource type="Theme" path="res://Prototyping/HUD/pixelated.tres" id="2"]
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/shop_panel.gd" id="3"]
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/forge_panel.gd" id="4"]
+
+[node name="VillageScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.04, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = -14.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="RegionLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+theme_override_font_sizes/normal_font_size = 16
+text = "[center]村庄[/center]"
+
+[node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[right]金币 0[/right]"
+
+[node name="Tabs" type="TabContainer" parent="MarginContainer/VBox"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Shop" type="VBoxContainer" parent="MarginContainer/VBox/Tabs"]
+layout_mode = 2
+theme = ExtResource("2")
+script = ExtResource("3")
+
+[node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]金币 0[/center]"
+
+[node name="Lists" type="HBoxContainer" parent="MarginContainer/VBox/Tabs/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SellColumn" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SellTitle" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop/Lists/SellColumn"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]出售[/center]"
+
+[node name="SellList" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists/SellColumn"]
+layout_mode = 2
+
+[node name="BuyColumn" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyTitle" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Shop/Lists/BuyColumn"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]购买[/center]"
+
+[node name="BuyList" type="VBoxContainer" parent="MarginContainer/VBox/Tabs/Shop/Lists/BuyColumn"]
+layout_mode = 2
+
+[node name="Forge" type="VBoxContainer" parent="MarginContainer/VBox/Tabs"]
+layout_mode = 2
+theme = ExtResource("2")
+script = ExtResource("4")
+
+[node name="GoldLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]金币 0[/center]"
+
+[node name="PlayersRow" type="HBoxContainer" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+
+[node name="BonusLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]强化[/center]"
+
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+text = "强化"
+
+[node name="SelectedItemLabel" type="RichTextLabel" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "[center]选择骰面[/center]"
+
+[node name="FaceGrid" type="GridContainer" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+columns = 6
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="InventoryGrid" type="GridContainer" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+columns = 6
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="ReforgeButton" type="Button" parent="MarginContainer/VBox/Tabs/Forge"]
+layout_mode = 2
+text = "重铸 (1金)"
+
+[node name="LeaveButton" type="Button" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "离开"
+
+[connection signal="tab_changed" from="MarginContainer/VBox/Tabs" to="." method="_on_tabs_tab_changed"]
+[connection signal="pressed" from="MarginContainer/VBox/Tabs/Forge/UpgradeButton" to="MarginContainer/VBox/Tabs/Forge" method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBox/Tabs/Forge/ReforgeButton" to="MarginContainer/VBox/Tabs/Forge" method="_on_reforge_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBox/LeaveButton" to="." method="_on_leave_button_pressed"]
