@@ -8,14 +8,14 @@ script = ExtResource("1_j1ot2")
 display_name = "Chain Fire"
 pattern = "SSff"
 logic = "front_single"
-power = 12
+power = 10
 
 [sub_resource type="Resource" id="Resource_nkvj1"]
 script = ExtResource("1_j1ot2")
 display_name = "Chain Fire Lv2"
 pattern = "SSpff"
 logic = "front_single"
-power = 30
+power = 25
 
 [resource]
 script = ExtResource("2_nkvj1")

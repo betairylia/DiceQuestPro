@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="MobData" format=3 uid="uid://bufwb5okw5ard"]
 
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_urovd"]
+[ext_resource type="Resource" uid="uid://bb8jmruf03vix" path="res://Prototyping/Data/Players/ElfArcherD8.tres" id="2_adcia"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_jomri"]
-[ext_resource type="Resource" uid="uid://bb8jmruf03vix" path="res://Prototyping/Data/Players/ElfArcherD10.tres" id="2_sdqr7"]
 [ext_resource type="Resource" uid="uid://c87emhw172smo" path="res://Prototyping/Data/Players/CommonDice/ReviveD8.tres" id="3_sdqr7"]
 
 [resource]
 script = ExtResource("2_jomri")
 max_health = 155
-alive_dice = Array[ExtResource("1_urovd")]([ExtResource("2_sdqr7"), ExtResource("2_sdqr7")])
+alive_dice = Array[ExtResource("1_urovd")]([ExtResource("2_adcia"), ExtResource("2_adcia")])
 dead_dice = Array[ExtResource("1_urovd")]([ExtResource("3_sdqr7")])
 metadata/_custom_type_script = "uid://crdy3x714y4kr"

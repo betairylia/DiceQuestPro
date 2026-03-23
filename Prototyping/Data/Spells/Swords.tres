@@ -5,31 +5,31 @@
 
 [sub_resource type="Resource" id="Resource_mt16s"]
 script = ExtResource("1_mt16s")
-display_name = "Combo Attack"
-pattern = "pp"
-logic = "front_single"
-power = 5
-
-[sub_resource type="Resource" id="Resource_45am2"]
-script = ExtResource("1_mt16s")
-display_name = "Combo Attack"
-pattern = "ppp"
-logic = "front_single"
-power = 10
-
-[sub_resource type="Resource" id="Resource_wwxqw"]
-script = ExtResource("1_mt16s")
-display_name = "Combo Attack"
+display_name = "连携攻击 Lv1"
 pattern = "pppp"
 logic = "front_single"
 power = 15
 
-[sub_resource type="Resource" id="Resource_iy3u4"]
+[sub_resource type="Resource" id="Resource_45am2"]
 script = ExtResource("1_mt16s")
-display_name = "Combo Attack"
+display_name = "连携攻击 Lv2"
 pattern = "ppppp"
 logic = "front_single"
 power = 20
+
+[sub_resource type="Resource" id="Resource_wwxqw"]
+script = ExtResource("1_mt16s")
+display_name = "连携攻击 Lv3"
+pattern = "pppppp"
+logic = "front_single"
+power = 30
+
+[sub_resource type="Resource" id="Resource_iy3u4"]
+script = ExtResource("1_mt16s")
+display_name = "连携攻击 Lv4"
+pattern = "ppppppp"
+logic = "front_single"
+power = 50
 
 [resource]
 script = ExtResource("2_45am2")

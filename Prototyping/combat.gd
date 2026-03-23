@@ -17,16 +17,25 @@ signal player_spell_updated(spells: Array[MatchedSpell])
 signal enemy_spell_updated(spells: Array[MatchedSpell])
 signal reroll_energy_updated(rerolls: int)
 
-@onready var players: Array[Mob] = [$"PlayerChar-Combat", $"PlayerChar-Combat2", $"PlayerChar-Combat3"]
-@onready var enemies: Array[Mob] = [$EnemySlot1]
+const PLAYER_MOB_SCENE = preload("res://Prototyping/Nodes/Player/PlayerMob.tscn")
+const ENEMY_MOB_SCENE  = preload("res://Prototyping/Nodes/mob.tscn")
+
+const BASELINE_Y       := 182.0
+const PLAYER_CENTER_X  := 150.0   # center of the player half
+const ENEMY_CENTER_X   := 470.0   # center of the enemy half
+const MOB_INTERVAL     := 15.0    # gap between mobs
+const DICE_WIDTH       := 30.0    # visual width per die
+const SPELL_WAIT_TIME  := 0.5
+
+var players: Array[Mob] = []
+var enemies: Array[Mob] = []
+
 @onready var combat_hud: Control = $CombatHud
 @onready var env_die: RollableDice = $EnvironmentDice
 @export var spells: Array[Spell]
 @export var playersData: Array[MobData]
 @export var enemiesData: Array[MobData]
 @export var envDie: DiceData
-
-const SPELL_WAIT_TIME := 0.5
 
 # Flat dice lists rebuilt each turn from mob children.
 var _player_dice: Array[RollableDice] = []
@@ -39,7 +48,7 @@ var _player_matched_spells: Array[MatchedSpell] = []
 var _enemy_matched_spells: Array[MatchedSpell] = []
 
 var _phase: CombatExecPhase = CombatExecPhase.Preparation
-var _rerolls: int = 3
+var _rerolls: int = 1
 
 
 func _ready() -> void:
@@ -47,15 +56,41 @@ func _ready() -> void:
 	env_die.setup(envDie)
 	env_die.SetState(RollableDice.DiceCombatState.Determined)
 
-	for i in range(3):
-		players[i].setup(playersData[i])
-		players[i].died.connect(_on_mob_died.bind(players[i], true))
-		players[i].revived.connect(_on_mob_revived.bind(players[i], true))
-	enemies[0].setup(enemiesData[0])
-	enemies[0].died.connect(_on_mob_died.bind(enemies[0], false))
-	enemies[0].revived.connect(_on_mob_revived.bind(enemies[0], false))
+	_spawn_mobs(playersData, PLAYER_MOB_SCENE, players, true)
+	_spawn_mobs(enemiesData, ENEMY_MOB_SCENE, enemies, false)
 
 	_turn()
+
+
+func _spawn_mobs(mob_data: Array[MobData], scene: PackedScene, list: Array[Mob], is_player: bool) -> void:
+	# Compute widths and total span up front
+	var widths: Array[float] = []
+	var total_w := 0.0
+	for md in mob_data:
+		var w := md.alive_dice.size() * DICE_WIDTH
+		widths.append(w)
+		total_w += w
+	total_w += (mob_data.size() - 1) * MOB_INTERVAL
+
+	var center_x := PLAYER_CENTER_X if is_player else ENEMY_CENTER_X
+	var cursor := center_x - total_w / 2.0
+
+	# Players: index 0 = leftmost (furthest from center)
+	# Enemies: index 0 = leftmost (closest to center)
+	for i in mob_data.size():
+		var idx := (mob_data.size() - 1 - i) if is_player else i
+		var mob: Mob = scene.instantiate()
+		mob.position = Vector2(cursor + widths[idx] / 2.0, BASELINE_Y)
+		mob.knockback_direction = Vector2(-1, 0) if is_player else Vector2(1, 0)
+		add_child(mob)
+		mob.setup(mob_data[idx])
+		mob.died.connect(_on_mob_died.bind(mob, is_player))
+		mob.revived.connect(_on_mob_revived.bind(mob, is_player))
+		if is_player:
+			list.push_front(mob)
+		else:
+			list.append(mob)
+		cursor += widths[idx] + MOB_INTERVAL
 
 
 func _enter_phase(phase: CombatExecPhase) -> void:
@@ -68,6 +103,7 @@ func _turn() -> void:
 	_enemy_dice = _collect_dice(enemies)
 
 	_rerolls += 1
+	_rerolls = clamp(_rerolls, 0, 5)
 	reroll_energy_updated.emit(_rerolls)
 	combat_hud.set_reroll_energy(_rerolls)
 

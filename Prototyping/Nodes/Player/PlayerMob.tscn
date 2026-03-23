@@ -3,12 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/mob.tscn" id="1_f80ws"]
 [ext_resource type="Script" uid="uid://cf1rh1dpdqale" path="res://Prototyping/Nodes/Player/player_combat.gd" id="2_nvgh0"]
 [ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2_qf31y"]
+[ext_resource type="SpriteFrames" uid="uid://j8i81cn4peev" path="res://Prototyping/Sprites/player_wizard.tres" id="3_jegcu"]
 [ext_resource type="FontFile" uid="uid://b3dgdpk6uur8q" path="res://Prototyping/Sprites/PatternFont.png" id="3_nvgh0"]
 
 [node name="PlayerMob" unique_id=876047242 instance=ExtResource("1_f80ws")]
 script = ExtResource("2_nvgh0")
 
-[node name="RichTextLabel" parent="AnimatedSprite2D" parent_id_path=PackedInt32Array(1437182714) index="0" unique_id=564534632]
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1437182714]
+sprite_frames = ExtResource("3_jegcu")
+frame_progress = 0.0
+
+[node name="RichTextLabel" parent="AnimatedSprite2D" index="0" unique_id=564534632]
 offset_left = -84.0
 offset_right = -10.0
 horizontal_alignment = 2

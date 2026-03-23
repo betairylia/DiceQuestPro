@@ -7,7 +7,7 @@
 theme_override_constants/separation = 0
 
 [node name="Pattern" type="RichTextLabel" parent="." unique_id=586449740]
-custom_minimum_size = Vector2(45, 10)
+custom_minimum_size = Vector2(60, 10)
 layout_mode = 2
 theme = ExtResource("1_ahswj")
 theme_override_fonts/normal_font = ExtResource("2_kemy3")
@@ -22,7 +22,7 @@ custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="Name" type="RichTextLabel" parent="." unique_id=489671926]
-custom_minimum_size = Vector2(130, 10)
+custom_minimum_size = Vector2(115, 10)
 layout_mode = 2
 theme = ExtResource("1_ahswj")
 text = "Lightning Fireball"

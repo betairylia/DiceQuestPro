@@ -30,7 +30,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Total" type="RichTextLabel" parent="TotalStats" unique_id=733748667]
-custom_minimum_size = Vector2(45, 10)
+custom_minimum_size = Vector2(60, 10)
 layout_mode = 2
 theme = ExtResource("4_k7lpr")
 text = "Total"
@@ -38,7 +38,7 @@ autowrap_mode = 2
 horizontal_alignment = 2
 
 [node name="Space" type="Container" parent="TotalStats" unique_id=1979296610]
-custom_minimum_size = Vector2(135, 0)
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
 [node name="Damage" type="RichTextLabel" parent="TotalStats" unique_id=1669781298]

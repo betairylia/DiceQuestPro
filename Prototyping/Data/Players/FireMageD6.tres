@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_fuffr")
 type = 1
-elements = Array[int]([2, 4, 0, 2, 4, 2])
+elements = Array[int]([2, 12, 0, 2, 4, 2])
 metadata/_custom_type_script = "uid://dl5xgr47sh7i"

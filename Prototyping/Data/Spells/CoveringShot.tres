@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Spell" format=3 uid="uid://bvbyogt1l5yn7"]
+
+[ext_resource type="Script" uid="uid://dk24x88oyla7f" path="res://Source/Core/Structs/spell_level.gd" id="1_tgioo"]
+[ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_5eot0"]
+
+[sub_resource type="Resource" id="Resource_tgioo"]
+script = ExtResource("1_tgioo")
+display_name = "援护射击"
+pattern = "B"
+logic = "front_single"
+power = 5
+
+[resource]
+script = ExtResource("2_5eot0")
+levels = Array[ExtResource("1_tgioo")]([SubResource("Resource_tgioo")])

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_tsb6p"]
 script = ExtResource("1_tsb6p")
-display_name = "Sword-Shield Combo"
+display_name = "剑盾连击"
 pattern = "SD"
 logic = "front_single"
 power = 5

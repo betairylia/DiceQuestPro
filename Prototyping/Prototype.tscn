@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bqpsgqw2uo6mw" path="res://Prototyping/combat.gd" id="1_c6oeu"]
 [ext_resource type="Texture2D" uid="uid://bcx88v35v6ng0" path="res://Prototyping/Sprites/Background.png" id="1_gbmfu"]
-[ext_resource type="PackedScene" uid="uid://by1efb3psi3md" path="res://Prototyping/Nodes/mob.tscn" id="2_4tqe8"]
 [ext_resource type="Script" uid="uid://u28a8vpslbd3" path="res://Source/Core/Structs/spell.gd" id="2_5couh"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_544xo"]
 [ext_resource type="PackedScene" uid="uid://dffl3j136dlbl" path="res://Prototyping/HUD/Combat-HUD.tscn" id="3_4tqe8"]
+[ext_resource type="Resource" uid="uid://dlh8khjpdcde1" path="res://Prototyping/Data/Players/Fighter.tres" id="3_5couh"]
 [ext_resource type="Resource" uid="uid://bnigeirx8he57" path="res://Prototyping/Data/Players/FireMage.tres" id="3_eo8vy"]
 [ext_resource type="Resource" uid="uid://cynsf2ki8sg17" path="res://Prototyping/Data/Spells/Fires.tres" id="3_fro8r"]
 [ext_resource type="Resource" uid="uid://1t67xfx12xog" path="res://Prototyping/Data/Spells/Swords.tres" id="4_tq74n"]
@@ -27,7 +27,8 @@
 [ext_resource type="Resource" uid="uid://dkqj6fyl7bnmf" path="res://Prototyping/Data/Spells/FireThunder.tres" id="16_ycbir"]
 [ext_resource type="Resource" uid="uid://df564as2tvbjv" path="res://Prototyping/Data/Spells/FlameStrike.tres" id="17_dulny"]
 [ext_resource type="Resource" uid="uid://cfvv3kt620lpc" path="res://Prototyping/Data/Spells/WaterWind.tres" id="18_gs7dv"]
-[ext_resource type="PackedScene" uid="uid://cudniidbhg3a2" path="res://Prototyping/Nodes/Player/PlayerMob.tscn" id="29_ayfox"]
+[ext_resource type="Resource" uid="uid://bufwb5okw5ard" path="res://Prototyping/Data/Players/ElfArcher.tres" id="22_5dhfo"]
+[ext_resource type="Resource" uid="uid://p6ikve6sm4ma" path="res://Prototyping/Data/Enemies/SkeletonArcher.tres" id="23_hmc7b"]
 
 [sub_resource type="Resource" id="Resource_w0thr"]
 script = ExtResource("16_icd36")
@@ -38,8 +39,8 @@ metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 [node name="Prototype" type="Node" unique_id=894070372]
 script = ExtResource("1_c6oeu")
 spells = Array[ExtResource("2_5couh")]([ExtResource("6_lo0wb"), ExtResource("4_tq74n"), ExtResource("7_icd36"), ExtResource("5_egaeq"), ExtResource("6_ayfox"), ExtResource("3_fro8r"), ExtResource("5_lo0wb"), ExtResource("11_4n6si"), ExtResource("12_wm1of"), ExtResource("11_q56gh"), ExtResource("12_ul34t"), ExtResource("8_w0thr"), ExtResource("9_mpsw7"), ExtResource("10_wm1of"), ExtResource("16_ycbir"), ExtResource("17_dulny"), ExtResource("18_gs7dv")])
-playersData = Array[ExtResource("2_544xo")]([ExtResource("3_eo8vy"), ExtResource("3_eo8vy"), ExtResource("3_eo8vy")])
-enemiesData = Array[ExtResource("2_544xo")]([ExtResource("7_epufo")])
+playersData = Array[ExtResource("2_544xo")]([ExtResource("3_5couh"), ExtResource("22_5dhfo"), ExtResource("3_eo8vy")])
+enemiesData = Array[ExtResource("2_544xo")]([ExtResource("23_hmc7b"), ExtResource("23_hmc7b"), ExtResource("7_epufo"), ExtResource("23_hmc7b")])
 envDie = SubResource("Resource_w0thr")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=270487990]
@@ -48,21 +49,6 @@ texture = ExtResource("1_gbmfu")
 
 [node name="CombatHud" parent="." unique_id=1950789093 instance=ExtResource("3_4tqe8")]
 mouse_filter = 2
-
-[node name="PlayerChar-Combat" parent="." unique_id=876047242 instance=ExtResource("29_ayfox")]
-position = Vector2(202, 182)
-knockback_direction = Vector2(-1, 0)
-
-[node name="PlayerChar-Combat2" parent="." unique_id=1762443856 instance=ExtResource("29_ayfox")]
-position = Vector2(129, 182)
-knockback_direction = Vector2(-1, 0)
-
-[node name="PlayerChar-Combat3" parent="." unique_id=336988878 instance=ExtResource("29_ayfox")]
-position = Vector2(56, 182)
-knockback_direction = Vector2(-1, 0)
-
-[node name="EnemySlot1" parent="." unique_id=1056257774 instance=ExtResource("2_4tqe8")]
-position = Vector2(500, 182)
 
 [node name="EnvironmentDice" parent="." unique_id=1803946193 instance=ExtResource("12_fro8r")]
 position = Vector2(329, 47)

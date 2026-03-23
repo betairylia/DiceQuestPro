@@ -5,10 +5,10 @@
 
 [sub_resource type="Resource" id="Resource_71alm"]
 script = ExtResource("1_71alm")
-display_name = "Chain Wind"
-pattern = "ppA"
+display_name = "Ichimonji Slash"
+pattern = "SSA"
 logic = "front_single"
-power = 20
+power = 10
 
 [resource]
 script = ExtResource("2_e7cg8")
