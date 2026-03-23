@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MobData" format=3]
+[gd_resource type="Resource" script_class="MobData" format=3 uid="uid://6mbtxdn375l4"]
 
 [ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_dice"]
 [ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_mob"]

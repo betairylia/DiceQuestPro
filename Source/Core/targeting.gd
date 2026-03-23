@@ -13,9 +13,9 @@ static func pick(element: Consts.Elements, targets: Array[Mob]) -> Mob:
 	var alive := targets.filter(func(m: Mob) -> bool: return m.is_alive())
 
 	match element:
-		Consts.Elements.Idle, Consts.Elements.Revive:
+		Consts.Elements.Idle, Consts.Elements.Revive, Consts.Elements.Heal:
 			return null
-		Consts.Elements.Sword:
+		Consts.Elements.Sword, Consts.Elements.Defense:
 			if alive.is_empty():
 				return null
 			return alive[0]

@@ -11,7 +11,7 @@ script = ExtResource("1_ngjfv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1437182714]
 sprite_frames = ExtResource("2_nkacv")
 animation = &"idle"
-frame_progress = 0.038904566
+frame_progress = 0.84990746
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AnimatedSprite2D" unique_id=564534632]
 offset_left = 17.0
@@ -20,6 +20,19 @@ offset_right = 91.0
 offset_bottom = 4.0
 theme = ExtResource("4_nkacv")
 text = "100"
+vertical_alignment = 2
+script = ExtResource("5_hyryr")
+
+[node name="Name" type="RichTextLabel" parent="AnimatedSprite2D" unique_id=499012682]
+visible = false
+offset_left = -37.0
+offset_top = -31.0
+offset_right = 37.0
+offset_bottom = -18.0
+theme = ExtResource("4_nkacv")
+theme_override_colors/default_color = Color(1, 1, 1, 0.19607843)
+text = "Enchanter"
+horizontal_alignment = 1
 vertical_alignment = 2
 script = ExtResource("5_hyryr")
 
