@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MobData" format=3]
+
+[ext_resource type="Script" uid="uid://dl5xgr47sh7i" path="res://Source/Core/Structs/dice_data.gd" id="1_dice"]
+[ext_resource type="Script" uid="uid://crdy3x714y4kr" path="res://Source/Core/Structs/mob_data.gd" id="2_mob"]
+[ext_resource type="Resource" path="res://Prototyping/Data/Enemies/CommonDice/StoneReviveD6.tres" id="3_revive"]
+
+[sub_resource type="Resource" id="Resource_alive1"]
+script = ExtResource("1_dice")
+type = 4
+elements = Array[int]([9, 0, 9, 7, 9, 0, 9, 7, 9, 0, 4, 9])
+metadata/_custom_type_script = "uid://dl5xgr47sh7i"
+
+[resource]
+script = ExtResource("2_mob")
+max_health = 180
+alive_dice = Array[ExtResource("1_dice")]([SubResource("Resource_alive1")])
+dead_dice = Array[ExtResource("1_dice")]([ExtResource("3_revive")])
+metadata/_custom_type_script = "uid://crdy3x714y4kr"
