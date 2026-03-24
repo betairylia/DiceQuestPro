@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bworld_map"]
+
+[ext_resource type="Script" path="res://Prototyping/Screens/WorldMap/world_map.gd" id="1_script"]
+
+[node name="WorldMap" type="Control"]
+script = ExtResource("1_script")
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="RegionLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 2
+offset_top = 8.0
+offset_bottom = 28.0
+text = ""
+horizontal_alignment = 1
+
+[node name="GoldLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+offset_left = -100.0
+offset_top = 8.0
+offset_bottom = 28.0
+text = "Gold: 0"
+horizontal_alignment = 2
+
+[node name="Nodes" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
