@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://reward_screen"]
+
+[ext_resource type="Script" path="res://Prototyping/Screens/Reward/reward_screen.gd" id="1_reward_screen"]
+
+[node name="RewardScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_reward_screen")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "\u6218\u5229\u54C1"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+
+[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "\u9009\u62E9\u4E00\u4EF6\u7269\u54C1"
+horizontal_alignment = 1
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="SkipButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "\u8DF3\u8FC7"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_pressed"]
