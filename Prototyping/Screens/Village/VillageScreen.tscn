@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=3 uid="uid://village_screen"]
+
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/village_screen.gd" id="1_village_screen"]
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/shop_panel.gd" id="2_shop_panel"]
+[ext_resource type="Script" path="res://Prototyping/Screens/Village/forge_panel.gd" id="3_forge_panel"]
+
+[node name="VillageScreen" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_village_screen")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 30.0
+grow_horizontal = 2
+
+[node name="ShopButton" type="Button" parent="TopBar"]
+layout_mode = 2
+text = "\u5546\u5E97"
+
+[node name="ForgeButton" type="Button" parent="TopBar"]
+layout_mode = 2
+text = "\u953B\u9020"
+
+[node name="LeaveButton" type="Button" parent="TopBar"]
+layout_mode = 2
+text = "\u79BB\u5F00"
+
+[node name="Panels" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopPanel" type="Control" parent="Panels"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_shop_panel")
+
+[node name="GoldLabel" type="Label" parent="Panels/ShopPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "\u91D1\u5E01: 0"
+horizontal_alignment = 1
+
+[node name="MainArea" type="HBoxContainer" parent="Panels/ShopPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SellSide" type="VBoxContainer" parent="Panels/ShopPanel/MainArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SellHeader" type="Label" parent="Panels/ShopPanel/MainArea/SellSide"]
+layout_mode = 2
+text = "\u51FA\u552E"
+horizontal_alignment = 1
+
+[node name="SellList" type="VBoxContainer" parent="Panels/ShopPanel/MainArea/SellSide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuySide" type="VBoxContainer" parent="Panels/ShopPanel/MainArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyHeader" type="Label" parent="Panels/ShopPanel/MainArea/BuySide"]
+layout_mode = 2
+text = "\u8D2D\u4E70"
+horizontal_alignment = 1
+
+[node name="BuyList" type="VBoxContainer" parent="Panels/ShopPanel/MainArea/BuySide"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ForgePanel" type="Control" parent="Panels"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+script = ExtResource("3_forge_panel")
+
+[node name="GoldLabel" type="Label" parent="Panels/ForgePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "\u91D1\u5E01: 0"
+horizontal_alignment = 1
+
+[node name="PlayerSelector" type="HBoxContainer" parent="Panels/ForgePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 28.0
+offset_bottom = 56.0
+grow_horizontal = 2
+
+[node name="DiceFaces" type="GridContainer" parent="Panels/ForgePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 60.0
+offset_bottom = 120.0
+grow_horizontal = 2
+columns = 6
+
+[node name="UpgradeButton" type="Button" parent="Panels/ForgePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 124.0
+offset_bottom = 148.0
+grow_horizontal = 2
+text = "\u5F3A\u5316"
+
+[node name="ReforgeItems" type="VBoxContainer" parent="Panels/ForgePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="TopBar/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="TopBar/ForgeButton" to="." method="_on_forge_button_pressed"]
+[connection signal="pressed" from="TopBar/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="Panels/ForgePanel/UpgradeButton" to="Panels/ForgePanel" method="_on_upgrade_button_pressed"]
