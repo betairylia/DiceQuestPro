@@ -16,6 +16,8 @@ signal spell_triggered(spell: MatchedSpell)
 signal player_spell_updated(spells: Array[MatchedSpell])
 signal enemy_spell_updated(spells: Array[MatchedSpell])
 signal reroll_energy_updated(rerolls: int)
+signal combat_won
+signal combat_lost
 
 const PLAYER_MOB_SCENE = preload("res://Prototyping/Nodes/Player/PlayerMob.tscn")
 const ENEMY_MOB_SCENE  = preload("res://Prototyping/Nodes/mob.tscn")
@@ -49,9 +51,19 @@ var _enemy_matched_spells: Array[MatchedSpell] = []
 
 var _phase: CombatExecPhase = CombatExecPhase.Preparation
 var _rerolls: int = 1
+var _combat_ended: bool = false
 
 
 func _ready() -> void:
+	# Don't auto-start — wait for init() call from wrapper
+	pass
+
+
+func init(players_data: Array[MobData], enemies_data: Array[MobData], spells_data: Array[Spell], env_die_data: DiceData) -> void:
+	playersData = players_data
+	enemiesData = enemies_data
+	spells = spells_data
+	envDie = env_die_data
 
 	env_die.setup(envDie)
 	env_die.SetState(RollableDice.DiceCombatState.Determined)
@@ -59,6 +71,7 @@ func _ready() -> void:
 	_spawn_mobs(playersData, PLAYER_MOB_SCENE, players, true)
 	_spawn_mobs(enemiesData, ENEMY_MOB_SCENE, enemies, false)
 
+	_combat_ended = false
 	_turn()
 
 
@@ -177,6 +190,20 @@ func _resolve_spells(froms: Array[Mob], tos: Array[Mob], from_spells: Array[Matc
 		await get_tree().create_timer(SPELL_WAIT_TIME).timeout
 
 
+func _check_combat_end() -> bool:
+	if _combat_ended:
+		return true
+	if enemies.all(func(e): return not e.is_alive()):
+		_combat_ended = true
+		combat_won.emit()
+		return true
+	if players.all(func(e): return not e.is_alive()):
+		_combat_ended = true
+		combat_lost.emit()
+		return true
+	return false
+
+
 func _on_combat_hud_act() -> void:
 
 	for die in _player_dice:
@@ -184,16 +211,24 @@ func _on_combat_hud_act() -> void:
 
 	_enter_phase(CombatExecPhase.PlayerRegular)
 	await _regular_attack(players, enemies, _player_results)
+	if _check_combat_end():
+		return
 
 	_enter_phase(CombatExecPhase.PlayerSpells)
 	await _resolve_spells(players, enemies, _player_matched_spells)
+	if _check_combat_end():
+		return
 
 	_refresh_enemy_spells()
 	_enter_phase(CombatExecPhase.EnemyRegular)
 	await _regular_attack(enemies, players, _enemy_results)
+	if _check_combat_end():
+		return
 
 	_enter_phase(CombatExecPhase.EnemySpells)
 	await _resolve_spells(enemies, players, _enemy_matched_spells)
+	if _check_combat_end():
+		return
 
 	_turn()
 
