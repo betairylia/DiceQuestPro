@@ -23,14 +23,19 @@ func refresh() -> void:
 	_clear_children(_sell_list)
 	_clear_children(_buy_list)
 
-	if GameState.inventory.is_empty():
+	var sellable_items: Array[DiceFaceItem] = []
+	for item in GameState.inventory:
+		if item is DiceFaceItem:
+			sellable_items.append(item)
+
+	if sellable_items.is_empty():
 		var empty_label := RichTextLabel.new()
 		empty_label.fit_content = true
 		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		empty_label.text = "没有可出售的骰面"
 		_sell_list.add_child(empty_label)
 	else:
-		for item in GameState.inventory:
+		for item in sellable_items:
 			var button := Button.new()
 			button.theme = preload("res://Prototyping/HUD/pixelated.tres")
 			button.text = "%s %d  售价 %d" % [Consts.SYMBOLS.get(item.element, "?"), item.digit, item.sell_value]

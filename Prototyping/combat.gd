@@ -48,11 +48,13 @@ var _enemy_results: Array[DiceResult] = []
 # Full list of matched spells for player and enemy
 var _player_matched_spells: Array[MatchedSpell] = []
 var _enemy_matched_spells: Array[MatchedSpell] = []
+var _virtual_dice_nodes: Array[Node] = []
 
 var _phase: CombatExecPhase = CombatExecPhase.Preparation
 var _rerolls: int = 1
 var _combat_ended: bool = false
 var _initialized: bool = false
+var _preparation_ready: bool = false
 
 
 func _ready() -> void:
@@ -122,10 +124,98 @@ func _enter_phase(phase: CombatExecPhase) -> void:
 	phase_entered.emit(phase)
 
 
+func get_phase() -> CombatExecPhase:
+	return _phase
+
+
+func get_reroll_energy() -> int:
+	return _rerolls
+
+
+func is_item_consumption_available() -> bool:
+	return (
+		not _combat_ended
+		and _phase == CombatExecPhase.Preparation
+		and _preparation_ready
+		and _rerolls > 0
+	)
+
+
+func can_consume_item(item: Item) -> bool:
+	return (
+		is_item_consumption_available()
+		and item != null
+		and item in GameState.inventory
+		and item.is_consumable_in_combat
+	)
+
+
+func try_consume_item(item: Item) -> bool:
+	if not can_consume_item(item):
+		return false
+
+	_rerolls -= 1
+	reroll_energy_updated.emit(_rerolls)
+	combat_hud.set_reroll_energy(_rerolls)
+	_update_reroll_button(null)
+
+	GameState.remove_item(item)
+
+	var ctx := Item.CombatConsumeContext.new()
+	ctx.player_results = _player_results
+	ctx.players = players
+	ctx.combat_node = self
+	ctx.dice_matcher = DiceMatcher
+	item.consume(ctx)
+	return true
+
+
+func get_environment_result() -> DiceResult:
+	return env_die.dice_result
+
+
+func set_player_matched_spells(spells_to_set: Array[MatchedSpell]) -> void:
+	_player_matched_spells = []
+	_player_matched_spells.assign(spells_to_set)
+	player_spell_updated.emit(_player_matched_spells)
+
+
+func refresh_player_spell_matches() -> void:
+	var player_with_env := _player_results.duplicate()
+	if env_die.dice_result != null:
+		player_with_env.append(env_die.dice_result)
+	var matched_spells: Array[MatchedSpell] = DiceMatcher.match_all_spells(player_with_env, spells)
+	set_player_matched_spells(matched_spells)
+
+
+func get_next_virtual_die_position() -> Vector2:
+	var rightmost := Vector2(PLAYER_CENTER_X - 56.0, BASELINE_Y + Mob.DICE_Y)
+	for result in _player_results:
+		if is_instance_valid(result.node):
+			rightmost.x = maxf(rightmost.x, result.node.global_position.x)
+			rightmost.y = result.node.global_position.y
+	for node in _virtual_dice_nodes:
+		if node is CanvasItem:
+			rightmost.x = maxf(rightmost.x, (node as CanvasItem).global_position.x)
+	return Vector2(rightmost.x + DICE_WIDTH, rightmost.y - 12.0)
+
+
+func track_virtual_die_node(node: Node) -> void:
+	if node != null:
+		_virtual_dice_nodes.append(node)
+
+
+func announce_item_use(text: String, color: Color = Color.WHITE) -> void:
+	if combat_hud.has_method("show_item_announcement"):
+		combat_hud.show_item_announcement(text, color)
+
+
 func _turn() -> void:
 	if _combat_ended:
 		return
 
+	_clear_virtual_dice()
+	_preparation_ready = false
 	_sync_player_dice()
 	_enemy_dice = _collect_dice(enemies)
 
@@ -256,9 +346,8 @@ func _roll_players() -> void:
 	
 	var _player_with_env = _player_results.duplicate()
 	_player_with_env.append(env_die.dice_result)
-	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
-
-	player_spell_updated.emit(_player_matched_spells)
+	set_player_matched_spells(DiceMatcher.match_all_spells(_player_with_env, spells))
+	_preparation_ready = true
 
 
 func _refresh_enemy_spells() -> void:
@@ -307,9 +396,7 @@ func _on_combat_hud_reroll() -> void:
 	
 	var _player_with_env = _player_results.duplicate()
 	_player_with_env.append(env_die.dice_result)
-	_player_matched_spells = DiceMatcher.match_all_spells(_player_with_env, spells)
-
-	player_spell_updated.emit(_player_matched_spells)
+	set_player_matched_spells(DiceMatcher.match_all_spells(_player_with_env, spells))
 
 
 func _check_combat_end() -> bool:
@@ -328,6 +415,13 @@ func _check_combat_end() -> bool:
 	return false
 
 
+func _clear_virtual_dice() -> void:
+	for node in _virtual_dice_nodes:
+		if is_instance_valid(node):
+			node.queue_free()
+	_virtual_dice_nodes.clear()
+
+
 func _reset_battlefield() -> void:
 	for mob in players:
 		if is_instance_valid(mob):
@@ -344,5 +438,7 @@ func _reset_battlefield() -> void:
 	_enemy_results.clear()
 	_player_matched_spells.clear()
 	_enemy_matched_spells.clear()
+	_clear_virtual_dice()
 	_rerolls = 1
+	_preparation_ready = false
 	combat_hud.mouse_filter = Control.MOUSE_FILTER_PASS

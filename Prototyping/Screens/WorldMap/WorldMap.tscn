@@ -56,6 +56,10 @@ fit_content = true
 scroll_active = false
 text = "金币 0"
 
+[node name="TeamButton" type="Button" parent="MarginContainer/VBox/Header"]
+layout_mode = 2
+text = "队伍"
+
 [node name="MapFrame" type="PanelContainer" parent="MarginContainer/VBox"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
@@ -82,3 +86,5 @@ horizontal_alignment = 1
 fit_content = true
 scroll_active = false
 text = "选择节点"
+
+[connection signal="pressed" from="MarginContainer/VBox/Header/TeamButton" to="." method="_on_team_button_pressed"]
