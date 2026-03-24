@@ -21,6 +21,7 @@ var total_items_collected: int = 0
 var all_spells: Array[Spell] = []
 var env_die: DiceData
 var region_configs: Array[RegionConfig] = []
+var run_summary: RunSummary
 
 
 func _ready() -> void:
@@ -57,14 +58,18 @@ func _load_regions() -> void:
 	var dir := DirAccess.open("res://Prototyping/Data/Regions/")
 	if not dir:
 		return
+	var files: Array[String] = []
 	dir.list_dir_begin()
 	var file_name := dir.get_next()
 	while file_name != "":
 		if file_name.ends_with(".tres"):
-			var config = load("res://Prototyping/Data/Regions/" + file_name)
-			if config is RegionConfig:
-				region_configs.append(config)
+			files.append(file_name)
 		file_name = dir.get_next()
+	files.sort()
+	for f in files:
+		var config = load("res://Prototyping/Data/Regions/" + f)
+		if config is RegionConfig:
+			region_configs.append(config)
 
 
 func start_run(selected_team: Array[MobData]) -> void:
@@ -83,6 +88,7 @@ func start_run(selected_team: Array[MobData]) -> void:
 	run_active = true
 
 	# Generate map
+	assert(not region_configs.is_empty(), "No region configs loaded — check Prototyping/Data/Regions/")
 	map = MapGenerator.generate(region_configs)
 
 
@@ -195,4 +201,5 @@ func end_run(victory: bool = false) -> RunSummary:
 		if node:
 			region_set[node.region_index] = true
 	summary.regions_reached = region_set.size()
+	run_summary = summary
 	return summary

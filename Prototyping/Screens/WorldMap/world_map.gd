@@ -40,6 +40,8 @@ func _build_map() -> void:
 		view.node_clicked.connect(_on_node_clicked)
 		_node_views[node_id] = view
 
+	queue_redraw()
+
 
 func _get_current_region_name() -> String:
 	if GameState.map and not GameState.map.regions.is_empty():
@@ -99,10 +101,6 @@ func _clear_map() -> void:
 	for child in $Nodes.get_children():
 		child.queue_free()
 	_node_views.clear()
-
-
-func _process(_delta: float) -> void:
-	queue_redraw()
 
 
 func _draw() -> void:

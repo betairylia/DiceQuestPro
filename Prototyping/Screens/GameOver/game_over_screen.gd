@@ -4,7 +4,9 @@ var _summary: RunSummary
 
 
 func _ready() -> void:
-	if GameState.run_active:
+	# Read stored summary (set by end_run() calls from combat/reward screens)
+	_summary = GameState.run_summary
+	if not _summary and GameState.run_active:
 		_summary = GameState.end_run(GameState.is_run_complete())
 	_update_display()
 
