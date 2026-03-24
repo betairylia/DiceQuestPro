@@ -1,4 +1,3 @@
-# Source/Core/map_generator.gd
 extends RefCounted
 class_name MapGenerator
 
@@ -43,7 +42,7 @@ static func generate(regions: Array[RegionConfig]) -> RegionMap:
 			for prev_id in prev_region_end_ids:
 				var prev_node: MapNode = map.nodes[prev_id]
 				for node: MapNode in layers[0]:
-					if prev_node.id not in node.predecessors:
+					if node.id not in prev_node.successors:
 						prev_node.successors.append(node.id)
 						node.predecessors.append(prev_node.id)
 
