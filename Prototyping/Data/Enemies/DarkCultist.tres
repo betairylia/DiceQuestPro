@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 
 [resource]
 script = ExtResource("2_mob")
+display_name = "DarkCultist"
 max_health = 55
 alive_dice = Array[ExtResource("1_dice")]([SubResource("Resource_alive1")])
 dead_dice = Array[ExtResource("1_dice")]([ExtResource("3_revive")])

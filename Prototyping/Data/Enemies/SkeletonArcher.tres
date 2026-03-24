@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://dl5xgr47sh7i"
 
 [resource]
 script = ExtResource("2_tnbrx")
+display_name = "SkeletonArcher"
 max_health = 80
 alive_dice = Array[ExtResource("1_jwyo8")]([SubResource("Resource_tnbrx")])
 dead_dice = Array[ExtResource("1_jwyo8")]([ExtResource("2_t0ybw")])

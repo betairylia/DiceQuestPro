@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("2_mob")
+display_name = "Cleric"
 max_health = 130
 alive_dice = Array[ExtResource("1_dice")]([ExtResource("3_alive"), ExtResource("3_alive")])
 dead_dice = Array[ExtResource("1_dice")]([ExtResource("4_revive")])

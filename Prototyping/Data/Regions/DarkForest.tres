@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RegionConfig" format=3]
+
+[ext_resource type="Script" path="res://Source/Core/Structs/region_config.gd" id="1_region"]
+[ext_resource type="Resource" uid="uid://btobyodbxuiiw" path="res://Prototyping/Data/Enemies/GoblinBerserker.tres" id="2_goblin"]
+[ext_resource type="Resource" uid="uid://6mbtxdn375l4" path="res://Prototyping/Data/Enemies/DarkCultist.tres" id="3_cultist"]
+[ext_resource type="Resource" uid="uid://oy78y5saelq2" path="res://Prototyping/Data/Enemies/PoisonToad.tres" id="4_toad"]
+[ext_resource type="Resource" uid="uid://p6ikve6sm4ma" path="res://Prototyping/Data/Enemies/SkeletonArcher.tres" id="5_archer"]
+[ext_resource type="Resource" path="res://Prototyping/Data/Enemies/StoneGolem.tres" id="6_golem"]
+
+[resource]
+script = ExtResource("1_region")
+region_name = "黑暗森林"
+enemy_pool = Array[Object]([ExtResource("2_goblin"), ExtResource("3_cultist"), ExtResource("4_toad"), ExtResource("5_archer")])
+boss_encounters = [Array[Object]([ExtResource("6_golem"), ExtResource("3_cultist"), ExtResource("3_cultist")])]
+min_enemies = 2
+max_enemies = 4
+enemy_health_scale = 1.0
+shop_exotic_chance = 0.2
+node_count = 12
