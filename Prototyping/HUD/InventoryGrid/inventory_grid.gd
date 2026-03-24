@@ -76,7 +76,7 @@ func _create_cell(item: Item) -> Button:
 
 func _create_icon(item: Item) -> Control:
 	if item != null and item.has_method("create_icon"):
-		var icon := item.call("create_icon")
+		var icon: Control = item.call("create_icon")
 		if icon is Control:
 			return icon
 

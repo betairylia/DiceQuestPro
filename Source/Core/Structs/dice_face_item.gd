@@ -3,12 +3,12 @@ class_name DiceFaceItem
 
 @export var element: Consts.Elements = Consts.Elements.Idle:
 	set(value):
-		field = value
+		element = value
 		_sync_metadata()
 
 @export var digit: int = 1:
 	set(value):
-		field = max(value, 1)
+		digit = max(value, 1)
 		_sync_metadata()
 
 
