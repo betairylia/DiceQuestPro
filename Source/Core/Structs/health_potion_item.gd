@@ -2,6 +2,8 @@ extends Item
 class_name HealthPotionItem
 
 const ALLY_HEAL_ALL = preload("res://Source/SpellLogics/ally_heal_all.gd")
+const BUY_PRICE := 3
+const SELL_PRICE := 1
 
 static var _icon_texture: Texture2D
 
@@ -15,6 +17,16 @@ func _init() -> void:
 	item_type = ItemType.Consumable
 	is_consumable_in_combat = true
 	_sync_metadata()
+
+
+var buy_value: int:
+	get:
+		return BUY_PRICE
+
+
+var sell_value: int:
+	get:
+		return SELL_PRICE
 
 
 func create_icon() -> Control:

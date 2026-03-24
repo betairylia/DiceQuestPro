@@ -12,6 +12,7 @@ signal cancelled
 
 var _item: Item
 var _viewport_margin := Vector2(12, 12)
+var _ignore_next_click := false
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func open_for(item: Item, anchor: Rect2, title: String, cost_text: String) -> vo
 	_item = item
 	_title_label.text = title
 	_cost_label.text = cost_text
+	_ignore_next_click = true
 	visible = true
 
 	await get_tree().process_frame
@@ -59,6 +61,9 @@ func _gui_input(event: InputEvent) -> void:
 	if event is not InputEventMouseButton:
 		return
 	if not event.pressed:
+		return
+	if _ignore_next_click:
+		_ignore_next_click = false
 		return
 	if not _panel.get_global_rect().has_point(get_global_mouse_position()):
 		cancelled.emit()
