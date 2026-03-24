@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" office:version="1.4" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
- <office:meta><meta:creation-date>2026-03-21T22:53:40.110696700</meta:creation-date><meta:generator>LibreOffice/26.2.1.2$Windows_X86_64 LibreOffice_project/620$Build-2</meta:generator><dc:date>2026-03-24T04:09:25.972790600</dc:date><meta:editing-duration>P1DT21H49M3S</meta:editing-duration><meta:editing-cycles>78</meta:editing-cycles><meta:document-statistic meta:table-count="2" meta:cell-count="378" meta:object-count="1"/></office:meta>
+ <office:meta><meta:creation-date>2026-03-21T22:53:40.110696700</meta:creation-date><meta:generator>LibreOffice/26.2.1.2$Windows_X86_64 LibreOffice_project/620$Build-2</meta:generator><dc:date>2026-03-24T04:26:36.167811200</dc:date><meta:editing-duration>P1DT22H6M8S</meta:editing-duration><meta:editing-cycles>90</meta:editing-cycles><meta:document-statistic meta:table-count="2" meta:cell-count="388" meta:object-count="1"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
    <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
    <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
    <config:config-item config:name="VisibleAreaWidth" config:type="int">22454</config:config-item>
-   <config:config-item config:name="VisibleAreaHeight" config:type="int">63336</config:config-item>
+   <config:config-item config:name="VisibleAreaHeight" config:type="int">64482</config:config-item>
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
      <config:config-item-map-named config:name="Tables">
       <config:config-item-map-entry config:name="Spells">
        <config:config-item config:name="CursorPositionX" config:type="int">1</config:config-item>
-       <config:config-item config:name="CursorPositionY" config:type="int">14</config:config-item>
+       <config:config-item config:name="CursorPositionY" config:type="int">77</config:config-item>
        <config:config-item config:name="ActiveSplitRange" config:type="short">2</config:config-item>
        <config:config-item config:name="PositionLeft" config:type="int">0</config:config-item>
        <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
@@ -49,7 +49,7 @@
        <config:config-item config:name="UseTrailingEmptyLinesInLayout" config:type="boolean">false</config:config-item>
       </config:config-item-map-entry>
      </config:config-item-map-named>
-     <config:config-item config:name="ActiveTable" config:type="string">Symbols</config:config-item>
+     <config:config-item config:name="ActiveTable" config:type="string">Spells</config:config-item>
      <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1731</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ZoomValue" config:type="int">100</config:config-item>
@@ -975,8 +975,8 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Healing</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="30" calcext:value-type="float">
-      <text:p>30</text:p>
+     <table:table-cell office:value-type="float" office:value="20" calcext:value-type="float">
+      <text:p>20</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>caster_heal</text:p>
@@ -994,8 +994,8 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Healing</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="50" calcext:value-type="float">
-      <text:p>50</text:p>
+     <table:table-cell office:value-type="float" office:value="40" calcext:value-type="float">
+      <text:p>40</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>caster_heal</text:p>
@@ -1013,8 +1013,8 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Mass Healing</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="50" calcext:value-type="float">
-      <text:p>50</text:p>
+     <table:table-cell office:value-type="float" office:value="100" calcext:value-type="float">
+      <text:p>100</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>caster_heal</text:p>
@@ -1032,8 +1032,8 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Mass Healing</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="100" calcext:value-type="float">
-      <text:p>100</text:p>
+     <table:table-cell office:value-type="float" office:value="150" calcext:value-type="float">
+      <text:p>150</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>caster_heal</text:p>
@@ -1050,8 +1050,8 @@
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>DARKS</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" office:value-type="float" office:value="15" calcext:value-type="float">
-      <text:p>15</text:p>
+     <table:table-cell table:style-name="ce3" office:value-type="float" office:value="30" calcext:value-type="float">
+      <text:p>30</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="float" office:value="1.7" calcext:value-type="float">
       <text:p>1.7</text:p>
@@ -1068,10 +1068,10 @@
       <text:p>🌑🌑</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-      <text:p>Dark Void</text:p>
+      <text:p>暗黑洞</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" table:formula="of:=[.C54]" office:value-type="float" office:value="15" calcext:value-type="float">
-      <text:p>15</text:p>
+     <table:table-cell table:style-name="ce3" table:formula="of:=[.C54]" office:value-type="float" office:value="30" calcext:value-type="float">
+      <text:p>30</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>aoe_split</text:p>
@@ -1087,10 +1087,10 @@
       <text:p>🌑🌑🌑</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-      <text:p>Dark Void</text:p>
+      <text:p>暗黑洞</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D55]*[.D$54])" office:value-type="float" office:value="26" calcext:value-type="float">
-      <text:p>26</text:p>
+     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D55]*[.D$54])" office:value-type="float" office:value="51" calcext:value-type="float">
+      <text:p>51</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>aoe_split</text:p>
@@ -1106,10 +1106,10 @@
       <text:p>🌑🌑🌑🌑</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-      <text:p>Dark Void</text:p>
+      <text:p>暗黑洞</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D56]*[.D$54])" office:value-type="float" office:value="45" calcext:value-type="float">
-      <text:p>45</text:p>
+     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D56]*[.D$54])" office:value-type="float" office:value="87" calcext:value-type="float">
+      <text:p>87</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>aoe_split</text:p>
@@ -1125,10 +1125,10 @@
       <text:p>🌑🌑🌑🌑🌑</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-      <text:p>Dark Void</text:p>
+      <text:p>暗黑洞</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D57]*[.D$54])" office:value-type="float" office:value="77" calcext:value-type="float">
-      <text:p>77</text:p>
+     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D57]*[.D$54])" office:value-type="float" office:value="148" calcext:value-type="float">
+      <text:p>148</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>aoe_split</text:p>
@@ -1144,10 +1144,10 @@
       <text:p>🌑🌑🌑🌑🌑🌑</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
-      <text:p>Dark Void</text:p>
+      <text:p>暗黑洞</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D58]*[.D$54])" office:value-type="float" office:value="131" calcext:value-type="float">
-      <text:p>131</text:p>
+     <table:table-cell table:style-name="ce3" table:formula="of:=CEILING([.D58]*[.D$54])" office:value-type="float" office:value="252" calcext:value-type="float">
+      <text:p>252</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
       <text:p>aoe_split</text:p>
@@ -1177,7 +1177,7 @@
       <text:p>🌪🌪🌱</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Wind</text:p>
+      <text:p>复苏之风</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="float" office:value="5" calcext:value-type="float">
       <text:p>5</text:p>
@@ -1196,10 +1196,10 @@
       <text:p>🌪🌪🌪</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Wind</text:p>
+      <text:p>复苏之风</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="5" calcext:value-type="float">
-      <text:p>5</text:p>
+     <table:table-cell office:value-type="float" office:value="15" calcext:value-type="float">
+      <text:p>15</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>aoe_copy</text:p>
@@ -1215,10 +1215,10 @@
       <text:p>🌪🌪🌪🌪</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Wind</text:p>
+      <text:p>复苏风暴</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="float" office:value="10" calcext:value-type="float">
-      <text:p>10</text:p>
+     <table:table-cell office:value-type="float" office:value="25" calcext:value-type="float">
+      <text:p>25</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>aoe_copy</text:p>
@@ -1369,6 +1369,44 @@
       <text:p>HealShield</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>🌱🌱🛡</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>First Aid</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="30" calcext:value-type="float">
+      <text:p>30</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>caster_heal</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+     <table:table-cell table:style-name="ce2" table:number-columns-repeated="16378"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>HealShield</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>💚🌱🛡</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>Spell Barrier</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="float" office:value="40" calcext:value-type="float">
+      <text:p>40</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>caster_heal</text:p>
+     </table:table-cell>
+     <table:table-cell/>
+     <table:table-cell table:style-name="ce2" table:number-columns-repeated="16378"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string" calcext:value-type="string">
+      <text:p>HealShield</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>💚🌱🛡🛡</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1411,7 +1449,7 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Inferno Shock</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=[.C79]" office:value-type="float" office:value="20" calcext:value-type="float">
+     <table:table-cell table:formula="of:=[.C81]" office:value-type="float" office:value="20" calcext:value-type="float">
       <text:p>20</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1430,7 +1468,7 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Inferno Shock</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=[.C79]" office:value-type="float" office:value="20" calcext:value-type="float">
+     <table:table-cell table:formula="of:=[.C81]" office:value-type="float" office:value="20" calcext:value-type="float">
       <text:p>20</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1449,7 +1487,7 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Inferno Shock</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=[.D80]*[.D79]" office:value-type="float" office:value="40" calcext:value-type="float">
+     <table:table-cell table:formula="of:=[.D82]*[.D81]" office:value-type="float" office:value="40" calcext:value-type="float">
       <text:p>40</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1468,7 +1506,7 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Inferno Shock</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=[.D82]*[.D79]" office:value-type="float" office:value="80" calcext:value-type="float">
+     <table:table-cell table:formula="of:=[.D84]*[.D81]" office:value-type="float" office:value="80" calcext:value-type="float">
       <text:p>80</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1487,7 +1525,7 @@
      <table:table-cell office:value-type="string" calcext:value-type="string">
       <text:p>Inferno Shock</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=[.D82]*[.D79]" office:value-type="float" office:value="80" calcext:value-type="float">
+     <table:table-cell table:formula="of:=[.D84]*[.D81]" office:value-type="float" office:value="80" calcext:value-type="float">
       <text:p>80</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
@@ -1627,7 +1665,7 @@
       <text:p>🗡🗡🩸</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Vampire</text:p>
+      <text:p>吸血爪</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="float" office:value="15" calcext:value-type="float">
       <text:p>15</text:p>
@@ -1646,7 +1684,7 @@
       <text:p>🗡🗡🩸🩸</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Vampire</text:p>
+      <text:p>吸血爪</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="float" office:value="25" calcext:value-type="float">
       <text:p>25</text:p>
@@ -1665,7 +1703,7 @@
       <text:p>🗡🗡👊🩸🩸</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string" calcext:value-type="string">
-      <text:p>Vampire</text:p>
+      <text:p>吸血鬼盛宴</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="float" office:value="40" calcext:value-type="float">
       <text:p>40</text:p>
@@ -1814,7 +1852,7 @@
      <table:table-cell/>
      <table:table-cell table:style-name="ce2" table:number-columns-repeated="16378"/>
     </table:table-row>
-    <table:table-row table:style-name="ro2" table:number-rows-repeated="1048466">
+    <table:table-row table:style-name="ro2" table:number-rows-repeated="1048464">
      <table:table-cell table:number-columns-repeated="6"/>
      <table:table-cell table:style-name="ce2" table:number-columns-repeated="16378"/>
     </table:table-row>

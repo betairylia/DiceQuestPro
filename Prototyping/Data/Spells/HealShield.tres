@@ -12,6 +12,20 @@ power = 15
 
 [sub_resource type="Resource" id="Resource_yddff"]
 script = ExtResource("1_gdmvt")
+display_name = "First Aid"
+pattern = "nnD"
+logic = "caster_heal"
+power = 30
+
+[sub_resource type="Resource" id="Resource_p35vj"]
+script = ExtResource("1_gdmvt")
+display_name = "Spell Barrier"
+pattern = "HnD"
+logic = "caster_heal"
+power = 40
+
+[sub_resource type="Resource" id="Resource_rbixi"]
+script = ExtResource("1_gdmvt")
 display_name = "Spell Barrier"
 pattern = "HnDD"
 logic = "caster_heal"
@@ -19,4 +33,4 @@ power = 50
 
 [resource]
 script = ExtResource("2_yddff")
-levels = Array[ExtResource("1_gdmvt")]([SubResource("Resource_gdmvt"), SubResource("Resource_yddff")])
+levels = Array[ExtResource("1_gdmvt")]([SubResource("Resource_gdmvt"), SubResource("Resource_yddff"), SubResource("Resource_p35vj"), SubResource("Resource_rbixi")])

@@ -5,38 +5,38 @@
 
 [sub_resource type="Resource" id="Resource_0txob"]
 script = ExtResource("1_0txob")
-display_name = "Dark Void"
+display_name = "暗黑洞"
 pattern = "dd"
 logic = "aoe_split"
-power = 15
+power = 30
 
 [sub_resource type="Resource" id="Resource_seibd"]
 script = ExtResource("1_0txob")
-display_name = "Dark Void"
+display_name = "暗黑洞"
 pattern = "ddd"
 logic = "aoe_split"
-power = 26
+power = 51
 
 [sub_resource type="Resource" id="Resource_sc1mj"]
 script = ExtResource("1_0txob")
-display_name = "Dark Void"
+display_name = "暗黑洞"
 pattern = "dddd"
 logic = "aoe_split"
-power = 45
+power = 87
 
 [sub_resource type="Resource" id="Resource_xxht6"]
 script = ExtResource("1_0txob")
-display_name = "Dark Void"
+display_name = "暗黑洞"
 pattern = "ddddd"
 logic = "aoe_split"
-power = 77
+power = 148
 
 [sub_resource type="Resource" id="Resource_6slss"]
 script = ExtResource("1_0txob")
-display_name = "Dark Void"
+display_name = "暗黑洞"
 pattern = "dddddd"
 logic = "aoe_split"
-power = 131
+power = 252
 
 [resource]
 script = ExtResource("2_seibd")

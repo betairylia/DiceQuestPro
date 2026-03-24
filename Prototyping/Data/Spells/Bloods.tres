@@ -5,21 +5,21 @@
 
 [sub_resource type="Resource" id="Resource_pqaro"]
 script = ExtResource("1_pqaro")
-display_name = "Vampire"
+display_name = "吸血爪"
 pattern = "SSX"
 logic = "caster_heal"
 power = 15
 
 [sub_resource type="Resource" id="Resource_rti0r"]
 script = ExtResource("1_pqaro")
-display_name = "Vampire"
+display_name = "吸血爪"
 pattern = "SSXX"
 logic = "caster_heal"
 power = 25
 
 [sub_resource type="Resource" id="Resource_s37ou"]
 script = ExtResource("1_pqaro")
-display_name = "Vampire"
+display_name = "吸血鬼盛宴"
 pattern = "SSpXX"
 logic = "caster_heal"
 power = 40

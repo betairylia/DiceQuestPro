@@ -15,28 +15,28 @@ script = ExtResource("1_52d8u")
 display_name = "Healing"
 pattern = "nn"
 logic = "caster_heal"
-power = 30
+power = 20
 
 [sub_resource type="Resource" id="Resource_a75ea"]
 script = ExtResource("1_52d8u")
 display_name = "Healing"
 pattern = "nnn"
 logic = "caster_heal"
-power = 50
+power = 40
 
 [sub_resource type="Resource" id="Resource_375l1"]
 script = ExtResource("1_52d8u")
 display_name = "Mass Healing"
 pattern = "nnnnn"
 logic = "caster_heal"
-power = 50
+power = 100
 
 [sub_resource type="Resource" id="Resource_bs68q"]
 script = ExtResource("1_52d8u")
 display_name = "Mass Healing"
 pattern = "nnnnnn"
 logic = "caster_heal"
-power = 100
+power = 150
 
 [resource]
 script = ExtResource("2_uw2v5")

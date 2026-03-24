@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://c0nj8cnq2l2cf"]
 
-[ext_resource type="Script" path="res://Prototyping/Screens/StartScreen/start_screen.gd" id="1"]
-[ext_resource type="Theme" path="res://Prototyping/HUD/pixelated.tres" id="2"]
+[ext_resource type="Script" uid="uid://dasxsjto0e0hi" path="res://Prototyping/Screens/StartScreen/start_screen.gd" id="1"]
+[ext_resource type="Theme" uid="uid://d3y5mqejxm5rd" path="res://Prototyping/HUD/pixelated.tres" id="2"]
 
-[node name="StartScreen" type="Control"]
+[node name="StartScreen" type="Control" unique_id=1475855788]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,15 +13,15 @@ grow_vertical = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
+[node name="Background" type="ColorRect" parent="." unique_id=1211853192]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.03, 0.03, 0.04, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1816949566]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,44 +33,45 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=263381572]
 layout_mode = 2
 
-[node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
+[node name="TitleLabel" type="RichTextLabel" parent="MarginContainer/VBox" unique_id=564006556]
 layout_mode = 2
-horizontal_alignment = 1
-fit_content = true
-scroll_active = false
 theme_override_font_sizes/normal_font_size = 18
-text = "DiceQuestPro\nRoguelike Run"
-
-[node name="StatusLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
-layout_mode = 2
-horizontal_alignment = 1
+text = "DiceQuestPro
+Roguelike Run"
 fit_content = true
 scroll_active = false
-text = "选择 1-3 名角色出发"
+horizontal_alignment = 1
 
-[node name="Scroll" type="ScrollContainer" parent="MarginContainer/VBox"]
+[node name="StatusLabel" type="RichTextLabel" parent="MarginContainer/VBox" unique_id=1416909400]
+layout_mode = 2
+text = "选择 1-3 名角色出发"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="MarginContainer/VBox" unique_id=23176435]
 custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Grid" type="GridContainer" parent="MarginContainer/VBox/Scroll"]
+[node name="Grid" type="GridContainer" parent="MarginContainer/VBox/Scroll" unique_id=1307133348]
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
+columns = 3
 
-[node name="SelectedLabel" type="RichTextLabel" parent="MarginContainer/VBox"]
+[node name="SelectedLabel" type="RichTextLabel" parent="MarginContainer/VBox" unique_id=1244601226]
 layout_mode = 2
-horizontal_alignment = 1
+text = "尚未选择角色"
 fit_content = true
 scroll_active = false
-text = "尚未选择角色"
+horizontal_alignment = 1
 
-[node name="DepartButton" type="Button" parent="MarginContainer/VBox"]
+[node name="DepartButton" type="Button" parent="MarginContainer/VBox" unique_id=1513903204]
 layout_mode = 2
 text = "出发"
 

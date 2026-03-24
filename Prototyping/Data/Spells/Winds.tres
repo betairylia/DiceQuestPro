@@ -5,24 +5,24 @@
 
 [sub_resource type="Resource" id="Resource_khp0y"]
 script = ExtResource("1_khp0y")
-display_name = "Wind"
+display_name = "复苏之风"
 pattern = "AAn"
 logic = "aoe_copy"
 power = 5
 
 [sub_resource type="Resource" id="Resource_s38iw"]
 script = ExtResource("1_khp0y")
-display_name = "Wind"
+display_name = "复苏之风"
 pattern = "AAA"
 logic = "aoe_copy"
-power = 5
+power = 15
 
 [sub_resource type="Resource" id="Resource_w7q8n"]
 script = ExtResource("1_khp0y")
-display_name = "Wind"
+display_name = "复苏风暴"
 pattern = "AAAA"
 logic = "aoe_copy"
-power = 10
+power = 25
 
 [resource]
 script = ExtResource("2_s38iw")

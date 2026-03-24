@@ -111,7 +111,7 @@ const ELEMENT_COLORS = {
 	# Wind
 	Elements.Wind:    Color(0.67, 0.87, 1.0),
 	# Special
-	Elements.Idle:    Color(0.50, 0.50, 0.50),
+	Elements.Idle:    Color(0.20, 0.20, 0.20),
 	Elements.Revive:  Color(0.47, 0.93, 0.47),
 }
 
