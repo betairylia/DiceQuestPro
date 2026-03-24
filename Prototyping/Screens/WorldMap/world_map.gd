@@ -4,6 +4,7 @@ const START_SCENE := "res://Prototyping/Screens/StartScreen/StartScreen.tscn"
 const COMBAT_SCENE := "res://Prototyping/Screens/Combat/CombatScreen.tscn"
 const REWARD_SCENE := "res://Prototyping/Screens/Reward/RewardScreen.tscn"
 const VILLAGE_SCENE := "res://Prototyping/Screens/Village/VillageScreen.tscn"
+const TEAM_OVERVIEW_SCENE := "res://Prototyping/Screens/TeamOverview/team_overview.tscn"
 const NODE_VIEW_SCRIPT := preload("res://Prototyping/Screens/WorldMap/map_node_view.gd")
 
 @onready var _region_label: RichTextLabel = $MarginContainer/VBox/Header/RegionLabel
@@ -88,7 +89,7 @@ func _update_header() -> void:
 	_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_region_label.text = region.region_name if region != null else "未知地域"
 	_gold_label.text = "金币 %d" % GameState.gold
-	_hint_label.text = "选择高亮节点继续前进"
+	_hint_label.text = "选择高亮节点继续前进，或查看队伍与物品"
 
 
 func _on_node_pressed(node_id: int) -> void:
@@ -106,6 +107,12 @@ func _on_node_pressed(node_id: int) -> void:
 			SceneTransition.change_scene(REWARD_SCENE)
 		MapNode.NodeType.VILLAGE:
 			SceneTransition.change_scene(VILLAGE_SCENE)
+		_:
+			pass
+
+
+func _on_team_button_pressed() -> void:
+	SceneTransition.change_scene(TEAM_OVERVIEW_SCENE)
 
 
 func _queue_refresh() -> void:

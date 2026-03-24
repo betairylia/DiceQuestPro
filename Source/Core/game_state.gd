@@ -7,7 +7,7 @@ const BUY_PRICE_MULTIPLIER := 3
 const RETRY_COST := 0
 
 var team: Array[MobData] = []
-var inventory: Array[DiceFaceItem] = []
+var inventory: Array[Item] = []
 var gold: int = 0
 var map: RegionMap
 var current_node_id: int = -1
@@ -104,12 +104,12 @@ func is_run_complete() -> bool:
 	return node != null and node.successors.is_empty()
 
 
-func add_item(item: DiceFaceItem) -> void:
+func add_item(item: Item) -> void:
 	inventory.append(item)
 	total_items_collected += 1
 
 
-func remove_item(item: DiceFaceItem) -> void:
+func remove_item(item: Item) -> void:
 	var index := inventory.find(item)
 	if index >= 0:
 		inventory.remove_at(index)

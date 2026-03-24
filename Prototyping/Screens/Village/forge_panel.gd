@@ -92,7 +92,12 @@ func _build_face_grid(player: MobData) -> void:
 func _build_inventory_grid(player: MobData) -> void:
 	_clear_children(_inventory_grid)
 
-	if GameState.inventory.is_empty():
+	var dice_items: Array[DiceFaceItem] = []
+	for item in GameState.inventory:
+		if item is DiceFaceItem:
+			dice_items.append(item)
+
+	if dice_items.is_empty():
 		var empty_label := RichTextLabel.new()
 		empty_label.fit_content = true
 		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -101,7 +106,7 @@ func _build_inventory_grid(player: MobData) -> void:
 		return
 
 	var max_faces := player.alive_dice[0].face_count()
-	for item in GameState.inventory:
+	for item in dice_items:
 		var button := Button.new()
 		button.theme = preload("res://Prototyping/HUD/pixelated.tres")
 		button.text = "%s %d" % [Consts.SYMBOLS.get(item.element, "?"), item.digit]

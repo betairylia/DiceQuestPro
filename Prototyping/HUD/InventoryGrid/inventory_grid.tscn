@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Prototyping/HUD/InventoryGrid/inventory_grid.gd" id="1"]
+
+[node name="InventoryGrid" type="GridContainer"]
+layout_mode = 2
+columns = 6
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+script = ExtResource("1")
+
