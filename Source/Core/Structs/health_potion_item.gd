@@ -9,7 +9,7 @@ static var _icon_texture: Texture2D
 
 @export var power: int = 30:
 	set(value):
-		field = max(value, 1)
+		power = max(value, 1)
 		_sync_metadata()
 
 

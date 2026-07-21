@@ -68,7 +68,7 @@ func _generate_offers() -> void:
 		other_pool.append_array(config.enemy_pool)
 
 	var item_count := randi_range(SHOP_ITEM_COUNT_MIN, SHOP_ITEM_COUNT_MAX)
-	var dice_offer_count := max(item_count - POTION_STOCK, 0)
+	var dice_offer_count: int = max(item_count - POTION_STOCK, 0)
 	for _idx in dice_offer_count:
 		var use_exotic := not other_pool.is_empty() and randf() < region.shop_exotic_chance
 		var pool := other_pool if use_exotic else region.enemy_pool

@@ -268,8 +268,11 @@ func _list_tres_paths(base_path: String) -> Array[String]:
 	dir.list_dir_begin()
 	var entry := dir.get_next()
 	while entry != "":
-		if not dir.current_is_dir() and entry.ends_with(".tres"):
-			results.append("%s/%s" % [base_path, entry])
+		# TODO: FIXME: Exported text resources are listed as `.tres.remap` by DirAccess.
+		# Strip only the export suffix so ResourceLoader can resolve the original `.tres` path.
+		var resource_name := entry.trim_suffix(".remap")
+		if not dir.current_is_dir() and resource_name.ends_with(".tres"):
+			results.append("%s/%s" % [base_path, resource_name])
 		entry = dir.get_next()
 	dir.list_dir_end()
 

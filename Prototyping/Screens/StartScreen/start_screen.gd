@@ -31,8 +31,11 @@ func _load_characters() -> void:
 	dir.list_dir_begin()
 	var entry := dir.get_next()
 	while entry != "":
-		if not dir.current_is_dir() and entry.ends_with(".tres"):
-			files.append(entry)
+		# TODO: FIXME: Exported text resources are listed as `.tres.remap` by DirAccess.
+		# Strip only the export suffix so ResourceLoader can resolve the original `.tres` path.
+		var resource_name := entry.trim_suffix(".remap")
+		if not dir.current_is_dir() and resource_name.ends_with(".tres"):
+			files.append(resource_name)
 		entry = dir.get_next()
 	dir.list_dir_end()
 
